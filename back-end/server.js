@@ -2,11 +2,13 @@
 const express = require('express');
 const server = express();
 const cors = require('cors');
+const helmet = require('helmet');
+
 // routes
 
 // middleware to parse json objs
 server.use(express.json());
-// routes
+server.use(helmet())
 server.use(cors());
 
 server.get('/', (req, res) => {
