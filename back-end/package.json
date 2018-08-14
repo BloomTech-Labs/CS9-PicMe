@@ -13,7 +13,10 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "helmet": "^3.13.0"
+    "helmet": "^3.13.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0",
+    "sqlite3": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
