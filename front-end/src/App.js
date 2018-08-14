@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route} from "react-router-dom";
-import Hello from "./Component/RoutingTest/RoutingTest.js"
+import Hello from "./components/RoutingTest/RoutingTest.js"
 
 
 class App extends Component {
