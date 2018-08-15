@@ -1,0 +1,15 @@
+/*  
+color-scheme:
+
+#FF5EDF - neon purple
+#a14ebf - dark purple
+#04C8DE - cool bue
+#4087f9 - blue/green
+#5bc8af - teal
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
