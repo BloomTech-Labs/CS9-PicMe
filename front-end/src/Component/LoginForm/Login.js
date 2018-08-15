@@ -11,10 +11,7 @@ class Login extends Component {
     }
 
     //function to set the state of email upon input update
-    onEmailInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
-    
-    //function to set the state of password upon input update
-    onPasswordInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
+    onSignInFormChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     render () {
         return(
@@ -36,7 +33,7 @@ class Login extends Component {
                             name="email"  
                             id="email" 
                             //call on change for email
-                            onChange={this.onEmailInputChange} />
+                            onChange={this.onSignInFormChange} />
                         </div>
                         <div className="mv3">
                             <label 
@@ -50,7 +47,7 @@ class Login extends Component {
                             name="password"  
                             id="password" 
                             //call onchange for pw
-                            onChange={this.onPasswordInputChange} />
+                            onChange={this.onSignInFormChange} />
                             </div>
                         </fieldset>
                         <div className="">

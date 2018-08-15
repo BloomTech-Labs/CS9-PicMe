@@ -13,20 +13,8 @@ class Register extends Component {
         }
     }
 
-    //function to set the state of firstName upon input update
-    onFirstNameInputChange = (event) => {this.setState({  [event.target.name]: event.target.value })}
-
-    //function to set the state of lastName upon input update
-    onLastNameInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
-
     //function to set the state of email upon input update
-    onEmailInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
-
-    //function to set the state of password upon input update
-    onPasswordInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
-
-    //function to set the state of nickName upon input update
-    onNickNameInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
+    onRegisterFormChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     render () {
         return(
@@ -49,7 +37,7 @@ class Register extends Component {
                             name="firstName"  
                             id="firstName" 
                             //call onchange for pw
-                            onChange={this.onFirstNameInputChange} />
+                            onChange={this.onRegisterFormChange} />
                             </div>
                             <div className="mv3">
                             <label 
@@ -63,7 +51,7 @@ class Register extends Component {
                             name="lastName"  
                             id="lastName" 
                             //call onchange for pw
-                            onChange={this.onLastNameInputChange} />
+                            onChange={this.onRegisterFormChange} />
                             </div>
                             <label 
                             className="db fw6 lh-copy f6" 
@@ -76,7 +64,7 @@ class Register extends Component {
                             name="email"  
                             id="email" 
                             //call on change for email
-                            onChange={this.onEmailInputChange} />
+                            onChange={this.onRegisterFormChange} />
                         </div>
                         <div className="mv3">
                             <label 
@@ -90,7 +78,7 @@ class Register extends Component {
                             name="password"  
                             id="password" 
                             //call onchange for pw
-                            onChange={this.onPasswordInputChange} />
+                            onChange={this.onRegisterFormChange} />
                             </div>
                             <div className="mv3">
                             <label 
@@ -104,7 +92,7 @@ class Register extends Component {
                             name="nickName"  
                             id="nickName" 
                             //call onchange for pw
-                            onChange={this.onNickNameInputChange} />
+                            onChange={this.onRegisterFormChange} />
                             </div>
                         </fieldset>
                         <div className="">
