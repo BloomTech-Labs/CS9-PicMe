@@ -14,30 +14,19 @@ class Register extends Component {
     }
 
     //function to set the state of firstName upon input update
-    onFirstNameInputChange = (event) => {
-        this.setState({firstName: event.target.value});
-    }
+    onFirstNameInputChange = (event) => {this.setState({  [event.target.name]: event.target.value })}
 
     //function to set the state of lastName upon input update
-    onLastNameInputChange = (event) => {
-        this.setState({lastName: event.target.value});
-    }
+    onLastNameInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     //function to set the state of email upon input update
-    onEmailInputChange = (event) => {
-        this.setState({email: event.target.value});
-    }
+    onEmailInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     //function to set the state of password upon input update
-    onPasswordInputChange = (event) => {
-        this.setState({password: event.target.value});
-    }
+    onPasswordInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     //function to set the state of nickName upon input update
-    onNickNameInputChange = (event) => {
-        this.setState({nickName: event.target.value});
-        //console.log(this.state);
-    }
+    onNickNameInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     render () {
         return(
@@ -58,7 +47,7 @@ class Register extends Component {
                             className="b pa2 input-reset ba hover-black bg-transparent w-100" 
                             type="text" 
                             name="firstName"  
-                            id="first-name" 
+                            id="firstName" 
                             //call onchange for pw
                             onChange={this.onFirstNameInputChange} />
                             </div>
@@ -72,7 +61,7 @@ class Register extends Component {
                             className="b pa2 input-reset ba hover-black bg-transparent w-100" 
                             type="text" 
                             name="lastName"  
-                            id="last-name" 
+                            id="lastName" 
                             //call onchange for pw
                             onChange={this.onLastNameInputChange} />
                             </div>
@@ -84,8 +73,8 @@ class Register extends Component {
                             <input 
                             className="pa2 input-reset ba bg-transparent hover-black w-100" 
                             type="email" 
-                            name="email-address"  
-                            id="email-address" 
+                            name="email"  
+                            id="email" 
                             //call on change for email
                             onChange={this.onEmailInputChange} />
                         </div>
@@ -113,7 +102,7 @@ class Register extends Component {
                             className="b pa2 input-reset ba hover-black bg-transparent w-100" 
                             type="text" 
                             name="nickName"  
-                            id="nick-name" 
+                            id="nickName" 
                             //call onchange for pw
                             onChange={this.onNickNameInputChange} />
                             </div>

@@ -11,14 +11,10 @@ class Login extends Component {
     }
 
     //function to set the state of email upon input update
-    onEmailInputChange = (event) => {
-        this.setState({email: event.target.value});
-    }
+    onEmailInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
+    
     //function to set the state of password upon input update
-    onPasswordInputChange = (event) => {
-        this.setState({password: event.target.value});
-        //console.log(this.state);
-    }
+    onPasswordInputChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     render () {
         return(
@@ -37,8 +33,8 @@ class Login extends Component {
                             <input 
                             className="pa2 input-reset ba bg-transparent hover-black w-100" 
                             type="email" 
-                            name="email-address"  
-                            id="email-address" 
+                            name="email"  
+                            id="email" 
                             //call on change for email
                             onChange={this.onEmailInputChange} />
                         </div>
