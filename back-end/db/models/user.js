@@ -6,11 +6,18 @@ module.exports = (sequelize, datatype) => {
     email: datatype.STRING,
     password: datatype.STRING,
     credits: datatype.INTEGER,
-    image_id: datatype.INTEGER
-  }, {});
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+    collection_image_id: datatype.INTEGER
+  }, {
+    indexes: [
+      {
+        unique: true,
+        fields: ['email']
+      }
+    ]
+  });
+  // User.associate = function(models) {
+  //   User.belongsToMany(models.Image, { through: 'user_collection_image', as: 'CollectionImage'});
+  // };
 
   return User;
 };
