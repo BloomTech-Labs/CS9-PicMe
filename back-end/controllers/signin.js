@@ -2,16 +2,23 @@ const Sequelize = require("sequelize");
 const db = require("../db/dbconnection");
 const User = require("../db/models/user")(db, Sequelize); 
 //Database initializers, used to make queries ^
+const jwt = require('jsonwebtoken');
+const secret = "Temporary Secret Phrase";
 
 const signin = (req, res) => {
   const {email, password} = req.body;
    
   User.findOne({ where: { email: email } }).then(user => {
     if(!user) {
-      return res.status(422).json({error: 'No user with that name found.'});
+      return res.status(422).json({error: 'No user with that name found'});
     }
     else {
-      return res.status(200).json(user);
+      if (user.authenticate(password)) {
+        const token = jwt.sign({ email: user.email }, secret, { expiresIn: '24h' });
+        return res.status(200).json({token});
+      } else {
+        res.status(422).json({error: 'Invalid password'});
+      }
     }
   }).catch(err => console.log(err))
 }

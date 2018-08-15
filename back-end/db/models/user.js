@@ -10,16 +10,7 @@ module.exports = (sequelize, datatype) => {
     credits: datatype.INTEGER,
     image_id: datatype.INTEGER
   }, {
-//    freezeTableName: true,
-//    indexes: [{unique: true, fields: ['email']}],
-    instanceMethods: {
-      authenticate: function (value) {
-        if (bcrypt.compareSync(value, this.password))
-          return this;
-        else
-          return false;
-      }
-    },
+//  indexes: [{unique: true, fields: ['email']}],
     hooks: {
       beforeCreate: function(user, options) {
         return new Promise((resolve, reject) => {
@@ -34,6 +25,13 @@ module.exports = (sequelize, datatype) => {
   User.associate = function(models) {
     // associations can be defined here
   };
+
+  User.prototype.authenticate = function (value) {
+    if (bcrypt.compareSync(value, this.password))
+      return this;
+    else
+      return false;
+  }
 
   return User;
 };
