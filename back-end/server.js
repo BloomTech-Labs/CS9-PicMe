@@ -7,6 +7,9 @@ const helmet = require('helmet');
 // const db = require('./db/dbconnection');
 // const User = require('./db/models/user')(db, Sequelize);
 const bodyparser = require("body-parser");
+require('dotenv').config()
+// console.log(process.env)
+
 
 
 // routes
@@ -17,7 +20,7 @@ const routes = require("./routes/routes")
 server.use(express.json());
 server.use(helmet())
 server.use(cors());
-server.use(bodyparser.urlencoded({extended: false}))
+server.use(bodyparser.urlencoded({extended: false})) //Needed for Stripe
 server.get('/', (req, res) => {
     res.send('Hello World!')
 });

@@ -1,23 +1,21 @@
-const stripe = require("stripe")("sk_test_FzuQBWrxZ48RCciL6zkmJdJl");
-const bodyparser = require("body-parser");
-
+const stripe = require("stripe")(process.env.STRIPE_SECRETKEY);
+//Stripe requires a secret key given through their web app, in developers section
 
 const StripeCharge = (req, res) => {
-    console.log(req.body);
     const token = req.body.token;
     const amount = req.body.amount;
-    const charge =  stripe.charges.create({
+    const charge =  stripe.charges.create({ //Goes through stripe's api to charge their account
         amount: amount,
         currency: "USD",
         source: token
     }, function(err, charge) {
         if(err) {
-            res.status(400).json({Message: "Error charging card"})
+            res.status(400).json({Message: "Error charging card"}) //if error 
             console.log(err)
         }
 
         else {
-            res.status(200).json({Message: "Successfully charged account"})
+            res.status(200).json({Message: "Successfully charged account"}) //If no error give us a success message
         }
     })
 }
