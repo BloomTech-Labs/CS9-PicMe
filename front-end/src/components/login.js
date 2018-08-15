@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-class SignIn extends Component {
+class LogIn extends Component {
 
   state = {
     email: '',
@@ -78,7 +78,7 @@ class SignIn extends Component {
   }
 }
 
-SignIn.propTypes = {
+LogIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -112,4 +112,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(LogIn);

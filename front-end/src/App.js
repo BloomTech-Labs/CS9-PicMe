@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route} from "react-router-dom";
-import SignIn from "./components/signin";
+import LogIn from "./components/login";
 
 
 class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={SignIn}/>
+        <Route exact path="/" component={LogIn}/>
       </Switch>
     );
   }
