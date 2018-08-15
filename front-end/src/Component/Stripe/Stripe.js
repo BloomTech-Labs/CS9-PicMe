@@ -10,10 +10,12 @@ class Stripe extends Component {
         {
         description,
         currency: "USD",
-        amount: amount
+        amount: amount,
+        token: token.id
         })
         .then(response => {
             alert("Success")
+            console.log(response)
         })
         .catch(err => {
             console.log(err)
@@ -30,7 +32,7 @@ class Stripe extends Component {
                 <h1>LOLS</h1>
 
             <StripeCheckout
-            token={this.onToken(10, "Buying pups")}
+            token={this.onToken(500, "Buying pups")}
             stripeKey="pk_test_82oWHtkpQ5D2JsxaliVsOZwi"
             />
             </div>
