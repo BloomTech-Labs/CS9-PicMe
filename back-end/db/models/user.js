@@ -1,5 +1,15 @@
 const bcrypt = require('bcrypt');
 
+const encrypt = (user, options) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(user.password, 8, (err, data) => {
+      if (err) reject(err);
+      user.password = data;
+      resolve();
+    })
+  });
+}
+
 module.exports = (sequelize, datatype) => {
   var User = sequelize.define('User', {
     first_name: datatype.STRING,
@@ -12,15 +22,8 @@ module.exports = (sequelize, datatype) => {
   }, {
 //  indexes: [{unique: true, fields: ['email']}],
     hooks: {
-      beforeCreate: function(user, options) {
-        return new Promise((resolve, reject) => {
-          bcrypt.hash(user.password, 8, (err, data) => {
-            if (err) reject(err);
-            user.password = data;
-            resolve();
-          })
-        });
-      }
+      beforeCreate: encrypt,
+      beforeUpdate: encrypt
     }});
   User.associate = function(models) {
     // associations can be defined here
