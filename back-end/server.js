@@ -1,8 +1,10 @@
-// bring in express
 const express = require('express');
 const server = express();
 const cors = require('cors');
 const helmet = require('helmet');
+const bodyparser = require("body-parser");
+require('dotenv').config()
+
 const Sequelize = require('sequelize');
 const db = require('./db/dbconnection');
 const User = require('./db/models/user')(db, Sequelize);
@@ -12,6 +14,7 @@ require('./db/models/user_collection_image')(db, Sequelize);
 
 User.belongsToMany(Image, { through: 'user_collection_image', as: 'CollectionImages'});
 Image.belongsToMany(User, { through: 'user_collection_image', as: 'Users'});
+
 // routes
 
 const routes = require("./routes/routes")
@@ -20,6 +23,7 @@ const routes = require("./routes/routes")
 server.use(express.json());
 server.use(helmet())
 server.use(cors());
+server.use(bodyparser.urlencoded({extended: false})) //Needed for Stripe
 
 server.get('/', (req, res) => {
     res.send('Hello World!')
@@ -27,7 +31,7 @@ server.get('/', (req, res) => {
 
 routes(server)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 server.listen(port, () => console.log(`=== Server listening on ${port}... ===`));
 
 // example db access code for reference.  Don't delete for now
@@ -58,7 +62,7 @@ const dbTest = async () => {
 
   await Bob.addCollectionImages([myCollectionImage1, myCollectionImage2]);
 
-  // For any image, list all users that have that image in their collection 
+  // For any image, list all users who have that image in their collection 
   const theUsers = await myCollectionImage1.getUsers();
   theUsers.forEach(user => console.log(`!!!!!!!!!!!!!!!user is ${user.first_name}`))
   
