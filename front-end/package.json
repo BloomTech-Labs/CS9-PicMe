@@ -17,6 +17,7 @@
     "react-stripe-checkout": "^2.6.3",
     "react-tilt": "^0.1.4",
     "reactstrap": "^6.3.1",
+    "semantic-ui-react": "^0.82.2",
     "tachyons": "^4.11.1"
   },
   "scripts": {
