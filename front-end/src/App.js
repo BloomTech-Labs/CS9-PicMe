@@ -7,6 +7,7 @@ import Hello from "./Component/RoutingTest/RoutingTest.js"
 import Stripe from "./Component/Stripe/Stripe.js"
 import Login from "./Component/LoginForm/Login";
 import Register from "./Component/Register/Register";
+import LandingPage from "./Component/LandingPage/LandingPage";
 
 // Options for the particle effects. 
 const particlesOptions = {
@@ -30,7 +31,7 @@ class App extends Component {
           <Route exact path="/" component={Hello} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/" component={Hello}/>
+          <Route exact path="/home" component={LandingPage} />
           <Route exact path="/stripe" component={Stripe}/>
         </Switch>
       </div>
