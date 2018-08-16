@@ -7,7 +7,6 @@ const secret = "Temporary Secret Phrase";
 
 const signin = (req, res) => {
   const {email, password} = req.body;
-   
   User.findOne({ where: { email: email } }).then(user => {
     if(!user) {
       return res.status(422).json({error: 'No user with that email found'});
