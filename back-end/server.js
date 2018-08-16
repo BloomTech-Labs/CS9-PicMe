@@ -39,7 +39,7 @@ const dbTest = async () => {
 
   await db.sync({force: true});
 
-  // Create User Bob
+  // Create two users 
   const Bob = await User.create({
     first_name: 'Bob',
     last_name: 'Smith',
@@ -49,7 +49,17 @@ const dbTest = async () => {
     credits: 10
   })
 
-  // Add two images to Bob's collection
+  const Jerry = await User.create({
+    first_name: 'Jerry',
+    last_name: 'Brown',
+    nick_names: '',
+    email: 'jerry@brown.com',
+    password: "i don't think so",
+    credits: 15
+  })
+
+
+  // Create two images 
   const myCollectionImage1 = await Image.create({
     name: 'my wedding',
     url: 'http://weddingpicimage.com'
@@ -60,31 +70,39 @@ const dbTest = async () => {
     url: 'http://graduation.com'
   })
 
+  // Add two images to Bob's collection
   await Bob.addCollectionImages([myCollectionImage1, myCollectionImage2]);
 
+  // Add one image to Jerry's collection
+  await Jerry.addCollectionImages([myCollectionImage1]);
+
   // For any image, list all users who have that image in their collection 
-  const theUsers = await myCollectionImage1.getUsers();
-  theUsers.forEach(user => console.log(`!!!!!!!!!!!!!!!user is ${user.first_name}`))
+  const collection1Users = await myCollectionImage1.getUsers();
+  console.log('All users that have myCollectionImage1');
+  collection1Users.forEach(user => console.log(`user is ${user.first_name}`))
+
+  const collection2Users = await myCollectionImage2.getUsers();
+  console.log('All users that have myCollectionImage2');
+  collection2Users.forEach(user => console.log(`user is ${user.first_name}`))
   
 
   // List all of Bob's images
+  let BobImages = await Bob.getCollectionImages();
   console.log(`All images belonging to ${Bob.first_name}`)
-  const BobImages = await Bob.getCollectionImages();
   BobImages.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
-
-  // Create User Jerry
-  await User.create({
-    first_name: 'Jerry',
-    last_name: 'Brown',
-    nick_names: '',
-    email: 'jerry@brown.com',
-    password: "i don't think so",
-    credits: 15
-  })
 
   // List all existing users
   users = await User.findAll();
   users.forEach(user => console.log(`User # ${user.id} is ${user.first_name} ${user.last_name}`));
+
+  // Update Bob's wedding image 
+  const bobWeddingImage = (await Bob.getCollectionImages()).find(img => img.name === 'my wedding');
+  bobWeddingImage.name = "Bob's wedding image";
+  await bobWeddingImage.save();
+
+  BobImages = await Bob.getCollectionImages();
+  BobImages.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
+
 }
 
 dbTest();

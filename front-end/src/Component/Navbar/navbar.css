@@ -1,0 +1,46 @@
+
+header {
+    max-height: 100%;
+    height: 13%;
+}
+
+header nav a:hover {
+    color: white;
+}
+
+header nav a:nth-child(4) {
+    color: rgb(119, 79, 219)
+}
+
+header nav a:nth-child(4):hover {
+    color: rgb(110, 59, 182);;
+}
+
+header nav .link:focus {
+    outline: none;
+}
+
+header nav a:hover {
+    text-decoration: none;
+}
+
+.arrow-down {
+    float: right;
+    position: relative;
+    top: .66rem;
+    left: .5rem;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+    color: white;
+}
+
+.User__card {
+    background-color: rgb(235, 235, 235);
+    width: 20%;
+    position: relative;
+    left: 83%;
+    bottom: 7vh;
+}
