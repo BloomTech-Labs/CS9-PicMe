@@ -27,13 +27,10 @@ module.exports = (sequelize, datatype) => {
         }
       ]
     },
-    {
-      hooks: {
-        beforeCreate: encrypt,
-        beforeUpdate: encrypt
-      }
-    }
   );
+
+  User.beforeCreate(encrypt);
+  User.beforeUpdate(encrypt);
 
   User.prototype.authenticate = function (value) {
     if (bcrypt.compareSync(value, this.password))
