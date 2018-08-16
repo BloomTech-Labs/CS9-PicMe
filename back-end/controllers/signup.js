@@ -5,7 +5,7 @@ const User = require("../db/models/user")(db, Sequelize);
 
 
 const signup = (req, res) => {
-  const {first_name, last_name, email, password, nick_names} = req.body;   //Sign up only needs email/pass
+  const {first_name, last_name, email, password, nick_names} = req.body;
 
   const createUser = async () => {
     await User.create({ 
