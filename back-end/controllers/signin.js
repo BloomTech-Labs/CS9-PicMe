@@ -10,7 +10,7 @@ const signin = (req, res) => {
    
   User.findOne({ where: { email: email } }).then(user => {
     if(!user) {
-      return res.status(422).json({error: 'No user with that name found'});
+      return res.status(422).json({error: 'No user with that email found'});
     }
     else {
       if (user.authenticate(password)) {
