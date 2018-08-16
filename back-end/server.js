@@ -26,10 +26,11 @@ server.get('/', (req, res) => {
 });
 
 routes(server)
-// no hard coded ports
+
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`=== Server listening on ${port}... ===`));
 
+// example db access code for reference.  Don't delete for now
 const dbTest = async () => {
 
   await db.sync({force: true});
@@ -57,7 +58,7 @@ const dbTest = async () => {
 
   await Bob.addCollectionImages([myCollectionImage1, myCollectionImage2]);
 
-  // For an image, list all users that have that image in their collection 
+  // For any image, list all users that have that image in their collection 
   const theUsers = await myCollectionImage1.getUsers();
   theUsers.forEach(user => console.log(`!!!!!!!!!!!!!!!user is ${user.first_name}`))
   
