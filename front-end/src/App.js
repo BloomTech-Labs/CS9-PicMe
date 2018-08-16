@@ -4,6 +4,7 @@ import Tachyons from 'tachyons';
 import Particles from 'react-particles-js';
 import {Switch, Route} from "react-router-dom";
 import Hello from "./Component/RoutingTest/RoutingTest.js"
+import Stripe from "./Component/Stripe/Stripe.js"
 import Login from "./Component/LoginForm/Login";
 import Register from "./Component/Register/Register";
 import LandingPage from "./Component/LandingPage/LandingPage";
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/home" component={LandingPage} />
+          <Route exact path="/stripe" component={Stripe}/>
         </Switch>
       </div>
     );
