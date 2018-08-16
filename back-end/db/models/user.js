@@ -12,22 +12,28 @@ const encrypt = (user, options) => {
 
 module.exports = (sequelize, datatype) => {
   var User = sequelize.define('User', {
-    first_name: datatype.STRING,
-    last_name: datatype.STRING,
-    nick_names: datatype.STRING,
-    email: datatype.STRING,
-    password: datatype.STRING,
-    credits: datatype.INTEGER,
-    image_id: datatype.INTEGER
-  }, {
-//  indexes: [{unique: true, fields: ['email']}],
-    hooks: {
-      beforeCreate: encrypt,
-      beforeUpdate: encrypt
-    }});
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+      first_name: datatype.STRING,
+      last_name: datatype.STRING,
+      nick_names: datatype.STRING,
+      email: datatype.STRING,
+      password: datatype.STRING,
+      credits: datatype.INTEGER,
+    },
+    {
+      indexes: [
+        {
+          unique: true,
+          fields: ['email']
+        }
+      ]
+    },
+    {
+      hooks: {
+        beforeCreate: encrypt,
+        beforeUpdate: encrypt
+      }
+    }
+  );
 
   User.prototype.authenticate = function (value) {
     if (bcrypt.compareSync(value, this.password))
