@@ -4,7 +4,6 @@ import {Switch, Route} from 'react-router-dom'
 import Stripe from './components/stripe'
 import HomePage from './components/homepage.js'
 import Navbar from './components/navbar'
-import RegistrationForm from './components/registrationform'
 
 class App extends Component {
   render() {
