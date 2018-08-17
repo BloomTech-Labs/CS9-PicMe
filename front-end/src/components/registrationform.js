@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
+import Axios from '../../node_modules/axios';
 
 class RegistrationForm extends Component {
 
@@ -19,8 +20,27 @@ class RegistrationForm extends Component {
     console.log("The input values are", Object.values(this.state));
     // make axios call to backend registration route
 
+    const newUser = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    Axios.post("http://localhost:5000/signup", newUser)
+    .then(response => {
+      console.log(response);
+    }).catch(err => {
+      alert("Sign up failed, please make sure no field is left blank");
+      this.setState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: ""
+      })
+    })
+
     // if axios registration call successful to go to..
-    this.props.history.push('/navbar')
   }
 
   render() {
