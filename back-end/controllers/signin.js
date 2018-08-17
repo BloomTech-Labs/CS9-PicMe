@@ -3,7 +3,7 @@ const db = require("../db/dbconnection");
 const User = require("../db/models/user")(db, Sequelize); 
 //Database initializers, used to make queries ^
 const jwt = require('jsonwebtoken');
-const secret = "Temporary Secret Phrase";
+const secret = process.env.JWT_SECRET;
 
 const signin = (req, res) => {
   const {email, password} = req.body;

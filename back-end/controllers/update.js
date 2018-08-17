@@ -6,11 +6,19 @@ const User = require("../db/models/user")(db, Sequelize);
 const update = (req, res) => {
   const currEmail = req.body.currEmail //will grab current email if it is being changed
   const {email, password, first_name, last_name, nick_names, credits} = req.body;
-  if (email) {
-    User.update({email, password, first_name, last_name, nick_names, credits },
+  if (currEmail) {
+    User.update({email, first_name, last_name, nick_names, credits },
       { where: { email: currEmail }, individualHooks: true })
-    .then(user => res.status(200).json({ success: true }))
-    .catch(err => console.log(err))
+    .then(user => {
+      if (password) {
+        User.update({ password }, { where: { email: currEmail }, individualHooks: true })
+        .then(user2 => res.status(200).json(user2))
+        .catch(err => res.status(500).json(err));
+      } else {
+        res.status(200).json(user);
+      }
+    })
+    .catch(err => res.status(500).json(err))
   } else {
     res.status(400).json({success: false, message: 'Please include a user email.'});
   }
