@@ -13,7 +13,7 @@ const signup = (req, res) => {
       last_name: last_name || "",
       email: email || "",
       password: password || "", 
-      nick_names: nick_names || "",
+      nick_names: null,
       credits: 0
     }).then().catch(err => {
       res.status(400).json({Error: "Email in use"})
