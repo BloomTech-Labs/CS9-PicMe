@@ -8,6 +8,9 @@ import Login from "./Component/LoginForm/Login";
 import Register from "./Component/Register/Register";
 import LandingPage from "./Component/LandingPage/LandingPage";
 import Navbar from "./Component/Navbar/Navbar";
+import { Provider } from 'react-redux';
+import store from './store';
+
 
 // Options for the particle effects. 
 const particlesOptions = {
@@ -25,15 +28,17 @@ const particlesOptions = {
 class App extends Component {
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/stripe" component={Stripe}/>
-          <Route exact path="/navbar" component={Navbar}/>
-        </Switch>
-      </div>
+      <Provider store={store}>
+        <div>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/stripe" component={Stripe}/>
+            <Route exact path="/navbar" component={Navbar}/>
+          </Switch>
+        </div>
+      </Provider>
     );
   }
 }

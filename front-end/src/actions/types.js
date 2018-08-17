@@ -1,0 +1,2 @@
+const NEW_USER = 'NEW_USER';
+const FETCH_USER = 'FETCH_USER';

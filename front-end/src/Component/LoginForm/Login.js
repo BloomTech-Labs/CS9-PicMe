@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import './Login.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchUser } from '../../actions/userActions';
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
 
     //function to set the state of email upon input update
-    onSignInFormChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
+    //onSignInFormChange = (event) => { this.setState({ [event.target.name]: event.target.value })}
 
     render () {
         return(
