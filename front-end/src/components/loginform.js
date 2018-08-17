@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
 
-
 class LoginForm extends Component {
 
   state = {
@@ -20,6 +19,7 @@ class LoginForm extends Component {
     // if axios login call successful to go to..
     this.props.history.push('/navbar')
   }
+
   render() {
     return (
       <div className='login-form'>
