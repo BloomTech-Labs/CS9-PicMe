@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
+import axios from 'axios'
 
 class LoginForm extends Component {
 
@@ -15,9 +16,23 @@ class LoginForm extends Component {
     e.preventDefault();
     console.log("The input values are", Object.values(this.state));
     // make axios call to backend login route
-
-    // if axios login call successful to go to..
-    this.props.history.push('/navbar')
+    
+    // Backend address: https://agile-garden-80213.herokuapp.com/signin
+    axios
+    .post(`http://localhost:5000/signin`, {
+        email: this.state.email, 
+        password: this.state.password
+    })
+    .then(response => {
+      // Temp - set token here
+      console.log("State: token: " + response.data.token);
+      // if axios login call successful to go to..
+      this.props.history.push('/navbar')
+    })
+    .catch(err => {
+      alert("Invalid login credentials, please try again.");
+      console.log(err);
+    });
   }
 
   render() {
