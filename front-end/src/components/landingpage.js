@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import LoginForm from './loginform';
+import LoginForm from './loginform'
+import RegistrationForm from './registrationform'
 
 import {
   Button,
@@ -65,6 +66,14 @@ class DesktopContainer extends Component {
   showLogin = () => this.setState({ openLogin: true })
   closeLogin = () => this.setState({ openLogin: false })
 
+  showRegistration = () => this.setState({ openRegistration: true })
+  closeRegistration = () => this.setState({ openRegistration: false })
+
+  closeLoginOpenReg = () => {
+    this.closeLogin();
+    this.showRegistration();
+  }
+
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
@@ -74,7 +83,8 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <LoginForm openLogin={this.state.openLogin} closeLogin={this.closeLogin} />
+        <LoginForm openLogin={this.state.openLogin} closeLogin={this.closeLogin} closeLoginOpenReg={this.closeLoginOpenReg} />
+        <RegistrationForm openLogin={this.state.openRegistration} closeLogin={this.closeRegistration} />
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -101,9 +111,9 @@ class DesktopContainer extends Component {
                   <Button onClick={this.showLogin} inverted={!fixed}>
                     Log in
                   </Button>
-                  <Link to="/register"><Button inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button onClick={this.showRegistration} inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
-                  </Button></Link>
+                  </Button>
                   <Link to="/"><Button inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign out
                   </Button></Link>
