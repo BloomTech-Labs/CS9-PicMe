@@ -1,17 +1,14 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import {BrowserRouter as Router } from 'react-router-dom';
-import LoginForm from '../loginform';
+import LoginForm from './loginform';
 
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
   Icon,
-  Image,
   List,
   Menu,
   Responsive,

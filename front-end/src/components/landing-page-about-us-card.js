@@ -1,6 +1,6 @@
 import React from 'react';
 import Tilt from 'react-tilt';
-import './LandingPageAboutUsCard.css';
+import './css/landing-page-about-us-card.css';
 
 const LandingPageAboutUsCard = () => {
     return (

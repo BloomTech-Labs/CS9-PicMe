@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
 
 
@@ -66,7 +66,7 @@ class LoginForm extends Component {
               </Segment>
             </Form>
             <Message>
-              New to us? <a href='#'>Sign Up</a>
+              New to us? <a href=''>Sign Up</a>
             </Message>
           </Grid.Column>
         </Grid>
@@ -76,7 +76,7 @@ class LoginForm extends Component {
 }
 
 const ModalContainer = props => (
-  <Modal dimmer="bluring" style={{height: '24em', marginTop: '20em'}} size="tiny" open={props.openLogin} onClose={props.closeLogin} centered={false}>
+  <Modal dimmer="blurring" style={{height: '24em', marginTop: '20em'}} size="tiny" open={props.openLogin} onClose={props.closeLogin} centered={false}>
       <LoginForm history={props.history} />
   </Modal>
 )
