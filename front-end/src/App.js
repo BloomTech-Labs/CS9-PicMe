@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom'
 import Stripe from './components/stripe'
 import HomePage from './components/homepage.js'
 import Navbar from './components/navbar'
+import ProfileSettings from "./components/profile-settings"
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/stripe" component={Stripe}/>
           <Route exact path="/navbar" component={Navbar}/>
+          <Route exact path="/settings" component={ProfileSettings}/>
         </Switch>
       </div>
     );

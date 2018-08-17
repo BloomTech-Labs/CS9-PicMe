@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Header, Segment, Input, Button} from "semantic-ui-react";
-import "./ProfileSettings.css";
-import Navbar from "../Navbar/Navbar"
+import "./css/profile-settings.css";
+// import Navbar from "../Navbar/Navbar"
 
 
 class ProfileSettings extends Component {
@@ -29,7 +29,7 @@ class ProfileSettings extends Component {
     render() {
         return(
             <div className="settings__nav">
-                <Navbar/>
+                {/* <Navbar/> */}
                 <form className="settings">
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
                     <Container text>
