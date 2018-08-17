@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {BrowserRouter as Router } from 'react-router-dom';
+import LoginForm from '../loginform';
 
 import {
   Button,
@@ -62,7 +63,10 @@ HomepageHeading.propTypes = {
  * It can be more complicated, but you can create really flexible markup.
  */
 class DesktopContainer extends Component {
-  state = {}
+  state = { openLogin: false }
+
+  showLogin = () => this.setState({ openLogin: true })
+  closeLogin = () => this.setState({ openLogin: false })
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
@@ -73,6 +77,7 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <LoginForm openLogin={this.state.openLogin} closeLogin={this.closeLogin} />
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -96,9 +101,9 @@ class DesktopContainer extends Component {
                   Home
                 </Menu.Item></Link>
                 <Menu.Item position='right'>
-                  <Link to="/login"><Button inverted={!fixed}>
+                  <Button onClick={this.showLogin} inverted={!fixed}>
                     Log in
-                  </Button></Link>
+                  </Button>
                   <Link to="/register"><Button inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
                   </Button></Link>
