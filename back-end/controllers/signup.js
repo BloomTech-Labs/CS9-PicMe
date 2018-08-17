@@ -5,7 +5,7 @@ const User = require("../db/models/user")(db, Sequelize);
 
 
 const signup = (req, res) => {
-  const {first_name, last_name, email, password, nick_names} = req.body;
+  const {first_name, last_name, email, password} = req.body;
 
   const createUser = async () => {
     await User.create({ 
@@ -13,7 +13,7 @@ const signup = (req, res) => {
       last_name: last_name || "",
       email: email || "",
       password: password || "", 
-      nick_names: nick_names || "",
+      nick_names: null,
       credits: 0
     }).then().catch(err => {
       res.status(400).json({Error: "Email in use"})
@@ -22,13 +22,11 @@ const signup = (req, res) => {
     res.status(200).json({Message: "Success"})
   }
 
-  if (first_name.length < 1 || last_name < 1 || 
-    nick_names < 1 || email < 1 || password < 1) {
-      //Makes sure no field is left blank
-      res.status(400).json({Error: "Please make sure all fields are filled out"})
-    }
-  else {
+  if (first_name && last_name && email && password) { //Makes sure no field is left blank
     createUser(); //If all fields filled, creates a user
+  }
+  else {
+    res.status(400).json({Error: "Please make sure all fields are filled out"})
   }
 }
 
