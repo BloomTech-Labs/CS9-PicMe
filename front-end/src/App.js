@@ -14,7 +14,6 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/stripe" component={Stripe}/>
           <Route exact path="/navbar" component={Navbar}/>
-          <Route exact path="/register" component={RegistrationForm}/>
         </Switch>
       </div>
     );
