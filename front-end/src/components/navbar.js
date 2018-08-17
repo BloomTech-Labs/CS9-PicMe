@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./navbar.css"
+import "./css/navbar.css"
 
 class Navbar extends Component {
     constructor() {
@@ -28,11 +28,11 @@ class Navbar extends Component {
         return(
             <header className="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
                 <nav className="f4 ttu tracked tr">
-                    <a className="link dim white dib mr3" href="#" title="Home">Home</a>
-                    <a className="link dim white dib mr3" href="#" title="About">Uploads</a>
-                    <a className="link dim white dib mr3" href="#" title="Store">Collections</a>
-                    <a className="purple mr3" href="#" title="Contact">Credits: 50</a>
-                    <a onClick={this.showUserNav} className="link dim white dib mr3" href="#" title="Store">User<div className="arrow-down dib mr3"></div></a>
+                    <a className="link dim white dib mr3" href="" title="Home">Home</a>
+                    <a className="link dim white dib mr3" href="" title="About">Uploads</a>
+                    <a className="link dim white dib mr3" href="" title="Store">Collections</a>
+                    <a className="purple mr3" href="" title="Contact">Credits: 50</a>
+                    <a onClick={this.showUserNav} className="link dim white dib mr3" href="" title="Store">User<div className="arrow-down dib mr3"></div></a>
                 </nav>
     
                     <div style={this.state.show} className="User__card">

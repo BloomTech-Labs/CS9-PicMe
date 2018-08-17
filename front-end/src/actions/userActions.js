@@ -5,22 +5,22 @@ const url = "http://localhost:5000/"
 
 export function fetchUser () {
     return (dispatch) => {
-        axios.get(`${url}/signin`)
-        .then((res) => {
-            let inUser = res.dispatch({type:'FETCH_USER', inUser})
-        }).catch((err) => {
-            console.log(err)
-        })
+        console.log("User reached fetch user action: ")
+        //.then((res) => {
+            let inUser = dispatch({type: FETCH_USER, inUser})
+        //}).catch((err) => {
+            //console.log(err)
+        //})
     }
 };
 
-export function newUser () {
+export function newUser (userObject) {
     return (dispatch) => {
-        axios.post(`${url}/register`)
-        .then((res) => {
-            let newUser = res.dispatch({type: 'NEW_USER', newUser})
-        }).catch((err) => {
-            console.log(err)
-        })
+        console.log("User reached newUser action: ")
+        //.then((res) => {
+            let newUser = dispatch({type: 'NEW_USER', newUser})
+        //}).catch((err) => {
+            //console.log(err)
+        //})
     }
 };
