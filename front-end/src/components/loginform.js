@@ -26,12 +26,13 @@ class LoginForm extends Component {
     .then(response => {
       // Temp - set token here
       console.log("State: token: " + response.data.token);
+      // if axios login call successful to go to..
+      this.props.history.push('/navbar')
     })
     .catch(err => {
+      alert("Invalid login credentials, please try again.");
       console.log(err);
     });
-    // if axios login call successful to go to..
-    this.props.history.push('/navbar')
   }
 
   render() {
