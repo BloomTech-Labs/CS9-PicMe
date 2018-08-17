@@ -29,7 +29,9 @@ class RegistrationForm extends Component {
 
     Axios.post("http://localhost:5000/signup", newUser)
     .then(response => {
-      console.log(response);
+      console.log(response)
+      alert("Success")
+      window.location.reload()
     }).catch(err => {
       alert("Sign up failed, please make sure no field is left blank");
       this.setState({
