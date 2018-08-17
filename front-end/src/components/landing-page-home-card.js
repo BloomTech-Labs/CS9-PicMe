@@ -1,6 +1,6 @@
 import React from 'react';
 import Tilt from 'react-tilt';
-import './LandingPageHomeCard.css';
+import './css/landing-page-home-card.css';
 
 const LandingPageHomeCard = () => {
     return (
