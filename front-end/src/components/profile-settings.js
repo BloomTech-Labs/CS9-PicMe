@@ -5,7 +5,7 @@ import "./css/profile-settings.css";
 import Axios from "axios";
 import Closed from "./icons/closed.png";
 import Open from "./icons/open.png"
-
+import "./css/settings.css"
 
 class ProfileSettings extends Component {
     constructor() {
@@ -16,7 +16,29 @@ class ProfileSettings extends Component {
             lastName: "",
             email: "",
             password: "",
-            nickname: ""
+            nickname: "",
+            closed: show,
+            open: noshow,
+            showPass: "password"
+        }
+    }
+
+
+    onEyeClick = () => {
+        if(this.state.closed === show) {
+            this.setState({
+                closed: noshow,
+                open: show,
+                showPass: "text"
+            })
+        }
+
+        else {
+            this.setState({
+                closed: show,
+                open: noshow,
+                showPass: "password"
+            })
         }
     }
 
@@ -53,7 +75,6 @@ class ProfileSettings extends Component {
     render() {
         return(
             <div className="settings__nav">
-                {/* <Navbar/> */}
                 <form onSubmit={this.onSubmit} className="settings">
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
                     <Container text>
@@ -61,9 +82,9 @@ class ProfileSettings extends Component {
                         <Segment>First Name: <Input name="firstName" onChange={this.onChange} type="text"/></Segment>
                         <Segment>Last Name <Input name="lastName" onChange={this.onChange} type="text"/></Segment>
                         <Segment>Email: <Input name="email" onChange={this.onChange} type="text"/></Segment>
-                        <Segment>Password: <Input name="password" type="password" onChange={this.onChange}/>
-                        <img src={Closed} alt="Password hidden" width="20px"/>
-                        <img src={Open} alt="Password hidden" width="20px"/>
+                        <Segment>Password: <Input name="password" type={this.state.showPass} onChange={this.onChange}/>
+                        <img onClick={this.onEyeClick} style={this.state.closed} src={Closed} alt="Password hidden"/>
+                        <img onClick={this.onEyeClick} style={this.state.open} src={Open} alt="Password hidden"/>
                         </Segment>
                         <Segment>Nickname: <Input name="nickname" onChange={this.onChange} type="text"/></Segment>
                     </Segment.Group>
@@ -76,20 +97,19 @@ class ProfileSettings extends Component {
 }
 
 const style = {
-    h1: {
-      marginTop: '3em',
-    },
-    h2: {
-      margin: '4em 0em 2em',
-    },
     h3: {
       marginTop: '0',
-      paddingTop: '7rem',
-    },
-    last: {
-      marginBottom: '300px',
-    },
+      paddingTop: '5rem',
+    }
   }
-  
+
+
+  const show = {
+
+}
+
+const noshow = {
+    display: "none"
+}
 
 export default ProfileSettings;
