@@ -17,6 +17,7 @@ class ProfileSettings extends Component {
             email: "",
             password: "",
             nickname: "",
+            //Styling below
             closed: show,
             open: noshow,
             showPass: "password"
@@ -25,7 +26,7 @@ class ProfileSettings extends Component {
 
 
     onEyeClick = () => {
-        if(this.state.closed === show) {
+        if(this.state.closed === show) { //Makes password visible and changes icon
             this.setState({
                 closed: noshow,
                 open: show,
@@ -52,7 +53,7 @@ class ProfileSettings extends Component {
         e.preventDefault();
 
         const updatedUser = {
-            currEmail: "test@test.com",
+            currEmail: "test@test.com", //Update will only work on a user with this email currently, will grab user info when implemented
             first_name: this.state.firstName,
             last_name: this.state.lastName,
             email: this.state.email,
