@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import StripeCheckout from "react-stripe-checkout"; //An npm package to simplify the process
 import axios from "axios";
 
-class Stripe extends Component {
+class Billing extends Component {
 
     onToken = (amount, description) => token => {
         console.log(amount, description, token.id)
@@ -36,4 +36,4 @@ class Stripe extends Component {
     }
 }
 
-export default Stripe;
+export default Billing;
