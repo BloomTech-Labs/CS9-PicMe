@@ -29,13 +29,15 @@ class RegistrationForm extends Component {
       password: this.state.password
     }
 
-    axios.post("http://localhost:5000/signup", newUser)
+    axios.post(`${process.env.REACT_APP_API}/signup`, newUser)
     .then(response => {
-      axios.post(`http://localhost:5000/signin`, {
+      axios.post(`${process.env.REACT_APP_API}/signin`, {
         email: this.state.email,
         password: this.state.password
       }).then(response => {
         console.log("State: token: " + response.data.token);
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('email', this.state.email);
         this.props.history.push('/navbar')
       })
     }).catch(err => {
