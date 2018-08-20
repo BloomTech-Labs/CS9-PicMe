@@ -31,8 +31,9 @@ img:hover {
     background-color: rgb(64, 204, 255);
 }
 
-.toggle-select {
-    margin-left: 20px;
+.remove-from-your-collection {
+    float: right;
+    margin-right: 20px;
     border-radius: 5px;
     background-color: rgb(64, 204, 255);
 }

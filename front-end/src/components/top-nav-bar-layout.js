@@ -18,7 +18,7 @@ const TopNavBarLayout = props => (
 
         <Dropdown item openOnFocus simple text='Pictures'>
           <Dropdown.Menu>
-            <Dropdown.Item><Link style={black} to='/'>Upload</Link></Dropdown.Item>
+            <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
             <Dropdown.Item><Link style={black} to='/browse'>Browse</Link></Dropdown.Item>
             <Dropdown.Item><Link style={black} to='/'>My Uploads</Link></Dropdown.Item>
             <Dropdown.Item><Link style={black} to='/'>My Collection</Link></Dropdown.Item>
