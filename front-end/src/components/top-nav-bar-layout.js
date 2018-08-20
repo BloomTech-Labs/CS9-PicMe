@@ -28,7 +28,7 @@ const TopNavBarLayout = props => (
           <Link to='/billing'>Billing</Link>
         </Menu.Item>
         <Menu.Item header>
-          <Link to='/'>Settings</Link>
+          <Link to='/settings'>Settings</Link>
         </Menu.Item>
       </Container>
     </Menu>
