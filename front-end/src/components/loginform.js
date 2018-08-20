@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
 import axios from 'axios'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchUser } from '../actions/userActions';
 
 class LoginForm extends Component {
-
-  state = {
-    email: '',
-    password: ''
-  }
+state = {
+  email: '',
+  password: ''
+}
 
   handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = e => {
     e.preventDefault();
     console.log("The input values are", Object.values(this.state));
+
     // make axios call to backend login route
     
     // Backend address: https://agile-garden-80213.herokuapp.com/signin
@@ -93,8 +96,11 @@ class LoginForm extends Component {
 
 const ModalContainer = props => (
   <Modal dimmer="blurring" style={{height: '24em', marginTop: '20em'}} size="tiny" open={props.openLogin} onClose={props.closeLogin} centered={false}>
-      <LoginForm history={props.history} closeLoginOpenReg={props.closeLoginOpenReg} />
+      <LoginForm {...props} history={props.history} closeLoginOpenReg={props.closeLoginOpenReg} />
   </Modal>
 )
 
-export default withRouter(ModalContainer);
+const mapStateToProps = state => state;
+
+
+export default connect(mapStateToProps, { fetchUser })(withRouter(ModalContainer));
