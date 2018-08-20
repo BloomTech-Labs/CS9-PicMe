@@ -1,12 +1,11 @@
-h2 {
+h1 {
     display: flex;
     justify-content: center;
     align-content: center;
+    color: rgb(64, 204, 255);
 }
 
-.component-container {
-    margin-left: 20px;
-    margin-right: 20px;
+.component-wrapper {
     color: rgb(64, 204, 255);
     background-color: rgb(31, 31, 31);
 }
@@ -22,4 +21,17 @@ img {
 
 img:hover {
     transform: scale(1.1);
+}
+
+.add-to-collection {
+    float: right;
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: rgb(64, 204, 255);
+}
+
+.toggle-select {
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: rgb(64, 204, 255);
 }

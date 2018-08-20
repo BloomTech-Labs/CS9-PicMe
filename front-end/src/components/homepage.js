@@ -215,8 +215,8 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em', textAlign: 'center'}} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+          <Grid.Column width={8} >
+            <Header as='h3' style={{ fontSize: '2em'}}>
             Bibendum at varius vel pharetra
             </Header>
             <p style={{ fontSize: '1.33em' }}>
@@ -235,7 +235,7 @@ const HomepageLayout = () => (
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign='center'>
+          <Grid.Column textAlign='left' style={{ marginLeft: "160px" }}>
             <Button size='huge'>Check out more</Button>
           </Grid.Column>
         </Grid.Row>

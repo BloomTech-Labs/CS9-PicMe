@@ -39,6 +39,22 @@ const selfieImages = [{
 {
     "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTZaNloJIc-Z6nxWqBUDh0u9nKgp-A72JTZhO2BfRfwwj-BJL8",
     "users": "Michael V"
+},
+{
+    "url": "https://news.artnet.com/app/news-upload/2014/12/Amalia-Ulman-4-e1453366949397-256x256.png",
+    "users": "Tyler V"
+},
+{
+    "url": "https://news.artnet.com/app/news-upload/2014/11/2014-5-11-portrait-selfie-04-256x256.jpg",
+    "users": "Bertha V"
+},
+{
+    "url": "https://pbs.twimg.com/profile_images/628398651187036160/LAtgpKyw_400x400.jpg",
+    "users": "Jess C"
+},
+{
+    "url": "https://res-2.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/jsts9k9wmpcrx92aswsj",
+    "users": "Phillip H"
 }
 ];
 
