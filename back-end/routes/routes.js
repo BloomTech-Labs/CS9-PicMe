@@ -8,6 +8,7 @@ const {uploads} = require("../controllers/uploads")
 const {collection} = require("../controllers/collection")
 
 
+
 module.exports = server => {
     server.route('/signup').post(signup); //Export all routes from controllers
     server.route('/signin').post(signin);
