@@ -1,8 +1,9 @@
-const Cloudinary = (req, res) => {
+const uploadImage = (req, res) => {
     const cloudinary = require("cloudinary"); //Cloudinary npm package
-    const image = req.body
+    const image = "https://images.unsplash.com/photo-1534607287018-541c7d97748f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f8492e948d2ac5c91199a2623b1c42af&auto=format&fit=crop&w=925&q=80"
+    const testImage = req.body
 
-    console.log(image)
+    console.log(testImage)
     
     cloudinary.config({ 
         cloud_name: 'picme', 
@@ -11,7 +12,7 @@ const Cloudinary = (req, res) => {
     });  
   
     //Grabs from image link, will test grabbing image from fe later
-    cloudinary.uploader.upload("https://images.unsplash.com/photo-1534607287018-541c7d97748f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f8492e948d2ac5c91199a2623b1c42af&auto=format&fit=crop&w=925&q=80",
+    cloudinary.uploader.upload(image,
     //Image is default for now until it can be done client side
     function(result) {
         if(result.error) {
@@ -23,5 +24,5 @@ const Cloudinary = (req, res) => {
 }
 
 module.exports = {
-    Cloudinary
+    uploadImage
 }
