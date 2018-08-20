@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
-import Axios from '../../node_modules/axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+import { fetchUser, newUser } from '../actions/userActions';
 
 class RegistrationForm extends Component {
-
   state = {
     first_name: '',
     last_name: '',
@@ -26,9 +29,9 @@ class RegistrationForm extends Component {
       password: this.state.password
     }
 
-    Axios.post("http://localhost:5000/signup", newUser)
+    axios.post("http://localhost:5000/signup", newUser)
     .then(response => {
-      Axios.post(`http://localhost:5000/signin`, {
+      axios.post(`http://localhost:5000/signin`, {
         email: this.state.email,
         password: this.state.password
       }).then(response => {
@@ -122,8 +125,10 @@ class RegistrationForm extends Component {
 
 const ModalContainer = props => (
   <Modal dimmer="blurring" style={{height: '34em', marginTop: '10em'}} size="small" open={props.openLogin} onClose={props.closeLogin} centered={false}>
-      <RegistrationForm history={props.history} />
+      <RegistrationForm {...props} history={props.history} />
   </Modal>
 )
 
-export default withRouter(ModalContainer);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, { newUser })(withRouter(ModalContainer));
