@@ -19,8 +19,9 @@ class Upload extends Component{
         event.preventDefault();
         const fd = new FormData();
         fd.append("image", this.state.image, this.state.image.name);
+        console.log(fd)
 
-        Axios.post("http://localhost:5000/upload", this.state.image)
+        Axios.post("http://localhost:5000/upload", fd)
         .then(response => {
             console.log(response);
         }).catch(err => {
