@@ -1,6 +1,8 @@
 const uploadImage = (req, res) => {
     const cloudinary = require("cloudinary"); //Cloudinary npm package
     const fs = require("fs");
+
+    console.log("Reached")
     
     var fstream;
     req.pipe(req.busboy);
