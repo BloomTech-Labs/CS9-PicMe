@@ -11,7 +11,7 @@ const LandingPageAboutUsCard = () => {
                     <p> 
                         PicMe is a social media, image-sharing platform. 
                         Upload your images, tag your friends, add photos 
-                        to your collection, and see share your experiences with the world!
+                        to your collection, and share your experiences with the world!
                     </p>
                 </div>
             </Tilt>
