@@ -1,0 +1,21 @@
+.settings__nav img {
+    position: relative;
+    bottom: 2.2rem;
+    width: 1.8rem;
+}
+
+.settings__nav img:hover {
+    cursor: pointer;
+}
+
+.settings__nav img:first-of-type {
+    left: 93.2%;
+}
+
+.settings__nav img:nth-of-type(2) {
+    left: 93.2%;
+}
+
+.settings__nav button {
+    width: 8rem;
+}
