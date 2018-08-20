@@ -1,0 +1,13 @@
+.input {
+    display: block;
+    width: 100%;
+}
+
+
+.settings__nav {
+    margin-top: 0;
+}
+
+body {
+    height: 110vh;
+}
