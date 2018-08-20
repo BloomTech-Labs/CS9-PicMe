@@ -1,0 +1,25 @@
+h2 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.component-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: rgb(64, 204, 255);
+    background-color: rgb(31, 31, 31);
+}
+
+.gallery-container {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+img {
+    transition: all .2s ease-in-out;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
