@@ -19,7 +19,6 @@ class LoginForm extends Component {
     console.log("The input values are", Object.values(this.state));
 
     // Backend address: https://agile-garden-80213.herokuapp.com/signin
-    axios
     axios.post(`${process.env.REACT_APP_API}/signin`, {
         email: this.state.email, 
         password: this.state.password
@@ -28,7 +27,7 @@ class LoginForm extends Component {
       console.log("State: token: " + response.data.token);
       sessionStorage.setItem('token', response.data.token);
       sessionStorage.setItem('email', this.state.email);
-      this.props.history.push('/navbar')
+      this.props.history.push('/upload')
     })
     .catch(err => {
       alert("Invalid login credentials, please try again.");
