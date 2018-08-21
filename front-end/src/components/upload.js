@@ -17,7 +17,10 @@ class Upload extends Component{
             tags: [
 
             ],
-            image: ""
+            image: "",
+            uploadTags: [
+
+            ]
         }
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -62,6 +65,19 @@ class Upload extends Component{
         const image = new FormData();
         image.append("file", this.state.image) 
         image.append("upload_preset", "u03iyxti") //Sends data as a file to our server
+
+
+        this.state.tags.forEach(tag => {
+            this.state.uploadTags.push(tag.id);
+        })
+
+        image.append("Tags", 
+        // JSON.stringify(this.state.uploadTags)
+        this.state.uploadTags
+    )
+
+
+        console.log(this.state.uploadTags)
 
         Axios({
             url: "http://localhost:5000/upload",
