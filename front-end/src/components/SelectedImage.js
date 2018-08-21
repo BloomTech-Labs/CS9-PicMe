@@ -73,6 +73,7 @@ const SelectedImage = ({
         }
         {...photo}
         onClick={e => onClick(e, { index, photo })}
+        alt="selfie"
       />
       <style>{`.not-selected:hover{outline:2px solid #06befa}`}</style>
     </div>
