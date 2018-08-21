@@ -1,0 +1,22 @@
+span {
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    width: 5rem;
+    max-width: 8rem;
+    padding: .3rem;
+    text-align: center;
+    margin-right: 1rem;
+}
+span:active {
+    color:rgb(47, 184, 184);
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+span:hover {
+    width: 5.5rem;
+}
