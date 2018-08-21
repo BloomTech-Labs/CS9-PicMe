@@ -1,8 +1,6 @@
 import { FETCH_USER, NEW_USER } from './types';
 import axios from 'axios';
 
-const url = "http://localhost:5000/"
-
 export function fetchUser () {
     return (dispatch) => {
         console.log("User reached fetch user action: ")

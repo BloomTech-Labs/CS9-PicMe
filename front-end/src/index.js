@@ -7,8 +7,6 @@ import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './reducers/store';
-require('dotenv').config()
-
 
 ReactDOM.render(
 <Provider store={store}>

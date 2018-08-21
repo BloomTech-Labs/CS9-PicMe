@@ -80,7 +80,7 @@ class Upload extends Component{
         console.log(this.state.uploadTags)
 
         Axios({
-            url: "http://localhost:5000/upload",
+            url: `${process.env.REACT_APP_API}/upload`,
             method: "POST",
             headers: {
                 "Content-Type": "multipart/form-data"
