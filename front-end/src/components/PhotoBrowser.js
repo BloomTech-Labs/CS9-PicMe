@@ -9,7 +9,7 @@ const PHOTO_SET = [
     {
         src: selfieImages[0].url,
         width: 1,
-        height:1
+        height:1,
     },
     {
         src: selfieImages[1].url,
@@ -60,7 +60,6 @@ export default class PhotosBrowser extends Component {
             photos: PHOTO_SET,
             selectAll: false
         };
-
             // select photo binding
             this.selectPhoto = this.selectPhoto.bind(this);
             // select binding

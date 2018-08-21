@@ -1,4 +1,5 @@
 import React from "react";
+import { WithContext as ReactTags } from 'react-tag-input';
 
 const Checkmark = ({ selected }) => (
   <div
