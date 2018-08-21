@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('database', 'username', 'password', {
+let sequelize = new Sequelize('database', 'username', 'password', {
   host: 'localhost',
   dialect: 'sqlite',
   operatorsAliases: false,
@@ -16,7 +16,17 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   storage: './db/database.sqlite'
 });
 
-// for postgres in production 
-// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
+// new Sequelize('postgres://user:pass@example.com:5432/dbname');
+//
+// DATABASE_URL is Heroku env var
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, { 
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
+  });
+}
 
 module.exports = sequelize;

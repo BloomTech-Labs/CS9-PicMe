@@ -6,7 +6,7 @@ class Billing extends Component {
 
     onToken = (amount, description) => token => {
         console.log(amount, description, token.id)
-        axios.post("http://localhost:5000/charge", //Will need to change when in development
+        axios.post(`${process.env.REACT_APP_API}/charge`, //Will need to change when in development
         {
         description,
         currency: "USD",

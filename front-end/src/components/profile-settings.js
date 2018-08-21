@@ -62,7 +62,7 @@ class ProfileSettings extends Component {
             credits: 10
         }
 
-        Axios.put("http://localhost:5000/update", updatedUser)
+        Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser)
         .then(response => {
             console.log(response);
         }).catch(err => {

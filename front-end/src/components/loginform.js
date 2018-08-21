@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions/userActions';
 
 class LoginForm extends Component {
-state = {
-  email: '',
-  password: ''
-}
+  state = {
+    email: '',
+    password: ''
+  }
 
   handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -18,19 +18,16 @@ state = {
     e.preventDefault();
     console.log("The input values are", Object.values(this.state));
 
-    // make axios call to backend login route
-    
     // Backend address: https://agile-garden-80213.herokuapp.com/signin
-    axios
-    .post(`http://localhost:5000/signin`, {
+    axios.post(`${process.env.REACT_APP_API}/signin`, {
         email: this.state.email, 
         password: this.state.password
     })
     .then(response => {
-      // Temp - set token here
       console.log("State: token: " + response.data.token);
-      // if axios login call successful to go to..
-      this.props.history.push('/navbar')
+      sessionStorage.setItem('token', response.data.token);
+      sessionStorage.setItem('email', this.state.email);
+      this.props.history.push('/upload')
     })
     .catch(err => {
       alert("Invalid login credentials, please try again.");
