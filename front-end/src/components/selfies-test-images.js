@@ -9,7 +9,7 @@ const selfieImages = [{
     "users": "James F"
 },
 {
-    "url": "https://www.aegeoyachts.gr/wp-content/uploads/2017/12/skiathos-things-to-do-day-cruise-1-256x256.jpg",
+    "url": "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "users": "Mark K, James P, Kylie T, Jim H, Sarah B, Jen G"
 },
 {
