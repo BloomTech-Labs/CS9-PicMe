@@ -38,7 +38,7 @@ class RegistrationForm extends Component {
         console.log("State: token: " + response.data.token);
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('email', this.state.email);
-        this.props.history.push('/navbar')
+        this.props.history.push('/upload')
       })
     }).catch(err => {
       alert("Sign up failed, please make sure no field is left blank");

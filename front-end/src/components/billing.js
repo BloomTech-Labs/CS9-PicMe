@@ -1,39 +1,59 @@
-import React, {Component} from "react";
-import StripeCheckout from "react-stripe-checkout"; //An npm package to simplify the process
-import axios from "axios";
+import React, { Component } from "react";
+// import { API } from "aws-amplify";
+import { Elements, StripeProvider } from "react-stripe-elements";
+import BillingForm from "./billingform";
+import config from "../config";
+import "./css/billing.css";
 
-class Billing extends Component {
+export default class Settings extends Component {
+  constructor(props) {
+    super(props);
 
-    onToken = (amount, description) => token => {
-        console.log(amount, description, token.id)
-        axios.post(`${process.env.REACT_APP_API}/charge`, //Will need to change when in development
-        {
-        description,
-        currency: "USD",
-        amount: amount,
-        token: token.id //Token is created below through stripecheckout
-        })
-        .then(response => {
-            alert("Success")
-            console.log(response)
-        })
-        .catch(err => {
-            console.log(err)
-            alert("Error Processing Payment")
-        });
+    this.state = {
+      isLoading: false
+    };
+  }
 
-    }  
+  billUser(details) {
+    // return API.post("notes", "/billing", {
+    //   body: details
+    // });
+  }
 
-    render() {
-        return(
-            <div>
-            <StripeCheckout
-            token={this.onToken(500, "Buying pups")} //500 as in cents, stripe uses cents not dollars
-            stripeKey="pk_test_82oWHtkpQ5D2JsxaliVsOZwi" //Can be shared as long as secret key remains private
-            />
-            </div>
-        )
+  handleFormSubmit = async (storage, { token, error }) => {
+    if (error) {
+      alert(error);
+      return;
     }
-}
 
-export default Billing;
+    this.setState({ isLoading: true });
+
+    try {
+      await this.billUser({
+        storage,
+        source: token.id
+      });
+
+      alert("Your card has been charged successfully!");
+      this.props.history.push("/");
+    } catch (e) {
+      alert(e);
+      this.setState({ isLoading: false });
+    }
+  }
+
+  render() {
+    return (
+      <div className="Settings">
+        <StripeProvider apiKey={config.STRIPE_KEY}>
+          <Elements>
+            <BillingForm
+              loading={this.state.isLoading}
+              onSubmit={this.handleFormSubmit}
+            />
+          </Elements>
+        </StripeProvider>
+      </div>
+    );
+  }
+}
