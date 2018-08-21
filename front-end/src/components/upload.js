@@ -57,7 +57,6 @@ class Upload extends Component{
             preview: URL.createObjectURL(e.target.files[0])
         })
 
-
     }
 
     onSubmit = (event) => {
@@ -71,13 +70,10 @@ class Upload extends Component{
             this.state.uploadTags.push(tag.id);
         })
 
-        image.append("Tags", 
-        // JSON.stringify(this.state.uploadTags)
-        this.state.uploadTags
-    )
+        image.append("Tags", this.state.uploadTags)
+        image.append("Email", window.sessionStorage.email)
 
 
-        console.log(this.state.uploadTags)
 
         Axios({
             url: `${process.env.REACT_APP_API}/upload`,
@@ -91,6 +87,8 @@ class Upload extends Component{
         }).catch(err => {
             console.log(err)
         })
+
+        window.location.reload();
     }
 
     render() {
