@@ -18,8 +18,8 @@ const TopNavBarLayout = props => (
 
         <Dropdown item openOnFocus simple text='Pictures'>
           <Dropdown.Menu>
-            <Dropdown.Item><Link style={black} to='/'>Upload</Link></Dropdown.Item>
-            <Dropdown.Item><Link style={black} to='/'>Browse</Link></Dropdown.Item>
+            <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
+            <Dropdown.Item><Link style={black} to='/browse'>Browse</Link></Dropdown.Item>
             <Dropdown.Item><Link style={black} to='/'>My Uploads</Link></Dropdown.Item>
             <Dropdown.Item><Link style={black} to='/'>My Collection</Link></Dropdown.Item>
           </Dropdown.Menu>
@@ -28,7 +28,7 @@ const TopNavBarLayout = props => (
           <Link to='/billing'>Billing</Link>
         </Menu.Item>
         <Menu.Item header>
-          <Link to='/'>Settings</Link>
+          <Link to='/settings'>Settings</Link>
         </Menu.Item>
       </Container>
     </Menu>

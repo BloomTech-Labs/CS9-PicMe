@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Gallery from 'react-photo-gallery';
 import selfieImages from './selfies-test-images';
-import './css/PhotoBrowser.css';
+import './css/MyCollectionPage.css';
 import SelectedImage from "./SelectedImage";
 
 
@@ -12,27 +12,7 @@ const PHOTO_SET = [
         height:1
     },
     {
-        src: selfieImages[1].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[2].url,
-        width: 1,
-        height:1
-    },
-    {
         src: selfieImages[3].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[4].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[5].url,
         width: 1,
         height:1
     },
@@ -53,7 +33,7 @@ const PHOTO_SET = [
     },
 ]
 
-export default class PhotosBrowser extends Component {
+export default class MyCollectionPage extends Component {
     constructor(props) {
         super(props);
         this.state= {
@@ -85,21 +65,22 @@ export default class PhotosBrowser extends Component {
       }
 
       //submit
-      toggleSubmit(event) {
-          alert("Selected Photos have been added to your collection!");
+      toggleSubmit(event, obj, index) {
+          alert("Selected Photos have been removed from your collection");
+          
       }
 
 
         render() {
         return(
             <div className="component-wrapper">
-                <h1> Check out these photos! </h1>
+                <h1> Your photo collection: </h1>
             <p>
               <button className="toggle-select" onClick={this.toggleSelect}>
                 toggle select all
               </button>
-              <button className="add-to-collection" onClick={this.toggleSubmit}>
-                Add selected photos to collection
+              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
+                Remove selected photos from collection
               </button>
             </p>
             <Gallery

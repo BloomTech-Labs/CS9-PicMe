@@ -3,6 +3,7 @@ const server = express();
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyparser = require("body-parser");
+const busyBoy = require("connect-busboy"); //Needed to parse image
 require('dotenv').config()
 
 const Sequelize = require('sequelize');
@@ -26,8 +27,8 @@ const routes = require("./routes/routes")
 server.use(express.json());
 server.use(helmet())
 server.use(cors());
-server.use(bodyparser.urlencoded({extended: false})) //Needed for Stripe
-
+server.use(bodyparser.urlencoded({limit: "10mb", extended: false, parameterLimit:"10000000000"})) //Needed for Stripe
+server.use(busyBoy()) //Middleware to parse image
 server.get('/', (req, res) => {
     res.send('Hello World!')
 });
