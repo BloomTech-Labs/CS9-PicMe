@@ -53,7 +53,7 @@ class ProfileSettings extends Component {
         e.preventDefault();
 
         const updatedUser = {
-            currEmail: "test@test.com", //Update will only work on a user with this email currently, will grab user info when implemented
+            currEmail: window.sessionStorage.email,
             first_name: this.state.firstName,
             last_name: this.state.lastName,
             email: this.state.email,
@@ -62,7 +62,12 @@ class ProfileSettings extends Component {
             credits: 10
         }
 
-        Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser)
+        Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser, {
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${window.sessionStorage.token}`
+            }
+        })
         .then(response => {
             console.log(response);
         }).catch(err => {

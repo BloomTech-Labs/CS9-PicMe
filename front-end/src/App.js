@@ -17,7 +17,6 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Layout>
             <Route exact path="/billing" component={Billing}/>
-            <Route exact path="/settings" component={ProfileSettings} />
             <Route exact path="/upload" component={Upload}/>
             <Route exact path="/settings" component={ProfileSettings}/>
             <Route exact path="/browse" component={PhotoBrowser} />
