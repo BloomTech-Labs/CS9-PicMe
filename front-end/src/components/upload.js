@@ -14,6 +14,8 @@ class Upload extends Component{
     constructor() {
         super();
         this.state = {
+            show: noShow,
+            move: show,
             tags: [
 
             ],
@@ -52,6 +54,10 @@ class Upload extends Component{
     }
 
     handleFileUpload = (e) => {
+        this.setState({
+            show: show,
+            move: left
+        })
         this.setState({
             image: e.target.files[0],
             preview: URL.createObjectURL(e.target.files[0])
@@ -98,26 +104,42 @@ class Upload extends Component{
     render() {
         const { tags, suggestions } = this.state;
         return (
-            <div>
+            <div className="uploads">
                 <div>
                     <img src={this.state.preview} width="50%" height="40%"/>
                 </div>
 
-                <input name="image" type="file" onChange={this.handleFileUpload}/>
-                
                 <form onSubmit={this.onSubmit} encType='multipart/form-data'>
-                <ReactTags tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    delimiters={delimiters} 
-                />
-                    <button type="submit">submit</button>
+                    <div className="Upload__tags">
+                        <input style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
+                        <label style={this.state.move} for="file">Choose a file</label>
+                        <div style={this.state.show}>
+                        <ReactTags tags={tags}
+                            suggestions={suggestions}
+                            handleDelete={this.handleDelete}
+                            handleAddition={this.handleAddition}
+                            handleDrag={this.handleDrag}
+                            delimiters={delimiters} 
+                        />
+                        </div>
+                    </div>
+                    <button style={this.state.show} type="submit">submit</button>
                 </form>
             </div>
         )
     }
+}
+
+const noShow={
+    display: "none"
+}
+
+const show = {
+
+}
+const left = {
+    position: "relative",
+    right: "4rem"
 }
 
 export default Upload;
