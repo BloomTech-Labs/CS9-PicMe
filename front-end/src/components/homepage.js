@@ -22,6 +22,7 @@ import {
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
+
 const HomepageHeading = ({ mobile }) => (
   <Container style={{marginBottom: "20px"}} text>
     <Header
@@ -42,7 +43,7 @@ const HomepageHeading = ({ mobile }) => (
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
         marginTop: mobile ? '0.5em' : '1.5em',
-        marginBottom: '1.5em'
+        marginBottom: '1.5em',
       }}
     />
     <Link to="/register"><Button primary size='huge' style={{marginBottom: '20px'}}>
@@ -93,7 +94,7 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: 700, padding: '1em 0em', backgroundImage: 'url(https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)', backgroundSize: 'cover' }}
             vertical
           >
             <Menu
@@ -209,28 +210,28 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em', textAlign: 'center'}} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column width={8} >
+          <Grid.Column width={8} style={{ marginLeft: '280px'}}>
             <Header as='h3' style={{ fontSize: '2em'}}>
-            Bibendum at varius vel pharetra
+            Share photos with your friends all over the world!
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-            t aliquam purus sit amet luctus venenatis lectus. Sapien et ligula 
-            ullamcorper malesuada proin libero nunc consequat. Fusce id velit 
-            ut tortor pretium
+              PicMe is a social media, image-sharing platform. 
+              Upload your images, tag your friends, add photos 
+              to your collection, and share your experiences with the world!
             </p>
             <Header as='h3' style={{ fontSize: '2em' }}>
-            usce id velit ut tortor pretium
+            Want to learn more about what we do?
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-            Sit amet aliquam id diam maecenas ultricies mi eget mauris.
+            Hit the button below to get some more info, and to get started sharing your photos with the world!
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign='left' style={{ marginLeft: "160px" }}>
-            <Button size='huge'>Check out more</Button>
+          <Grid.Column textAlign='left' style={{ marginLeft: "460px" }}>
+            <Link to="/aboutUs"><Button size='huge'>Check out more</Button></Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -241,16 +242,16 @@ const HomepageLayout = () => (
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "Dignissim cras tincidunt"
+            “The camera is an instrument that teaches people how to see without a camera.”
             </Header>
-            <p style={{ fontSize: '1.33em' }}>Donec pretium vulputate sapien nec</p>
+            <p style={{ fontSize: '1.33em' }}>— Dorothea Lange</p>
           </Grid.Column>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "Elit sed vulputate mi sit amet mauris commodo quis."
+            “If you see something that moves you, and then snap it, you keep a moment.”
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <b>Nan</b> Et netus et malesuada fames
+              — Linda McCartney
             </p>
           </Grid.Column>
         </Grid.Row>
@@ -269,10 +270,10 @@ const HomepageLayout = () => (
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+                Thanks for checking out PicMe!
               </Header>
               <p>
-                Eu augue ut lectus arcu bibendum at varius vel.
+                Made With Passion By Lambda School Engineers
               </p>
             </Grid.Column>
           </Grid.Row>

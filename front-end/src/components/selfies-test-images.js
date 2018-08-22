@@ -10,7 +10,7 @@ const selfieImages = [{
 },
 {
     "url": "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "users": "Mark K, James P, Kylie T, Jim H, Sarah B, Jen G"
+    "users": "Mark K"
 },
 {
     "url": "https://images.pexels.com/photos/5164/fashion-person-woman-apple.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
