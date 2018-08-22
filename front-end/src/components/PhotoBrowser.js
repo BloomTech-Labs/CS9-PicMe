@@ -5,6 +5,7 @@ import './css/PhotoBrowser.css';
 import SelectedImage from "./SelectedImage";
 
 
+
 const PHOTO_SET = [
     {
         src: selfieImages[0].url,
