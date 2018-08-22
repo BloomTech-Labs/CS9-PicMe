@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
- 
+import selfieImages from './selfies-test-images';
+
 const KeyCodes = {
   comma: 188,
   enter: 13,
 };
  
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
- 
+
 class TagsMaker extends Component {
     constructor(props) {
         super(props);
  
         this.state = {
-            tags: [],
+            tags: [
+            ],
         };
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
