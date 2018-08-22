@@ -48,8 +48,8 @@ const dbTest = async () => {
     first_name: 'Bob',
     last_name: 'Smith',
     nick_names: '',
-    email: 'Bob@smith.com',
-    password: 'you wish',
+    email: 'bob',
+    password: 'bob',
     credits: 10
   })
 
@@ -58,7 +58,7 @@ const dbTest = async () => {
     last_name: 'Brown',
     nick_names: '',
     email: 'jerry@brown.com',
-    password: "i don't think so",
+    password: "jerry",
     credits: 15
   })
 

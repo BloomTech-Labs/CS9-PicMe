@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel, Checkbox } from "react-bootstrap";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import LoaderButton from "./loaderbutton";
 import "./css/billingform.css";
@@ -10,7 +10,7 @@ class BillingForm extends Component {
 
     this.state = {
       name: "",
-      storage: "",
+      credits: "",
       isProcessing: false,
       isCardComplete: false
     };
@@ -19,7 +19,7 @@ class BillingForm extends Component {
   validateForm() {
     return (
       this.state.name !== "" &&
-      this.state.storage !== "" &&
+      this.state.credits !== "" &&
       this.state.isCardComplete
     );
   }
@@ -47,7 +47,7 @@ class BillingForm extends Component {
 
     this.setState({ isProcessing: false });
 
-    this.props.onSubmit(this.state.storage, { token, error });
+    this.props.onSubmit(this.state.credits, { token, error });
   }
 
   render() {
@@ -55,17 +55,11 @@ class BillingForm extends Component {
 
     return (
       <form className="BillingForm" onSubmit={this.handleSubmitClick}>
-        <FormGroup bsSize="large" controlId="storage">
+        <FormGroup bsSize="large" controlId="credits">
           <ControlLabel>Storage</ControlLabel>
-          <FormControl
-            min="0"
-            type="number"
-            value={this.state.storage}
-            onChange={this.handleFieldChange}
-            placeholder="Number of notes to store"
-          />
+          <Checkbox> 100 Credits - $9.99</Checkbox>
+          <Checkbox> 5 Credits - $0.99</Checkbox>
         </FormGroup>
-        <hr />
         <FormGroup bsSize="large" controlId="name">
           <ControlLabel>Cardholder&apos;s name</ControlLabel>
           <FormControl

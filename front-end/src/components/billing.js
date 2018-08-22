@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-// import { API } from "aws-amplify";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./billingform";
-import config from "../config";
+import axios from 'axios';
+
 import "./css/billing.css";
 
 export default class Settings extends Component {
@@ -10,17 +10,17 @@ export default class Settings extends Component {
     super(props);
 
     this.state = {
-      isLoading: false
+      isLoading: false,
+      currentUser: null
     };
   }
 
-  billUser(details) {
-    // return API.post("notes", "/billing", {
-    //   body: details
-    // });
+
+  async buyCredits(payload) {
+    axios.post(`${process.env.REACT_APP_API}/charge`, payload);
   }
 
-  handleFormSubmit = async (storage, { token, error }) => {
+  handleFormSubmit = async (credits, { token, error }) => {
     if (error) {
       alert(error);
       return;
@@ -29,9 +29,10 @@ export default class Settings extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await this.billUser({
-        storage,
-        source: token.id
+      await this.buyCredits({
+        currentUserEmail: sessionStorage.getItem('email'), 
+        credits,
+        stripeTokenId: token.id
       });
 
       alert("Your card has been charged successfully!");
@@ -45,7 +46,7 @@ export default class Settings extends Component {
   render() {
     return (
       <div className="Settings">
-        <StripeProvider apiKey={config.STRIPE_KEY}>
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
           <Elements>
             <BillingForm
               loading={this.state.isLoading}

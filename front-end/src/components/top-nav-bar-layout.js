@@ -6,9 +6,25 @@ import {
   Dropdown,
   Menu,
 } from 'semantic-ui-react'
+import axios from 'axios'
 
 
 class TopNavBarLayout extends Component {
+  state = {
+    currentUser: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      fullName: '',
+      credits: 0
+    } 
+  }
+
+  async componentDidMount() {
+    const email = sessionStorage.getItem('email');
+    const user = (await axios.get(`${process.env.REACT_APP_API}/currentuser?email=${email}`)).data;
+    this.setState({ currentUser: user });
+  }
 
   handleClickSignOut = e => {
     sessionStorage.clear();
@@ -42,6 +58,12 @@ class TopNavBarLayout extends Component {
             </Menu.Item>
             <Menu.Item header onClick={this.handleClickSignOut}>
               Sign Out
+            </Menu.Item>
+            <Menu.Item position="right" header>
+              Credits: {this.state.currentUser.credits} 
+            </Menu.Item>
+            <Menu.Item position="right" header>
+              Hi, {this.state.currentUser.fullName} 
             </Menu.Item>
           </Container>
         </Menu>
