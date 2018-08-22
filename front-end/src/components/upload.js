@@ -65,10 +65,15 @@ class Upload extends Component{
         image.append("file", this.state.image) 
         image.append("upload_preset", "u03iyxti") //Sends data as a file to our server
 
-
-        this.state.tags.forEach(tag => {
-            this.state.uploadTags.push(tag.id);
-        })
+        if(this.state.tags.length >= 1) {
+            this.state.tags.forEach(tag => {
+                this.state.uploadTags.push(tag.id);
+            })
+        } else {
+            this.setState({
+                uploadTags: null
+            })
+        }
 
         image.append("Tags", this.state.uploadTags)
         image.append("Email", window.sessionStorage.email)
@@ -84,11 +89,10 @@ class Upload extends Component{
             data: image
         }).then(res => {
             console.log(res);
+            window.location.reload();
         }).catch(err => {
             console.log(err)
         })
-
-        window.location.reload();
     }
 
     render() {
