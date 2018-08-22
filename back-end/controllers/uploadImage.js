@@ -24,14 +24,14 @@ const uploadImage = (req, res) => {
     const fs = require("fs");
 
 
-    //Recieves non-file info from our front-end, this is were we get out tags to upload
+    // //Recieves non-file info from our front-end, this is were we get out tags to upload
     req.busboy.on('field', function(fieldname, val) {
         if(fieldname === "Email") {
             email = val;
         }
 
         if(fieldname === "Tags") {
-            tags = val.split(",")            
+            tags = val.split(",")
         }
     });
     
@@ -62,6 +62,17 @@ const uploadImage = (req, res) => {
             cloudinary.uploader.add_tag(tags, nameTags, //Once image uploaded we add the desired tags to it
             function(result, err) { 
                 if(result) {
+                    console.log(tags)
+                    if(email && tags[0].length != 0) {
+                        User.findOne({ where: { email: email } }).then(user => {
+                        let credits = user.credits;
+                        
+                        //Adds a credit to a user
+                        User.update({ credits: credits+1 }, { where: { email: email }, individualHooks: true })
+                        .then(user => console.log(user))
+                        .catch(err => console.log(err)); 
+                        })
+                    }
                     User.findOne({where: {email: email}}).then(user => {
                         user.addUploadedImages([newImage(nameTags, url)]) //Not sure if this is working, no errors though
                     })
@@ -69,9 +80,9 @@ const uploadImage = (req, res) => {
                 }
                 else res.status(500).json({Err: "Could not add tags at this time"})
             });
-        }
-    })
-});
+        }});
+
+    });
 }
 
 module.exports = {
