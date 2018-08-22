@@ -104,7 +104,7 @@ class Upload extends Component{
     render() {
         const { tags, suggestions } = this.state;
         return (
-            <div>
+            <div className="uploads">
                 <div>
                     <img src={this.state.preview} width="50%" height="40%"/>
                 </div>

@@ -1,4 +1,4 @@
-span {
+.uploads span {
     display:inline-block;
     color:#444;
     border:1px solid #CCC;
@@ -12,12 +12,12 @@ span {
     margin-right: 1rem;
     margin-bottom: 1rem;
 }
-span:active {
+.uploads span:active {
     color:rgb(47, 184, 184);
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
 
-img {
+.uploads img {
     margin: 0 auto;
     display: block;
     width: 60%;
@@ -25,7 +25,7 @@ img {
     bottom: 2rem;
 }
 
-label {
+.uploads label {
     background-color: gainsboro;
     border: 1px solid gray;
     cursor: pointer;
@@ -43,7 +43,7 @@ label {
     flex-direction: column;
 }
 
-input {
+.Uploads input {
     font-size: 2rem;
     padding: .65rem;
     height: 3rem;
@@ -51,7 +51,7 @@ input {
     width: 100%;
 }
 
-button {
+.Uploads button {
     position: relative; 
     left: 55%;
     bottom: 3.8rem;
