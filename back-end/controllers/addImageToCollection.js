@@ -7,13 +7,14 @@ const Image = require("../db/models/image")(db, Sequelize);
 //getCollectionImages();
 //.forEach(img => res.json(img))
 const addImageToCollection = (req, res) => {
-    const { email } = req.body;
+    const { email, images } = req.body;
+
     User.findOne({ where: { email: email} })
     .then(user => {
         if (!user) {
             return res.status(422).json({error: 'The specified user does not exist'});
         } else {
-           await User.addCollectionImages([Image])
+           await User.addCollectionImages(images)
         }
     }).catch(err => console.log(err))
 }
