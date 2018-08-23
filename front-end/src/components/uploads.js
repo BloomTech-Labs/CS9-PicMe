@@ -1,45 +1,16 @@
 import React, {Component} from 'react';
 import Gallery from 'react-photo-gallery';
-import selfieImages from './selfies-test-images';
 import './css/MyCollectionPage.css';
+import axios from "axios";
 import SelectedImage from "./SelectedImage";
 
-
-const PHOTO_SET = [
-    {
-        src: selfieImages[0].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[3].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[6].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[7].url,
-        width: 1,
-        height:1
-    },
-    {
-        src: selfieImages[8].url,
-        width: 1,
-        height:1
-    },
-]
 
 export default class Uploads extends Component {
     constructor(props) {
         super(props);
         this.state= {
-            photos: PHOTO_SET
+            photos: []
         };
-        
         // select photo binding
         this.selectPhoto = this.selectPhoto.bind(this);
         // select binding
@@ -74,6 +45,23 @@ export default class Uploads extends Component {
         alert("Now downloading your selected images...");
     }
 
+    componentDidMount() {
+        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: sessionStorage.getItem('email')})
+        .then(response => {
+            const imgs = [];
+            response.data.forEach(imgData => {
+                const img = { src: imgData.url, name: imgData.name };
+                const image = new Image();
+                image.src = img.src;
+                img.width = image.naturalWidth;
+                img.height = image.naturalHeight;
+                imgs.push(img);
+            })
+            this.setState({photos: imgs});
+        })
+        .catch(err => console.error("Uploads CDM: ", err));
+    }
+
     render() {
         return(
             <div className="component-wrapper">
@@ -89,12 +77,12 @@ export default class Uploads extends Component {
                 Remove selected photos from uploads
               </button>
             </p>
-            <Gallery
+            {this.state.photos.length > 0 ? <Gallery
               photos={this.state.photos}
               onClick={this.selectPhoto}
               ImageComponent={SelectedImage}
               direction={"column"}
-            />
+            /> : null}
           </div>
         );
     }
