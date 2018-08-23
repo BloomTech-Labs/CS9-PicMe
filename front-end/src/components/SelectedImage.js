@@ -1,4 +1,7 @@
 import React from "react";
+import { WithContext as ReactTags } from 'react-tag-input';
+import selfieImages from './selfies-test-images';
+import TagsMaker from './TagsMaker';
 
 const Checkmark = ({ selected }) => (
   <div
@@ -64,6 +67,9 @@ const SelectedImage = ({
       className={!photo.selected ? "not-selected" : ""}
     >
       <Checkmark selected={photo.selected ? true : false} />
+      <div className="tags-input">
+        <TagsMaker />
+      </div>
       <img
         style={
           photo.selected
@@ -72,6 +78,7 @@ const SelectedImage = ({
         }
         {...photo}
         onClick={e => onClick(e, { index, photo })}
+        alt="selfie"
       />
       <style>{`.not-selected:hover{outline:2px solid #06befa}`}</style>
     </div>

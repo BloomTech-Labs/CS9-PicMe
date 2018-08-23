@@ -7,6 +7,7 @@ const {uploadImage} = require("../controllers/uploadImage")
 const {uploads} = require("../controllers/uploads")
 const {collection} = require("../controllers/collection")
 const {currentuser} = require("../controllers/currentuser")
+const {fetchImages} = require("../controllers/fetchImages")
 
 
 
@@ -19,4 +20,5 @@ module.exports = server => {
     server.route('/uploads').post(uploads);
     server.route('/collection').post(collection);
     server.route('/currentuser/').get(currentuser);
+    server.route("/browse").get(fetchImages)
   };

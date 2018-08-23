@@ -1,59 +1,59 @@
 import React, { Component } from 'react';
 
 const selfieImages = [{
-    "url": "http://cdn-9chat-fun.9cache.com/media/photo/a3Lrnw5po_480w_v1.jpg",
-    "users": "Timothy R"
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982156/Selfie-Images/blue-boy-daylight-1205033.jpg",
+    "users": "Hamann L"
 },
 {
-    "url": "http://www.jeffpearlman.com/wp-content/uploads/2017/01/Screen-Shot-2017-01-16-at-1.38.34-AM.png",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982245/Selfie-Images/beard-face-fashion-59576.jpg",
     "users": "James F"
 },
 {
-    "url": "https://www.aegeoyachts.gr/wp-content/uploads/2017/12/skiathos-things-to-do-day-cruise-1-256x256.jpg",
-    "users": "Mark K, James P, Kylie T, Jim H, Sarah B, Jen G"
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982560/Selfie-Images/accomplishment-celebrate-ceremony-267885.jpg",
+    "users": "Mark K"
 },
 {
-    "url": "https://d1kkg0o175tdyf.cloudfront.net/medium/s_8cefb015dde9-2017-09-01-16-40-42-000749.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982481/Selfie-Images/apple-camera-fashion-5164.jpg",
     "users": "Kaylah V"
 },
 {
-    "url": "https://pbs.twimg.com/profile_images/677475822169665537/ttM6r0s5_400x400.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982267/Selfie-Images/adventure-black-and-white-eye-glasses-1292306.jpg",
     "users": "Paul C"
 },
 {
-    "url": "https://s3.amazonaws.com/media.muckrack.com/profile/images/3154/rossreutersguy.jpeg.256x256_q100_crop-smart.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982285/Selfie-Images/alone-cap-dark-green-1183015.jpg",
     "users": "Hugh J"
 },
 {
-    "url": "http://s3cdn-test-lookbooknu.netdna-ssl.com/files/users/large/1830617_420431_299854183401383_100001304101437_742546_2095888662_n.jpg?1335411719",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982298/Selfie-Images/adult-chill-computer-450271.jpg",
     "users": "Kyle I"
 },
 {
-    "url": "http://static.tumblr.com/d59d6c5e58594651f6015a269f2ce9ea/hp2xrfg/S8Rmssxdv/tumblr_static_f7c40b3d0d354314d292252a63fae72a.jpeg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982512/Selfie-Images/adult-beautiful-blue-445109.jpg",
     "users": "Jennifer G"
 },
 {
-    "url": "https://a.wattpad.com/useravatar/notsomrniceguy.256.722066.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982460/Selfie-Images/face-facial-hair-fine-looking-614810.jpg",
     "users": "Steven B"
 },
 {
-    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTZaNloJIc-Z6nxWqBUDh0u9nKgp-A72JTZhO2BfRfwwj-BJL8",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982441/Selfie-Images/blurred-background-city-daylight-1081671.jpg",
     "users": "Michael V"
 },
 {
-    "url": "https://news.artnet.com/app/news-upload/2014/12/Amalia-Ulman-4-e1453366949397-256x256.png",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982496/Selfie-Images/adult-camera-cover-1325617.jpg",
     "users": "Tyler V"
 },
 {
-    "url": "https://news.artnet.com/app/news-upload/2014/11/2014-5-11-portrait-selfie-04-256x256.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982531/Selfie-Images/adult-beautiful-casual-372042.jpg",
     "users": "Bertha V"
 },
 {
-    "url": "https://pbs.twimg.com/profile_images/628398651187036160/LAtgpKyw_400x400.jpg",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982551/Selfie-Images/beautiful-beauty-blurred-background-1239291.jpg",
     "users": "Jess C"
 },
 {
-    "url": "https://res-2.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/jsts9k9wmpcrx92aswsj",
+    "url": "https://res.cloudinary.com/picme/image/upload/v1534982429/Selfie-Images/adult-beard-boy-220453_1.jpg",
     "users": "Phillip H"
 }
 ];

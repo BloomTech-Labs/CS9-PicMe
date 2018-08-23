@@ -35,5 +35,12 @@ img:hover {
     float: right;
     margin-right: 20px;
     border-radius: 5px;
-    background-color: rgb(64, 204, 255);
+    background-color: rgb(255, 0, 0);
+}
+
+.toggle-download-selected {
+    margin-left: 320px;
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: rgb(47, 216, 0);
 }

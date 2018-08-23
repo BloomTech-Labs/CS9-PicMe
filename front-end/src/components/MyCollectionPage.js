@@ -47,6 +47,8 @@ export default class MyCollectionPage extends Component {
             this.toggleSelect = this.toggleSelect.bind(this);
             // add to collection binding
             this.toggleSubmit = this.toggleSubmit.bind(this);
+            // download selected
+            this.toggleDownloadSelected = this.toggleDownloadSelected.bind(this);
     }
 
     // select photo function
@@ -67,7 +69,10 @@ export default class MyCollectionPage extends Component {
       //submit
       toggleSubmit(event, obj, index) {
           alert("Selected Photos have been removed from your collection");
-          
+      }
+
+      toggleDownloadSelected(event, obj, index) {
+          alert("Thanks for downloading your selected images. The credits have been removed from your account.");
       }
 
 
@@ -78,6 +83,9 @@ export default class MyCollectionPage extends Component {
             <p>
               <button className="toggle-select" onClick={this.toggleSelect}>
                 toggle select all
+              </button>
+              <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
+                    Download selected images!
               </button>
               <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
                 Remove selected photos from collection

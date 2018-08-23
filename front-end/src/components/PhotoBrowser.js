@@ -5,51 +5,106 @@ import './css/PhotoBrowser.css';
 import SelectedImage from "./SelectedImage";
 
 
+
 const PHOTO_SET = [
     {
         src: selfieImages[0].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+              id: "1",
+              text: selfieImages[0].users
+            },
+          ]
     },
     {
         src: selfieImages[1].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "2",
+                text: selfieImages[1].users
+              },
+          ]
     },
     {
         src: selfieImages[2].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "3",
+                text: toString(selfieImages[2].users)
+              },
+          ]
     },
     {
         src: selfieImages[3].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "4",
+                text: selfieImages[3].users
+              },
+          ]
     },
     {
         src: selfieImages[4].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "5",
+                text: selfieImages[4].users
+              },
+          ]
     },
     {
         src: selfieImages[5].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "6",
+                text: selfieImages[5].users
+              },
+          ]
     },
     {
         src: selfieImages[6].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "7",
+                text: selfieImages[6].users
+              },
+          ]
     },
     {
         src: selfieImages[7].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "8",
+                text: selfieImages[7].users
+              },
+          ]
     },
     {
         src: selfieImages[8].url,
         width: 1,
-        height:1
+        height:1,
+        tags: [
+            {
+                id: "9",
+                text: selfieImages[8].users
+              },
+          ]
     },
 ]
 
@@ -60,7 +115,6 @@ export default class PhotosBrowser extends Component {
             photos: PHOTO_SET,
             selectAll: false
         };
-
             // select photo binding
             this.selectPhoto = this.selectPhoto.bind(this);
             // select binding
@@ -87,6 +141,11 @@ export default class PhotosBrowser extends Component {
       //submit
       toggleSubmit(event) {
           alert("Selected Photos have been added to your collection!");
+      }
+
+      componentWillMount(tags) {
+          this.setState({ tags: PHOTO_SET.tags});
+          console.log(this.state);
       }
 
 
