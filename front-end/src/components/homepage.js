@@ -94,7 +94,7 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em', backgroundImage: 'url(https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)', backgroundSize: 'cover' }}
+            style={{ minHeight: 700, padding: '1em 0em', backgroundImage: 'url(https://res.cloudinary.com/picme/image/upload/v1534982576/Site-layout-images/aperture-black-blur-274973.jpg)', backgroundSize: 'cover' }}
             vertical
           >
             <Menu
