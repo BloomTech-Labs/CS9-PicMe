@@ -30,7 +30,6 @@ module.exports = (sequelize, datatype) => {
   );
 
   User.beforeCreate(encrypt);
-  User.beforeUpdate(encrypt);
 
   User.prototype.authenticate = function (value) {
     if (bcrypt.compareSync(value, this.password))
