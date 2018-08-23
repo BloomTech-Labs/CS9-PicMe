@@ -36,6 +36,17 @@ class BillingForm extends Component {
     });
   }
 
+  handleCheckBoxClick = e => {
+    console.log("credits clicked", e.target.value);
+    this.setState({ credits: e.target.value });
+
+    if (e.target.id === "100") {
+      document.getElementById("5").checked = false;
+    } else {
+      document.getElementById("100").checked = false;
+    }
+  }
+
   handleSubmitClick = async event => {
     event.preventDefault();
 
@@ -56,9 +67,9 @@ class BillingForm extends Component {
     return (
       <form className="BillingForm" onSubmit={this.handleSubmitClick}>
         <FormGroup bsSize="large" controlId="credits">
-          <ControlLabel>Storage</ControlLabel>
-          <Checkbox> 100 Credits - $9.99</Checkbox>
-          <Checkbox> 5 Credits - $0.99</Checkbox>
+          <ControlLabel>Credits</ControlLabel>
+          <Checkbox onClick={this.handleCheckBoxClick} id="100" value="100"> 100 Credits - $9.99</Checkbox>
+          <Checkbox onClick={this.handleCheckBoxClick} id="5" value="5"> 5 Credits - $0.99</Checkbox>
         </FormGroup>
         <FormGroup bsSize="large" controlId="name">
           <ControlLabel>Cardholder&apos;s name</ControlLabel>

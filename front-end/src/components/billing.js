@@ -17,7 +17,7 @@ export default class Settings extends Component {
 
 
   async buyCredits(payload) {
-    axios.post(`${process.env.REACT_APP_API}/charge`, payload);
+    return await axios.post(`${process.env.REACT_APP_API}/charge`, payload);
   }
 
   handleFormSubmit = async (credits, { token, error }) => {
@@ -29,18 +29,20 @@ export default class Settings extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await this.buyCredits({
+      const response = await this.buyCredits({
         currentUserEmail: sessionStorage.getItem('email'), 
         credits,
         stripeTokenId: token.id
       });
+      
+      console.log("purchase successfull. response data is ", response.data)
+      // need to update redux currentCredits here
+      alert(`Purchase is successful.`)
 
-      alert("Your card has been charged successfully!");
-      this.props.history.push("/");
     } catch (e) {
       alert(e);
-      this.setState({ isLoading: false });
     }
+    this.setState({ isLoading: false });
   }
 
   render() {
