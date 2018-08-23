@@ -101,10 +101,10 @@ const dbTest = async () => {
 
   // Update user Bob
   
-  Bob.first_name = 'Robert';
-  await Bob.save();
+  // Bob.first_name = 'Robert';
+  // await Bob.save();
 
-  Bob = await User.findOne({ where: { first_name: 'Robert' } });
+  Bob = await User.findOne({ where: { first_name: 'Bob' } });
   console.log("\nupdated Bob first name is", Bob.first_name);
 
   // Update Bob's wedding image 
@@ -117,17 +117,27 @@ const dbTest = async () => {
 
 
   const myCollectionImage3 = await Image.create({
-    name: 'the beach',
-    url: 'http://beach.com'
+    name: 'Test Image 1',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982156/Selfie-Images/blue-boy-daylight-1205033.jpg'
   })
 
   const myCollectionImage4 = await Image.create({
-    name: 'the lake',
-    url: 'http://lake.com'
+    name: 'Test Image 2',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982245/Selfie-Images/beard-face-fashion-59576.jpg'
+  })
+
+  const myCollectionImage5 = await Image.create({
+    name: 'Test Image 3',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982560/Selfie-Images/accomplishment-celebrate-ceremony-267885.jpg'
+  })
+
+  const myCollectionImage6 = await Image.create({
+    name: 'Test Image 4',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982481/Selfie-Images/apple-camera-fashion-5164.jpg'
   })
 
   // Bob uploads two images 
-  await Bob.addUploadedImages([myCollectionImage3, myCollectionImage4]);
+  await Bob.addUploadedImages([myCollectionImage3, myCollectionImage4, myCollectionImage5, myCollectionImage6]);
 
   // List Bob's uploaded images
   (await Bob.getUploadedImages()).forEach(img => console.log('Image is', img.name));
