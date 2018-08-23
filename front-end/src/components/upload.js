@@ -109,7 +109,7 @@ class Upload extends Component{
                     <img src={this.state.preview} width="50%" height="40%"/>
                 </div>
 
-                <form onSubmit={this.onSubmit} encType='multipart/form-data'>
+                <form id="Uploads__form" onSubmit={this.onSubmit} encType='multipart/form-data'>
                     <div className="Upload__tags">
                         <input style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
                         <label style={this.state.move} for="file">Choose a file</label>

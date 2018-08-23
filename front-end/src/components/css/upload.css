@@ -51,7 +51,7 @@
     width: 100%;
 }
 
-form button {
+#Uploads__form button {
     position: relative; 
     left: 55%;
     bottom: 3.8rem;
