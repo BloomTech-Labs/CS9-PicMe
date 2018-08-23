@@ -23,10 +23,15 @@ Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageU
 
 const routes = require("./routes/routes")
 
+const corsOptions = {
+  origin: "https://picmecollections.netlify.com",
+  optionsSuccessStatus: 200
+}
+
 // middleware to parse json objs
 server.use(express.json());
 server.use(helmet())
-server.use(cors());
+server.use(cors(corsOptions));
 server.use(bodyparser.urlencoded({limit: "10mb", extended: false, parameterLimit:"10000000000"})) //Needed for Stripe
 server.use(busyBoy()) //Middleware to parse image
 server.get('/', (req, res) => {
