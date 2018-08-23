@@ -129,7 +129,21 @@ DesktopContainer.propTypes = {
 }
 
 class MobileContainer extends Component {
-  state = {}
+  state = { openLogin: false }
+
+  showLogin = () => this.setState({ openLogin: true })
+  closeLogin = () => this.setState({ openLogin: false })
+
+  showRegistration = () => this.setState({ openRegistration: true })
+  closeRegistration = () => this.setState({ openRegistration: false })
+
+  closeLoginOpenReg = () => {
+    this.closeLogin();
+    this.showRegistration();
+  }
+
+  hideFixedMenu = () => this.setState({ fixed: false })
+  showFixedMenu = () => this.setState({ fixed: true })
 
   handlePusherClick = () => {
     const { sidebarOpened } = this.state
@@ -145,13 +159,15 @@ class MobileContainer extends Component {
 
     return (
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+        <LoginForm openLogin={this.state.openLogin} closeLogin={this.closeLogin} closeLoginOpenReg={this.closeLoginOpenReg} />
+        <RegistrationForm openLogin={this.state.openRegistration} closeLogin={this.closeRegistration} />
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
             <Menu.Item active>
               Home
             </Menu.Item>
-            <Link to="/login"><Menu.Item>Log in</Menu.Item></Link>
-            <Link to="register"><Menu.Item>Sign Up</Menu.Item></Link>
+            <Menu.Item onClick={this.showLogin}>Log in</Menu.Item>
+            <Menu.Item onClick={this.showRegistration}>Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
@@ -171,12 +187,12 @@ class MobileContainer extends Component {
                     <Icon name='sidebar' />
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    <Link to="/login"><Button inverted>
+                    <Button onClick={this.showLogin} inverted>
                       Log in
-                    </Button></Link>
-                    <Link to="/register"><Button inverted style={{ marginLeft: '0.5em' }}>
+                    </Button>
+                   <Button onClick={this.showRegistration} inverted style={{ marginLeft: '0.5em' }}>
                       Sign Up
-                    </Button></Link>
+                    </Button>
                   </Menu.Item>
                 </Menu>
               </Container>
