@@ -19,6 +19,7 @@ module.exports = server => {
     server.route('/upload').post(uploadImage);
     server.route('/uploads').post(uploads);
     server.route('/collection').post(collection);
+    server.route('/browse').get(fetchImages);
+    server.route('/collectionAdd').post(collection);
     server.route('/currentuser/').get(currentuser);
-    server.route("/browse").get(fetchImages)
   };
