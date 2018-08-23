@@ -25,8 +25,13 @@ module.exports = (sequelize, datatype) => {
           unique: true,
           fields: ['email']
         }
-      ]
-    },
+      ],
+      getterMethods: {
+        fullName() {
+          return this.first_name + ' ' + this.last_name;
+        }
+      }
+    }
   );
 
   User.beforeCreate(encrypt);
