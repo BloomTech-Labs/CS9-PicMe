@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export function fetchUser () {
     return (dispatch) => {
-        console.log("User reached fetch user action: ")
         //.then((res) => {
             let inUser = dispatch({type: FETCH_USER, inUser})
         //}).catch((err) => {
@@ -14,7 +13,6 @@ export function fetchUser () {
 
 export function newUser (userObject) {
     return (dispatch) => {
-        console.log("User reached newUser action: ")
         //.then((res) => {
             let newUser = dispatch({type: 'NEW_USER', newUser})
         //}).catch((err) => {

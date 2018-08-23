@@ -1,39 +1,62 @@
-import React, {Component} from "react";
-import StripeCheckout from "react-stripe-checkout"; //An npm package to simplify the process
-import axios from "axios";
+import React, { Component } from "react";
+import { Elements, StripeProvider } from "react-stripe-elements";
+import BillingForm from "./billingform";
+import axios from 'axios';
 
-class Billing extends Component {
+import "./css/billing.css";
 
-    onToken = (amount, description) => token => {
-        console.log(amount, description, token.id)
-        axios.post(`${process.env.REACT_APP_API}/charge`, //Will need to change when in development
-        {
-        description,
-        currency: "USD",
-        amount: amount,
-        token: token.id //Token is created below through stripecheckout
-        })
-        .then(response => {
-            alert("Success")
-            console.log(response)
-        })
-        .catch(err => {
-            console.log(err)
-            alert("Error Processing Payment")
-        });
+export default class Settings extends Component {
+  constructor(props) {
+    super(props);
 
-    }  
+    this.state = {
+      isLoading: false,
+      currentUser: null
+    };
+  }
 
-    render() {
-        return(
-            <div>
-            <StripeCheckout
-            token={this.onToken(500, "Buying pups")} //500 as in cents, stripe uses cents not dollars
-            stripeKey="pk_test_82oWHtkpQ5D2JsxaliVsOZwi" //Can be shared as long as secret key remains private
-            />
-            </div>
-        )
+
+  async buyCredits(payload) {
+    return await axios.post(`${process.env.REACT_APP_API}/charge`, payload);
+  }
+
+  handleFormSubmit = async (credits, { token, error }) => {
+    if (error) {
+      alert(error);
+      return;
     }
-}
 
-export default Billing;
+    this.setState({ isLoading: true });
+
+    try {
+      const response = await this.buyCredits({
+        currentUserEmail: sessionStorage.getItem('email'), 
+        credits,
+        stripeTokenId: token.id
+      });
+      
+      console.log("purchase successfull. response data is ", response.data)
+      // need to update redux currentCredits here
+      alert(`Purchase is successful.`)
+
+    } catch (e) {
+      alert(e);
+    }
+    this.setState({ isLoading: false });
+  }
+
+  render() {
+    return (
+      <div className="Settings">
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+          <Elements>
+            <BillingForm
+              loading={this.state.isLoading}
+              onSubmit={this.handleFormSubmit}
+            />
+          </Elements>
+        </StripeProvider>
+      </div>
+    );
+  }
+}

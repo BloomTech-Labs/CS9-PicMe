@@ -12,12 +12,10 @@ const initialState = {
 export default function(state = initialState, action) {
         switch (action.type) {
         case NEW_USER:
-        console.log("got to new user reducer");
             const tempState = {
                 ...state,
                 user: action.payload
             };
-            console.log("Got to new user state:", tempState);
             return tempState;
         case FETCH_USER:
         console.log("got to fetch reducer");
@@ -26,7 +24,6 @@ export default function(state = initialState, action) {
                 user: action.payload
             };
         default:
-            console.log("action.type is: ", action.type);
             return state;
     }
 }
