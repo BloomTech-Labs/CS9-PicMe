@@ -14,7 +14,18 @@ const addImageToCollection = (req, res) => {
         if (!user) {
             return res.status(422).json({error: 'The specified user does not exist'});
         } else {
+            //remove the credit due to the addition of an image to the users collection.
+           user.credits -= Number(credits)
+           // adds the added image to the collection
            await User.addCollectionImages(images)
+           // save the current status of the User.
+           await user.save();
+           res.status(200).json({
+               // success message below
+            Message: "Image successfully added to your collection, and one credit removed.", // 
+            credits: user.credits // credits are set to the number of credits owned by the user.
+          })
+
         }
     }).catch(err => console.log(err))
 }
