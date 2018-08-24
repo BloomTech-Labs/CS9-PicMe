@@ -1,4 +1,3 @@
-let tags = []; //Tags we're passing onto the image
 let nameTags; //Public id or mutliple id's we want to give tags to
 let email;
 
@@ -13,9 +12,9 @@ const uploadImage = (req, res) => {
     User.hasMany(Image, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImages'});
     Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageUser'});
 
-    const {email, name, url, tags} = req.body;
+    const {email, name, url} = req.body;
 
-    console.log(email, name, url, tags); 
+    console.log(email, name, url); 
     
 
     cloudinary.config({ 
@@ -31,15 +30,14 @@ const uploadImage = (req, res) => {
         })
     }    
 
-        if(email && tags[0] !== "null") {
+        if(email) {
             User.findOne({ where: { email: email } }).then(user => {
             let credits = user.credits;
             
             //Adds a credit to a user
             User.update({ credits: credits+1 }, { where: { email: email }, individualHooks: true })
             .then(user => {
-                console.log(user)
-                res.status(200).json({Message: "Working"})
+                console.log("Credit added")
             })
             .catch(err => {
                 console.log("Not working")
@@ -47,11 +45,12 @@ const uploadImage = (req, res) => {
             })
         }
         
-        // User.findOne({where: {email: email}}).then(user => {
-        //     user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
-        // }).catch(err => {
-        //     console.log(err)
-        // })
+        User.findOne({where: {email: email}}).then(user => {
+            user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
+            res.status(200).json({Message: 'Success'})
+        }).catch(err => {
+            console.log("ERROR IN ADDUPLOADEDIMAGES")
+        })
 }
 
 module.exports = {
