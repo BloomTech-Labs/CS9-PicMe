@@ -15,7 +15,8 @@ const uploadImage = (req, res) => {
 
     const {email, name, url, tags} = req.body;
 
-    console.log(email, name, url, tags);
+    console.log(email, name, url, tags); 
+    
 
     cloudinary.config({ 
         cloud_name: 'picme', 
@@ -29,30 +30,21 @@ const uploadImage = (req, res) => {
             url: url
         })
     }    
-  
 
-    cloudinary.uploader.add_tag(tags, name, //Once image uploaded we add the desired tags to it
-        function(result, err) { 
-            if(result) {
-                console.log(tags)
-                if(email && tags[0].length != 0) {
-                    User.findOne({ where: { email: email } }).then(user => {
-                    let credits = user.credits;
-                    
-                    //Adds a credit to a user
-                    User.update({ credits: credits+1 }, { where: { email: email }, individualHooks: true })
-                    .then(user => console.log(user))
-                    .catch(err => console.log(err)); 
-                    })
-                }
-                User.findOne({where: {email: email}}).then(user => {
-                    user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
-                })
-                res.status(200).json({Message: "Image uploaded"})
-            }
-            else res.status(500).json({Err: "Could not add tags at this time"})
+        if(email && tags[0].length != 0) {
+            User.findOne({ where: { email: email } }).then(user => {
+            let credits = user.credits;
+            
+            //Adds a credit to a user
+            User.update({ credits: credits+1 }, { where: { email: email }, individualHooks: true })
+            .then(user => console.log(user))
+            .catch(err => console.log(err)); 
+            })
         }
-    );
+        
+        User.findOne({where: {email: email}}).then(user => {
+            user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
+        })
 }
 
 module.exports = {
