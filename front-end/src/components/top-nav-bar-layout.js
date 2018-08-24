@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom' //need this for history.push
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import {
   Container,
@@ -60,7 +61,7 @@ class TopNavBarLayout extends Component {
               Sign Out
             </Menu.Item>
             <Menu.Item position="right" header>
-              Credits: {this.state.currentUser.credits} 
+              Credits: {this.props.credits} 
             </Menu.Item>
             <Menu.Item position="right" header>
               Hi, {this.state.currentUser.fullName} 
@@ -76,4 +77,12 @@ class TopNavBarLayout extends Component {
   }
 }
 
-export default withRouter(TopNavBarLayout);
+// export default withRouter(TopNavBarLayout);
+
+const mapStateToProps = state => {
+  return {
+    credits: state.credits
+  }
+}
+
+export default connect(mapStateToProps, {})(withRouter(TopNavBarLayout));

@@ -10,11 +10,12 @@ import Uploads from "./components/uploads";
 import PhotoBrowser from './components/PhotoBrowser';
 import MyCollectionPage from './components/MyCollectionPage';
 import TagsMaker from './components/TagsMaker';
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Layout>
@@ -26,7 +27,7 @@ class App extends Component {
             <Route exact path="/collection" component={MyCollectionPage} />
           </Layout>
         </Switch>
-      </div>
+      </BrowserRouter>
     );
   }
 }

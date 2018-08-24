@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import BillingForm from "./billingform";
+import { connect } from 'react-redux';
+import { Alert } from "react-bootstrap";
 import axios from 'axios';
 
+import BillingForm from "./billingform";
+import { buyCredits } from '../actions';
 import "./css/billing.css";
 
-export default class Settings extends Component {
-  constructor(props) {
-    super(props);
+class Settings extends Component {
 
-    this.state = {
-      isLoading: false,
-      currentUser: null
-    };
+  state = {
+    isLoading: false,
+    showSuccessMessage: false
+  };
+
+  handleOnDismiss = () => {
+    this.setState({ showSuccessMessage: false });
   }
 
-
-  async buyCredits(payload) {
-    return await axios.post(`${process.env.REACT_APP_API}/charge`, payload);
-  }
-
-  handleFormSubmit = async (credits, { token, error }) => {
+  handleFormSubmit = (credits, { token, error }) => {
     if (error) {
       alert(error);
       return;
@@ -29,25 +28,24 @@ export default class Settings extends Component {
     this.setState({ isLoading: true });
 
     try {
-      const response = await this.buyCredits({
+      this.props.buyCredits({
         currentUserEmail: sessionStorage.getItem('email'), 
         credits,
         stripeTokenId: token.id
       });
-      
-      console.log("purchase successfull. response data is ", response.data)
-      // need to update redux currentCredits here
-      alert(`Purchase is successful.`)
-
     } catch (e) {
       alert(e);
     }
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, showSuccessMessage: true });
   }
 
   render() {
     return (
       <div className="Settings">
+        { this.state.showSuccessMessage ?
+        <Alert bsStyle="success" onDismiss={this.handleOnDismiss}> 
+          Your purchase was successful
+        </Alert> : null }
         <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
           <Elements>
             <BillingForm
@@ -60,3 +58,11 @@ export default class Settings extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    chargePending: state.chargePending,
+    chargeSuccess: state.chargeSuccess
+  }
+}
+
+export default connect(mapStateToProps, { buyCredits })(Settings);
