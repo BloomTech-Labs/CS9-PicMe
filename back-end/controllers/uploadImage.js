@@ -31,20 +31,27 @@ const uploadImage = (req, res) => {
         })
     }    
 
-        if(email && tags[0].length != 0) {
+        if(email && tags[0] !== "null") {
             User.findOne({ where: { email: email } }).then(user => {
             let credits = user.credits;
             
             //Adds a credit to a user
             User.update({ credits: credits+1 }, { where: { email: email }, individualHooks: true })
-            .then(user => console.log(user))
-            .catch(err => console.log(err)); 
+            .then(user => {
+                console.log(user)
+                res.status(200).json({Message: "Working"})
+            })
+            .catch(err => {
+                console.log("Not working")
+            }); 
             })
         }
         
-        User.findOne({where: {email: email}}).then(user => {
-            user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
-        })
+        // User.findOne({where: {email: email}}).then(user => {
+        //     user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
+        // }).catch(err => {
+        //     console.log(err)
+        // })
 }
 
 module.exports = {
