@@ -70,7 +70,8 @@ class Upload extends Component{
         const image = new FormData();
         image.append("file", this.state.image) 
         image.append("upload_preset", "u03iyxti") //Sends data as a file to our server
-
+        image.append("api_key", "895718742668927")
+        image.append("timestamp", (Date.now() / 1000) | 0);
         if(this.state.tags.length >= 1) {
             this.state.tags.forEach(tag => {
                 this.state.uploadTags.push(tag.id);
@@ -81,25 +82,39 @@ class Upload extends Component{
             })
         }
 
-        image.append("Tags", this.state.uploadTags)
-        image.append("Email", window.sessionStorage.email)
+        image.append("tags", this.state.uploadTags)
+        // image.append("Email", window.sessionStorage.email)
 
 
 
-        Axios({
-            url: `${process.env.REACT_APP_API}/upload`,
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            data: image
-        }).then(res => {
-            console.log(res);
-            window.location.reload();
-        }).catch(err => {
-            console.log(err)
-        })
-    }
+     Axios({
+         url:"https://api.cloudinary.com/v1_1/picme/image/upload",
+         method: "POST",
+        headers: { 
+            "X-Requested-With": "XMLHttpRequest" 
+        },
+        data: image
+    }).then(response => {
+      const data = response.data;
+      console.log(response)
+      const uploads = {
+          email: window.sessionStorage.email,
+          name: data.public_id,
+          url: data.url,
+          tags: data.tags
+      }
+
+      Axios.post(`${process.env.REACT_APP_API}/upload`, uploads)
+      .then(res => {
+          console.log(res);
+          window.location.reload()
+      }).catch(err => {
+          console.log(err);
+      })
+    }).catch(err => {
+        console.log(err)
+    })
+}
 
     render() {
         const { tags, suggestions } = this.state;
