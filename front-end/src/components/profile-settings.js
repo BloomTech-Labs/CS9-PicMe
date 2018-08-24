@@ -32,9 +32,7 @@ class ProfileSettings extends Component {
                 open: show,
                 showPass: "text"
             })
-        }
-
-        else {
+        } else {
             this.setState({
                 closed: show,
                 open: noshow,
@@ -52,15 +50,13 @@ class ProfileSettings extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const updatedUser = {
-            currEmail: window.sessionStorage.email,
-            first_name: this.state.firstName,
-            last_name: this.state.lastName,
-            email: this.state.email,
-            password: this.state.password,
-            nick_names: this.state.nickname,
-            credits: 10
-        }
+        const updatedUser = {currEmail: window.sessionStorage.email};
+        // Adds only properties updated so values aren't overwritten with blanks
+        if (this.state.firstName !== "") updatedUser.first_name = this.state.firstName;
+        if (this.state.lastName !== "") updatedUser.last_name = this.state.lastName;
+        if (this.state.email !== "") updatedUser.email = this.state.email;
+        if (this.state.password !== "") updatedUser.password = this.state.password;
+        if (this.state.nickname !== "") updatedUser.nick_names = this.state.nickname;
 
         Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser, {
             headers: {
@@ -69,7 +65,14 @@ class ProfileSettings extends Component {
             }
         })
         .then(response => {
-            console.log(response);
+            alert("Settings Changed");
+            this.setState({
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+                nickname: ""
+            });
         }).catch(err => {
             console.log(err)
         })
@@ -85,14 +88,14 @@ class ProfileSettings extends Component {
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
                     <Container text>
                     <Segment.Group>
-                        <Segment>First Name: <Input name="firstName" onChange={this.onChange} type="text"/></Segment>
-                        <Segment>Last Name <Input name="lastName" onChange={this.onChange} type="text"/></Segment>
-                        <Segment>Email: <Input name="email" onChange={this.onChange} type="text"/></Segment>
-                        <Segment>Password: <Input name="password" type={this.state.showPass} onChange={this.onChange}/>
+                        <Segment>First Name: <Input name="firstName" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
+                        <Segment>Last Name <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
+                        <Segment>Email: <Input name="email" onChange={this.onChange} value={this.state.email} type="text"/></Segment>
+                        <Segment>Password: <Input name="password" type={this.state.showPass} value={this.state.password} onChange={this.onChange}/>
                         <img onClick={this.onEyeClick} style={this.state.closed} src={Closed} alt="Password hidden"/>
                         <img onClick={this.onEyeClick} style={this.state.open} src={Open} alt="Password hidden"/>
                         </Segment>
-                        <Segment>Nickname: <Input name="nickname" onChange={this.onChange} type="text"/></Segment>
+                        <Segment>Nickname: <Input name="nickname" onChange={this.onChange} value={this.state.nickname} type="text"/></Segment>
                     </Segment.Group>
                     <Button type="submit" content='Save' primary />
                     </Container>
@@ -107,10 +110,10 @@ const style = {
       marginTop: '0',
       paddingTop: '5rem',
     }
-  }
+}
 
 
-  const show = {
+const show = {
 
 }
 
