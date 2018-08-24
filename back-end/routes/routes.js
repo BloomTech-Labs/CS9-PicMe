@@ -22,5 +22,5 @@ module.exports = server => {
     server.route('/collection').post(collection);
     server.route('/browse').get(fetchImages);
     server.route('/currentuser/').get(currentuser);
-    server.route('/addImageToCollection').post(collection);
+    server.route('/addImageToCollection').post(addImageToCollection);
   };
