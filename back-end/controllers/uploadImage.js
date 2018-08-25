@@ -23,11 +23,12 @@ const uploadImage = (req, res) => {
         api_secret: process.env.CLOUDINARY_SECRET 
     });  
 
-    const newImage = (name, url) => {
+    const newImage = (name, url, id) => {
         Image.create({
             name: name,
-            url: url
-        })
+            url: url,
+            uploaded_image_user_id: id //needs the id of the user to properly be saved
+        }).then()
     }    
 
         if(email) {
@@ -46,7 +47,8 @@ const uploadImage = (req, res) => {
         }
         
         User.findOne({where: {email: email}}).then(user => {
-            user.addUploadedImages([newImage(name, url)]) //Not sure if this is working, no errors though
+            let id = user.id;
+            user.addUploadedImages([newImage(name, url, id)]).then() //Saves the image to a user's uploads
             res.status(200).json({Message: 'Success'})
         }).catch(err => {
             console.log("ERROR IN ADDUPLOADEDIMAGES")
