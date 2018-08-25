@@ -9,8 +9,17 @@ Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageU
 
 
 const fetchFriendUploads = (req, res) => {
-    const test = req.params.id;
-    res.status(200).json({URL: test})
+    const userId = req.params.id;
+
+    User.findOne({where: {id: userId}}).then(user => {
+        let bob =  user.getUploadedImages().then(uploads => {
+            uploads.forEach(image => {console.log(image.dataValues.url)})
+        })
+        // console.log(bob)
+        // bob.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
+
+        res.status(200).json(user)
+    })
 }
 
 module.exports = {
