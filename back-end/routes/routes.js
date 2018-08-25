@@ -8,7 +8,7 @@ const {uploads} = require("../controllers/uploads")
 const {collection} = require("../controllers/collection")
 const {currentuser} = require("../controllers/currentuser")
 const {fetchImages} = require("../controllers/fetchImages")
-
+const {fetchFriendUploads} = require("../controllers/fetchFriendUploads");
 
 
 module.exports = server => {
@@ -22,4 +22,5 @@ module.exports = server => {
     server.route('/browse').get(fetchImages);
     server.route('/collectionAdd').post(collection);
     server.route('/currentuser/').get(currentuser);
+    server.route('/friend/:id').get(fetchFriendUploads);
   };
