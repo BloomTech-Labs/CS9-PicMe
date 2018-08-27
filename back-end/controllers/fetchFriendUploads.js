@@ -9,16 +9,22 @@ Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageU
 
 
 const fetchFriendUploads = (req, res) => {
+    //Grabs id from body request
     const userId = req.params.id;
 
     User.findOne({where: {id: userId}}).then(user => {
-        let bob =  user.getUploadedImages().then(uploads => {
-            uploads.forEach(image => {console.log(image.dataValues.url)})
+        const pics = []
+        const userUploads =  user.getUploadedImages().then(uploads => { 
+            // Grabs a user's uploads from DB and pushes each one into our pics array
+            uploads.forEach(image => {
+                pics.push(image.dataValues.url)
+            })
+            res.status(200).json(pics) //Sends back an array of pictures
+        }).catch(err => {
+            res.status(200).json({Err: "User has no images"})
         })
-        // console.log(bob)
-        // bob.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
-
-        res.status(200).json(user)
+    }).catch(err => {
+        res.status(400).json({Err: "No user found "})
     })
 }
 
