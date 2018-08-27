@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { fetchUser, newUser } from '../actions/userActions';
+import { signIn } from '../actions';
 
 class RegistrationForm extends Component {
   state = {
@@ -29,27 +28,26 @@ class RegistrationForm extends Component {
       password: this.state.password
     }
 
+
     axios.post(`${process.env.REACT_APP_API}/signup`, newUser)
-    .then(response => {
-      axios.post(`${process.env.REACT_APP_API}/signin`, {
-        email: this.state.email,
-        password: this.state.password
-      }).then(response => {
-        console.log("State: token: " + response.data.token);
-        sessionStorage.setItem('token', response.data.token);
-        sessionStorage.setItem('email', this.state.email);
-        this.props.history.push('/upload')
+      .then(response => {
+        this.props.signIn(newUser.email, newUser.password)
+          .then(response => {
+            console.log("The token is" + response.data.token);
+            sessionStorage.setItem('token', response.data.token);
+            sessionStorage.setItem('email', this.state.email);
+            this.props.history.push('/upload')
+          })
+      }).catch(err => {
+        alert("Registration failed, please make sure no field is left blank");
+        this.setState({
+          first_name: "",
+          last_name: "",
+          email: "",
+          password: ""
+        })
       })
-    }).catch(err => {
-      alert("Sign up failed, please make sure no field is left blank");
-      this.setState({
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: ""
-      })
-    })
-  }
+    }
 
   render() {
     return (
@@ -133,4 +131,4 @@ const ModalContainer = props => (
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { newUser })(withRouter(ModalContainer));
+export default connect(mapStateToProps, { signIn })(withRouter(ModalContainer));

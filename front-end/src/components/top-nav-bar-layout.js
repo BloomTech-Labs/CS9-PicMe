@@ -2,29 +2,15 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom' //need this for history.push
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import {
-  Container,
-  Dropdown,
-  Menu,
-} from 'semantic-ui-react'
-import axios from 'axios'
+import { Container, Dropdown, Menu, } from 'semantic-ui-react'
 
+import { refreshUserState } from '../actions';
 
 class TopNavBarLayout extends Component {
-  state = {
-    currentUser: {
-      first_name: '',
-      last_name: '',
-      email: '',
-      fullName: '',
-      credits: 0
-    } 
-  }
 
-  async componentDidMount() {
-    const email = sessionStorage.getItem('email');
-    const user = (await axios.get(`${process.env.REACT_APP_API}/currentuser?email=${email}`)).data;
-    this.setState({ currentUser: user });
+  componentDidMount() {
+    // in case the page gets reloaded, need to load in user state from db again
+    this.props.refreshUserState();
   }
 
   handleClickSignOut = e => {
@@ -64,7 +50,7 @@ class TopNavBarLayout extends Component {
               Credits: {this.props.credits} 
             </Menu.Item>
             <Menu.Item position="right" header>
-              Hi, {this.state.currentUser.fullName} 
+              Hi, {this.props.first_name + ' ' + this.props.last_name} 
             </Menu.Item>
           </Container>
         </Menu>
@@ -81,8 +67,12 @@ class TopNavBarLayout extends Component {
 
 const mapStateToProps = state => {
   return {
+    first_name: state.first_name,
+    last_name: state.last_name,
+    email: state.email,
+    nicknames: state.nickname,
     credits: state.credits
   }
 }
 
-export default connect(mapStateToProps, {})(withRouter(TopNavBarLayout));
+export default connect(mapStateToProps, { refreshUserState })(withRouter(TopNavBarLayout));

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { connect } from 'react-redux';
 import { Alert } from "react-bootstrap";
-import axios from 'axios';
 
 import BillingForm from "./billingform";
 import { buyCredits } from '../actions';

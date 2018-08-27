@@ -9,7 +9,6 @@ import Upload from "./components/upload";
 import Uploads from "./components/uploads";
 import PhotoBrowser from './components/PhotoBrowser';
 import MyCollectionPage from './components/MyCollectionPage';
-import TagsMaker from './components/TagsMaker';
 import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
