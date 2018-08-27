@@ -10,6 +10,7 @@ import Uploads from "./components/uploads";
 import PhotoBrowser from './components/PhotoBrowser';
 import MyCollectionPage from './components/MyCollectionPage';
 import TagsMaker from './components/TagsMaker';
+import friendsUploads from "./components/friendsUploads";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/settings" component={ProfileSettings}/>
             <Route exact path="/browse" component={PhotoBrowser} />
             <Route exact path="/collection" component={MyCollectionPage} />
+            <Route path="/friend/uploads" component={friendsUploads}/>
           </Layout>
         </Switch>
       </div>
