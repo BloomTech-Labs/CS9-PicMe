@@ -9,6 +9,7 @@ import Upload from "./components/upload";
 import Uploads from "./components/uploads";
 import PhotoBrowser from './components/PhotoBrowser';
 import MyCollectionPage from './components/MyCollectionPage';
+import Browse from './components/browse';
 import TagsMaker from './components/TagsMaker';
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
             <Route exact path="/upload" component={Upload}/>
             <Route exact path="/uploads" component={Uploads}/>
             <Route exact path="/settings" component={ProfileSettings}/>
-            <Route exact path="/browse" component={PhotoBrowser} />
+            <Route exact path="/browse" component={Browse} />
             <Route exact path="/collection" component={MyCollectionPage} />
           </Layout>
         </Switch>
