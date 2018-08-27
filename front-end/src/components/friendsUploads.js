@@ -54,7 +54,9 @@ export default class friendsUploads extends Component {
     }
 
     componentDidMount() {
+        //Grab the user id from shareable link
         let id = window.location.href.split("/")[5]
+        //pass the id onto our route in order to fetch images
         axios.get(`${process.env.REACT_APP_API}/friend/${id}`)
         .then(response => {
             response.data.forEach(image => {
@@ -63,7 +65,7 @@ export default class friendsUploads extends Component {
                     width: 1,
                     height: .7
                 })
-
+                //Sets our images in an object as specified by Gallery docs
                 this.setState({
                     photos: PHOTO_SET
                 })
