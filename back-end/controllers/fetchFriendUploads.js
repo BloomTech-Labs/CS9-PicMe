@@ -14,7 +14,7 @@ const fetchFriendUploads = (req, res) => {
 
     User.findOne({where: {id: userId}}).then(user => {
         const pics = []
-        const bob =  user.getUploadedImages().then(uploads => { 
+        const userUploads =  user.getUploadedImages().then(uploads => { 
             // Grabs a user's uploads from DB and pushes each one into our pics array
             uploads.forEach(image => {
                 pics.push(image.dataValues.url)
