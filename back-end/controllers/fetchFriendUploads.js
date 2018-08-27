@@ -12,13 +12,30 @@ const fetchFriendUploads = (req, res) => {
     const userId = req.params.id;
 
     User.findOne({where: {id: userId}}).then(user => {
-        let bob =  user.getUploadedImages().then(uploads => {
-            uploads.forEach(image => {console.log(image.dataValues.url)})
+        const pics = []
+        const bob =  user.getUploadedImages().then(uploads => {
+            uploads.forEach(image => {
+                // console.log("lol", image.dataValues.url); 
+                pics.push(image.dataValues.url)
+            })
+            // console.log("\n", pics)
+            res.status(200).json(pics)
+
+
         })
+
         // console.log(bob)
         // bob.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
 
-        res.status(200).json(user)
+        // const stuff = {
+
+        // }
+
+        // pics.forEach((image, index) => {
+        //     console.log(image, index)
+        // })
+
+
     })
 }
 

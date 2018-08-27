@@ -85,7 +85,7 @@ export default class Uploads extends Component {
             const id = response.data;
 
             let link = document.getElementById("link");
-            link.innerHTML = `${process.env.REACT_APP_FE}/friend/${id}`;
+            link.innerHTML = `${process.env.REACT_APP_FE}/friend/uploads/${id}`;
 
         }).catch(err => {
             console.log(err)
