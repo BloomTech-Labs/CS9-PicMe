@@ -22,10 +22,8 @@ export default class friendsUploads extends Component {
         // select binding
         this.toggleSelect = this.toggleSelect.bind(this);
         // add to collection binding
-        this.toggleSubmit = this.toggleSubmit.bind(this);
         // download selected
-        this.toggleDownloadSelected = this.toggleDownloadSelected.bind(this);
-    }
+        }
 
     // select photo function
     selectPhoto(event, obj) {
@@ -42,14 +40,6 @@ export default class friendsUploads extends Component {
         this.setState({ photos: photos, selectAll: !this.state.selectAll });
     }
 
-    //submit
-    toggleSubmit(event, obj, index) {
-        alert("Selected Photos have been removed from your uploads.");
-    }
-
-    toggleDownloadSelected(event, obj, index) {
-        alert("Now downloading your selected images...");
-    }
 
     show = () => {
         if(this.state.show === nowshow) { 
@@ -87,18 +77,7 @@ export default class friendsUploads extends Component {
     render() {
         return(
             <div className="component-wrapper">
-                <h1> Your photo uploads: </h1>
-            <p>
-              <button className="toggle-select" onClick={this.toggleSelect}>
-                Select all
-              </button>
-              <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
-                Download selected images
-              </button>
-              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                Remove selected photos from uploads
-              </button>
-            </p>
+                <h1> Friends photo uploads: </h1>
 
                 {this.state.photos.length > 0 ? <Gallery
                 photos={this.state.photos}
