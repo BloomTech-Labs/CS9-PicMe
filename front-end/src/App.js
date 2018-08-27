@@ -12,6 +12,7 @@ import MyCollectionPage from './components/MyCollectionPage';
 import Browse from './components/browse';
 import TagsMaker from './components/TagsMaker';
 import friendsUploads from "./components/friendsUploads";
+import AboutUs from "./components/AboutUs";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/browse" component={Browse} />
             <Route exact path="/collection" component={MyCollectionPage} />
             <Route path="/friend/uploads" component={friendsUploads}/>
+            <Route exact path="/aboutus" component={AboutUs}/>
           </Layout>
         </Switch>
       </div>
