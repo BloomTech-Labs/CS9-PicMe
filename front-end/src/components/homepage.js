@@ -246,8 +246,8 @@ const HomepageLayout = () => (
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign='left' style={{ marginLeft: "460px" }}>
-            <Link to="/aboutUs"><Button size='huge'>Check out more</Button></Link>
+          <Grid.Column textAlign='left' style={{ marginLeft: "40%" }}>
+            <Link to="/aboutUs"><Button primary size='huge'>Check out more</Button></Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -280,7 +280,6 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
               </List>
             </Grid.Column>
