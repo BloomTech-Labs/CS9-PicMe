@@ -7,17 +7,16 @@ import Layout from './components/top-nav-bar-layout';
 import ProfileSettings from "./components/profile-settings";
 import Upload from "./components/upload";
 import Uploads from "./components/uploads";
-import PhotoBrowser from './components/PhotoBrowser';
 import MyCollectionPage from './components/MyCollectionPage';
+import { BrowserRouter } from "react-router-dom";
 import Browse from './components/browse';
-import TagsMaker from './components/TagsMaker';
 import friendsUploads from "./components/friendsUploads";
 import AboutUs from "./components/AboutUs";
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Layout>
@@ -31,7 +30,7 @@ class App extends Component {
             <Route exact path="/aboutus" component={AboutUs}/>
           </Layout>
         </Switch>
-      </div>
+      </BrowserRouter>
     );
   }
 }

@@ -113,8 +113,8 @@ export default class Uploads extends Component {
             <button onClick={() => {
                 this.shareLink()
                 this.show()
-            }} class="accordion">Share Link</button>
-            <div style={this.state.show} class="panel">
+            }} className="accordion">Share Link</button>
+            <div style={this.state.show} className="panel">
                 <p id="link" style={show}></p>
             </div>
             </div>

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
-import axios from 'axios'
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions/userActions';
+import { signIn } from '../actions';
 
 class LoginForm extends Component {
   state = {
@@ -18,21 +16,16 @@ class LoginForm extends Component {
     e.preventDefault();
     console.log("The input values are", Object.values(this.state));
 
-    // Backend address: https://agile-garden-80213.herokuapp.com/signin
-    axios.post(`${process.env.REACT_APP_API}/signin`, {
-        email: this.state.email, 
-        password: this.state.password
-    })
-    .then(response => {
-      console.log("State: token: " + response.data.token);
-      sessionStorage.setItem('token', response.data.token);
-      sessionStorage.setItem('email', this.state.email);
-      this.props.history.push('/upload')
-    })
-    .catch(err => {
-      alert("Invalid login credentials, please try again.");
-      console.log(err);
-    });
+    this.props.signIn(this.state.email, this.state.password)
+      .then(response => {
+        console.log("The token is" + response.data.token);
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('email', this.state.email);
+        this.props.history.push('/upload')
+      })
+      .catch( err => {
+        alert(`Error with login ${err}`);
+      })
   }
 
   render() {
@@ -100,4 +93,4 @@ const ModalContainer = props => (
 const mapStateToProps = state => state;
 
 
-export default connect(mapStateToProps, { fetchUser })(withRouter(ModalContainer));
+export default connect(mapStateToProps, { signIn })(withRouter(ModalContainer));

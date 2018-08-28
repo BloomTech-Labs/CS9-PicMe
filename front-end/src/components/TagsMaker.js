@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
-import selfieImages from './selfies-test-images';
 
 const KeyCodes = {
   comma: 188,
@@ -46,7 +44,7 @@ class TagsMaker extends Component {
     }
  
     render() {
-        const { tags, suggestions } = this.state;
+        const { tags } = this.state;
         return (
             <div>
                 <ReactTags tags={tags}

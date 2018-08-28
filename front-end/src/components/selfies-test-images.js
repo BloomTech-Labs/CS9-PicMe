@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 const selfieImages = [{
     "url": "https://res.cloudinary.com/picme/image/upload/v1534982156/Selfie-Images/blue-boy-daylight-1205033.jpg",
     "users": "Hamann L"

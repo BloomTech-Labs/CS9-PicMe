@@ -1,6 +1,4 @@
 import React from "react";
-import { WithContext as ReactTags } from 'react-tag-input';
-import selfieImages from './selfies-test-images';
 import TagsMaker from './TagsMaker';
 
 const Checkmark = ({ selected }) => (

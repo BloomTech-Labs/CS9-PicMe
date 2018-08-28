@@ -37,7 +37,6 @@ class BillingForm extends Component {
   }
 
   handleCheckBoxClick = e => {
-    console.log("credits clicked", e.target.value);
     this.setState({ credits: e.target.value });
 
     if (e.target.id === "100") {
