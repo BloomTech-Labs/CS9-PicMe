@@ -10,11 +10,12 @@
     background-color: gainsboro;
     border: 1px solid gray;
     cursor: pointer;
-    font-size: 1.3rem;
-    padding: .6rem;
+    font-size: 2rem;
+    padding: .3rem;
     display: inline-block;
-    margin-top: 2rem;
-    height: 3.2rem;
+    margin-left: 2rem;
+    padding: 0 1rem 4.5rem .8rem;
+    height: 60%;
     order: 2;
 }
 
@@ -29,16 +30,39 @@
 .Uploads input {
     font-size: 2rem;
     padding: .65rem;
-    height: 3rem;
+    height: 6rem;
     order: 1;
     width: 100%;
 }
 
 #Uploads__form button {
     position: relative;
-    left: 15%;
-    top: 5rem;
+    left: 5%;
+    top: 2rem;
     padding: .7rem;
-    width: 10rem;
+    width: 30rem;
+    background-color: rgb(48, 148, 224);
+    color: white;
     cursor: pointer;
+}
+
+.dropzone {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.dropzone__input {
+    border: 2px dotted black;
+    height: 10rem;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 5%;
+}
+
+.dropzone p {
+    font-size: 3rem;
+    color: silver;
 }
