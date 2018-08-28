@@ -24,13 +24,12 @@ const fetchFriendUploads = (req, res) => {
 
 
     User.findOne({where: {id: id}}).then(user => {
-        const pics = []
-        const userUploads =  user.getUploadedImages().then(uploads => { 
+        const userUploads =  user.getUploadedImages().then(uploadedImages => { 
             // Grabs a user's uploads from DB and pushes each one into our pics array
-            uploads.forEach(image => {
-                pics.push(image.dataValues.url)
-            })
-            res.status(200).json(pics) //Sends back an array of pictures
+            // uploads.forEach(image => {
+            //     pics.push(image.dataValues.url)
+            // })
+            res.status(200).json(uploadedImages) //Sends back an array of pictures
         }).catch(err => {
             res.status(200).json({Err: "User has no images"})
         })

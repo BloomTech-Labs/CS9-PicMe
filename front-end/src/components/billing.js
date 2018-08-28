@@ -28,7 +28,7 @@ class Settings extends Component {
 
     try {
       this.props.buyCredits({
-        currentUserEmail: sessionStorage.getItem('email'), 
+        currentUserEmail: localStorage.getItem('email'), 
         credits,
         stripeTokenId: token.id
       });

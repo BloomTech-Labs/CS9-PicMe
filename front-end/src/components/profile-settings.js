@@ -50,7 +50,7 @@ class ProfileSettings extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const updatedUser = {currEmail: window.sessionStorage.email};
+        const updatedUser = {currEmail: localStorage.email};
         // Adds only properties updated so values aren't overwritten with blanks
         if (this.state.firstName !== "") updatedUser.first_name = this.state.firstName;
         if (this.state.lastName !== "") updatedUser.last_name = this.state.lastName;
@@ -61,7 +61,7 @@ class ProfileSettings extends Component {
         Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser, {
             headers: {
                 "Content-type": "application/json",
-                "Authorization": `Bearer ${window.sessionStorage.token}`
+                "Authorization": `Bearer ${localStorage.token}`
             }
         })
         .then(response => {

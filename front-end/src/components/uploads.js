@@ -60,7 +60,7 @@ export default class Uploads extends Component {
     }
 
     componentDidMount() {
-        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: sessionStorage.getItem('email')})
+        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: localStorage.getItem('email')})
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
@@ -78,14 +78,15 @@ export default class Uploads extends Component {
 
     shareLink() {
         const email = {
-            email: window.sessionStorage.email
+            email: localStorage.email
         }
         axios.post(`${process.env.REACT_APP_API}/fetchUserId`, email)
         .then(response => {
             const id = response.data;
 
             let link = document.getElementById("link");
-            link.innerHTML = `${process.env.REACT_APP_FE}/friend/uploads/${id}`;
+            const host = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+            link.innerHTML = `${host}/friend/uploads/${id}`;
 
         }).catch(err => {
             console.log(err)

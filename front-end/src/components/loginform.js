@@ -19,8 +19,8 @@ class LoginForm extends Component {
     this.props.signIn(this.state.email, this.state.password)
       .then(response => {
         console.log("The token is" + response.data.token);
-        sessionStorage.setItem('token', response.data.token);
-        sessionStorage.setItem('email', this.state.email);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('email', this.state.email);
         this.props.history.push('/upload')
       })
       .catch( err => {

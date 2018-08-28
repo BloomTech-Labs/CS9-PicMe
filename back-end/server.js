@@ -41,7 +41,10 @@ server.listen(port, () => console.log(`=== Server listening on ${port}... ===`))
 // example db access code for reference.  Don't delete for now
 const dbTest = async () => {
 
-  await db.sync({force: true});
+  // in development. this resets the db each server startup
+  // comment out in production
+  // await db.sync({force: true});
+
 
   // Create two users 
   let Bob = await User.create({

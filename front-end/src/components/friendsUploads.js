@@ -61,7 +61,8 @@ export default class friendsUploads extends Component {
         .then(response => {
             response.data.forEach(image => {
                 PHOTO_SET.push({
-                    src: image,
+                    src: image.url,
+                    userId: image.uploaded_image_user_id,
                     width: 1,
                     height: .7
                 })
