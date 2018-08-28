@@ -6,13 +6,24 @@ User.belongsToMany(Image, { through: 'user_collection_image', as: 'CollectionIma
 Image.belongsToMany(User, { through: 'user_collection_image', as: 'Users'}); 
 User.hasMany(Image, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImages'});
 Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageUser'});
+const jwt = require('jsonwebtoken')
+const secret = process.env.JWT_SECRET;
+
 
 
 const fetchFriendUploads = (req, res) => {
     //Grabs id from body request
-    const userId = req.params.id;
+    const userId = req.params.id; //Grabs jwt token from params
+    let id;
 
-    User.findOne({where: {id: userId}}).then(user => {
+    jwt.verify(userId, secret, (err, decoded) => { //decodes it so we can use the user id below
+        if(err) return;
+        id = decoded.id
+    })
+
+
+
+    User.findOne({where: {id: id}}).then(user => {
         const pics = []
         const userUploads =  user.getUploadedImages().then(uploads => { 
             // Grabs a user's uploads from DB and pushes each one into our pics array
