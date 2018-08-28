@@ -1,13 +1,15 @@
 h1 {
+    color: #5040CE;
     display: flex;
     justify-content: center;
     align-content: center;
-    color: rgb(64, 204, 255);
 }
 
 .component-wrapper {
+    height: 100%;
+    width: 100%;
     color: rgb(64, 204, 255);
-    background-color: rgb(31, 31, 31);
+    background-color: transparent;
 }
 
 .gallery-component {
@@ -24,25 +26,61 @@ img:hover {
     transform: scale(1.1);
 }
 
-.add-to-collection {
-    float: right;
+.toggle-select {
+    color: #fff;
     margin-right: 20px;
+    margin-left: 20px;
     border-radius: 5px;
-    background-color: rgb(64, 204, 255);
+    background-color: #3e8ed8;
+    border: 1px solid aqua;
+}
+
+.toggle-select:hover {
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
 .remove-from-your-collection {
+    color: #fff;
     float: right;
     margin-right: 20px;
     border-radius: 5px;
-    background-color: rgb(255, 0, 0);
+    background-color: #3e8ed8;
+    border: 1px solid aqua;
+}
+
+.remove-from-your-collection:hover {
+    float: right;
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
 .toggle-download-selected {
-    margin-left: 320px;
-    margin-right: 20px;
+    color: #fff;
+    margin-left: 30px;
+    margin-left: 240px;
     border-radius: 5px;
-    background-color: rgb(47, 216, 0);
+    background-color: #3e8ed8;
+    border: 1px solid aqua;
+}
+
+.toggle-download-selected:hover {
+    margin-left: 30px;
+    margin-left: 240px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
 .share__button {
@@ -74,3 +112,23 @@ img:hover {
     display: none;
     overflow: hidden;
 }
+
+.header-title {
+    color: #5040CE;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.header-container {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    background-color: #000000;
+    height: 80px;
+}
+
+.gallery-container {
+    z-index: -1;
+}
+

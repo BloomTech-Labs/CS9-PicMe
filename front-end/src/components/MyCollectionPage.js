@@ -79,24 +79,33 @@ export default class MyCollectionPage extends Component {
         render() {
         return(
             <div className="component-wrapper">
-                <h1> Your photo collection: </h1>
-            <p>
-              <button className="toggle-select" onClick={this.toggleSelect}>
-                toggle select all
-              </button>
-              <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
-                    Download selected images!
-              </button>
-              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                Remove selected photos from collection
-              </button>
-            </p>
+            <div className="header-container">
+            <div className="header-container">
+                    <h1 className="header-title"> Your photo collection: </h1>
+                <div className="button-container">
+                    <p>
+                    <button className="toggle-select" onClick={this.toggleSelect}>
+                        toggle select all images
+                    </button>
+                    <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
+                        Download selected images!
+                    </button>
+                    <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
+                        Remove selected images
+                    </button>
+                    </p>
+                </div>
+            </div>
+            </div>
+            <div className="gallery-container">
             <Gallery
               photos={this.state.photos}
               onClick={this.selectPhoto}
               ImageComponent={SelectedImage}
               direction={"column"}
+              margin={40}
             />
+            </div>
           </div>
         );
     }

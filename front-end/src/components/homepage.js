@@ -230,7 +230,7 @@ const HomepageLayout = () => (
             <Header as='h3' style={{ fontSize: '2em'}}>
             Share photos with your friends all over the world!
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
+            <p style={{ fontSize: '1.33em', color: '#919191' }}>
               PicMe is a social media, image-sharing platform. 
               Upload your images, tag your friends, add photos 
               to your collection, and share your experiences with the world!
@@ -238,7 +238,7 @@ const HomepageLayout = () => (
             <Header as='h3' style={{ fontSize: '2em' }}>
             Want to learn more about what we do?
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
+            <p style={{ fontSize: '1.33em', color: '#919191' }}>
             Hit the button below to get some more info, and to get started sharing your photos with the world!
             </p>
           </Grid.Column>
@@ -260,13 +260,13 @@ const HomepageLayout = () => (
             <Header as='h3' style={{ fontSize: '2em' }}>
             “The camera is an instrument that teaches people how to see without a camera.”
             </Header>
-            <p style={{ fontSize: '1.33em' }}>— Dorothea Lange</p>
+            <p style={{ fontSize: '1.33em', color: '#919191' }}>— Dorothea Lange</p>
           </Grid.Column>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
             “If you see something that moves you, and then snap it, you keep a moment.”
             </Header>
-            <p style={{ fontSize: '1.33em' }}>
+            <p style={{ fontSize: '1.33em', color: '#919191' }}>
               — Linda McCartney
             </p>
           </Grid.Column>
@@ -280,7 +280,9 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Contact Us</List.Item>
+                <Link to="/contact"><List.Item as='a'>Contact Us</List.Item></Link>
+                <br/>
+                <Link to="/aboutus"><List.Item as='a'>About Us</List.Item></Link>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
