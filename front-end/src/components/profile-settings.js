@@ -87,7 +87,7 @@ class ProfileSettings extends Component {
                 <form onSubmit={this.onSubmit} className="settings">
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
                     <Container text>
-                    <Segment.Group>
+                    <Segment.Group className="settings-container">
                         <Segment>First Name: <Input name="firstName" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
                         <Segment>Last Name <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
                         <Segment>Email: <Input name="email" onChange={this.onChange} value={this.state.email} type="text"/></Segment>

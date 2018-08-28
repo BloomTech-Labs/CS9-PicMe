@@ -27,7 +27,8 @@ const Checkmark = ({ selected }) => (
 );
 
 const imgStyle = {
-  transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s"
+  transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s",
+  borderRadius: "10px"
 };
 const selectedImgStyle = {
   transform: "translateZ(0px) scale3d(0.9, 0.9, 1)",
@@ -66,7 +67,6 @@ const SelectedImage = ({
     >
       <Checkmark selected={photo.selected ? true : false} />
       <div className="tags-input">
-        <TagsMaker />
       </div>
       <img
         style={
