@@ -12,6 +12,7 @@
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.2",
+    "react-dropzone": "^5.0.1",
     "react-id-swiper": "^1.6.6",
     "react-particles-js": "^2.3.0",
     "react-photo-gallery": "^6.2.0",
