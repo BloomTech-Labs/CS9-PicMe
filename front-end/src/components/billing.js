@@ -57,11 +57,5 @@ class Settings extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    chargePending: state.chargePending,
-    chargeSuccess: state.chargeSuccess
-  }
-}
 
-export default connect(mapStateToProps, { buyCredits })(Settings);
+export default connect(null, { buyCredits })(Settings);

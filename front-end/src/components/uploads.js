@@ -9,7 +9,9 @@ export default class Uploads extends Component {
     constructor(props) {
         super(props);
         this.state= {
-            photos: []
+            photos: [],
+            id: "",
+            show: nowshow
         };
         // select photo binding
         this.selectPhoto = this.selectPhoto.bind(this);
@@ -45,6 +47,18 @@ export default class Uploads extends Component {
         alert("Now downloading your selected images...");
     }
 
+    show = () => {
+        if(this.state.show === nowshow) { 
+            this.setState({
+                show: show
+            })
+        } else {
+            this.setState({
+                show: nowshow
+            })
+        }
+    }
+
     componentDidMount() {
         axios.post(`${process.env.REACT_APP_API}/uploads`, {email: sessionStorage.getItem('email')})
         .then(response => {
@@ -62,6 +76,23 @@ export default class Uploads extends Component {
         .catch(err => console.error("Uploads CDM: ", err));
     }
 
+    shareLink() {
+        const email = {
+            email: window.sessionStorage.email
+        }
+        axios.post(`${process.env.REACT_APP_API}/fetchUserId`, email)
+        .then(response => {
+            const id = response.data;
+
+            let link = document.getElementById("link");
+            link.innerHTML = `${process.env.REACT_APP_FE}/friend/uploads/${id}`;
+
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }
+
     render() {
         return(
             <div className="component-wrapper">
@@ -77,13 +108,31 @@ export default class Uploads extends Component {
                 Remove selected photos from uploads
               </button>
             </p>
-            {this.state.photos.length > 0 ? <Gallery
-              photos={this.state.photos}
-              onClick={this.selectPhoto}
-              ImageComponent={SelectedImage}
-              direction={"column"}
-            /> : null}
+
+            <div>
+            <button onClick={() => {
+                this.shareLink()
+                this.show()
+            }} className="accordion">Share Link</button>
+            <div style={this.state.show} className="panel">
+                <p id="link" style={show}></p>
+            </div>
+            </div>
+                {this.state.photos.length > 0 ? <Gallery
+                photos={this.state.photos}
+                onClick={this.selectPhoto}
+                ImageComponent={SelectedImage}
+                direction={"column"}
+                /> : null}
           </div>
         );
     }
+}
+
+const nowshow = {
+    display: "none"
+}
+
+const show = {
+    display: "block"
 }

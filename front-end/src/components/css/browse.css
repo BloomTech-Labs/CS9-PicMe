@@ -1,0 +1,9 @@
+.inputContainer {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.inputLabel {
+  text-align: center;
+  margin-bottom: 30px;
+}
