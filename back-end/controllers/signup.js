@@ -1,6 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../db/dbconnection");
-const User = require("../db/models/user")(db, Sequelize); 
+const User = require("../db/models/user")(db, Sequelize);
+const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_SECRET;
+
 //Database initializers, used to make queries ^
 
 
@@ -14,8 +17,13 @@ const signup = (req, res) => {
       email: email || "",
       password: password || "", 
       nick_names: null,
-      credits: 0
-    }).then().catch(err => {
+      credits: 0,
+      hashed_id: 1
+    }).then(user => {
+      const hashed_id = jwt.sign({ id: user.id }, secret); //Need to hash it here as before/after create hooks cause problems
+      User.update({hashed_id}, {where: {email: email}}).then()
+    }).catch(err => {
+      console.log(err)
       res.status(400).json({Error: "Email in use"})
     })
     //Responses had to be done here, otherwise the code would send success as it's an asynchronous function

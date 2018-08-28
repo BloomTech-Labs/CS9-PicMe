@@ -27,5 +27,5 @@ module.exports = server => {
     server.route('/currentuser/').get(currentuser);
     server.route('/friend/:id').get(fetchFriendUploads);
     server.route('/addImageToCollection').post(addImageToCollection);
-    server.route('/fetchUserId').post(fetchUserId)
+    server.route('/fetchUserId').post(fetchUserId);
   };

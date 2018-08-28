@@ -50,7 +50,8 @@ const dbTest = async () => {
     nick_names: '',
     email: 'bob',
     password: 'bob',
-    credits: 10
+    credits: 10,
+    hashed_id: 1
   })
 
   const Jerry = await User.create({
@@ -59,7 +60,8 @@ const dbTest = async () => {
     nick_names: '',
     email: 'jerry@brown.com',
     password: "jerry",
-    credits: 15
+    credits: 15,
+    hashed_id: 2
   })
 
 
