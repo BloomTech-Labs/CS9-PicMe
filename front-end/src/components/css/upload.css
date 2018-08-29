@@ -15,7 +15,7 @@
     display: inline-block;
     margin-left: 2rem;
     padding: 0 1rem 4.5rem .8rem;
-    height: 60%;
+    height: 50%;
     order: 2;
 }
 
@@ -47,13 +47,13 @@
 }
 
 .dropzone {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .dropzone__input {
     border: 2px dotted black;
-    height: 10rem;
+    height: 100%;
     width: 60%;
     margin: 0 auto;
     display: flex;
@@ -66,3 +66,71 @@
     font-size: 3rem;
     color: silver;
 }
+
+form {
+    width: 85%;
+}
+
+.tablet__label {
+    display: none;
+}
+
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .uploads label {
+        font-size: 1.8rem;
+    }
+
+    .dropzone p {
+        font-size: 2.2rem;
+        color: silver;
+    }
+
+    form {
+        width: 90%;
+    }
+
+}
+
+@media (min-width: 367px) and (max-width: 800px) {
+    .uploads label {
+        position: relative;
+        padding: 1rem;
+        margin-left: 4.2rem;
+        right: .7rem;
+    }
+
+    .tablet__label {
+        display: block;
+    }
+
+    .dropzone {
+        display: none;
+    }
+
+    .uploads img {
+        right: 2rem;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 367px) {
+    .uploads label {
+        position: relative;
+        padding: .4rem;
+        margin-left: 4.2rem;
+        width: 80%;
+    }
+
+    .tablet__label {
+        display: block;
+    }
+
+    .uploads img {
+        right: 1rem;
+    }
+
+    .dropzone {
+        display: none;
+    }
+}
+

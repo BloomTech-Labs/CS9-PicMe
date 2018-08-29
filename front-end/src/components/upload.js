@@ -97,6 +97,10 @@ class Upload extends Component{
                 </Dropzone>
                 </div>
                     <div className="Uploads__pic">
+                        <div className="tablet__label">
+                            <input  style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
+                            <label htmlFor="file">Choose a file</label>
+                        </div>
                         <button style={this.state.show} type="submit">submit</button>
                     </div>
                 </form>
