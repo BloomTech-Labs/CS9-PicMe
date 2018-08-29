@@ -92,6 +92,9 @@ export default class Uploads extends Component {
             let link = document.getElementById("link");
             link.innerHTML = `${process.env.REACT_APP_FE}/friend/uploads/${id}`;
 
+            let code = document.getElementById("code");
+            code.innerHTML = `Code: ${id}`;
+
         }).catch(err => {
             console.log(err)
         })
@@ -124,6 +127,7 @@ export default class Uploads extends Component {
             }} className="accordion">Share Link</button>
             <div style={this.state.show} className="panel">
                 <p id="link" style={show}></p>
+                <p id="code" style={show}></p>
             </div>
             </div>
                 {this.state.photos.length > 0 ? <Gallery
@@ -142,5 +146,9 @@ const nowshow = {
 }
 
 const show = {
-    display: "block"
+    display: "block",
+    height: "100%",
+    color: "#9358c4",
+    wordWrap: "break-word", //text can wrap
+    fontSize: "1.2rem"
 }

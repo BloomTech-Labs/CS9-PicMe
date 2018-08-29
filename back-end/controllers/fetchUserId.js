@@ -8,6 +8,7 @@ const fetchUserId = (req, res) => {
 
     User.findOne({where: {email: email}}).then(user => {
         res.status(200).json(user.hashed_id) //sends hashed id instead of plain
+        console.log(user.hashed_id)
     }).catch(err => {
         res.status(400).json({Err: "No user found"})
     })
