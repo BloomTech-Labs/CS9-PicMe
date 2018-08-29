@@ -86,19 +86,21 @@ class ProfileSettings extends Component {
             <div className="settings__nav">
                 <form onSubmit={this.onSubmit} className="settings">
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
-                    <Container text>
+                    {/* <Container text> */}
                     <Segment.Group className="settings-container">
                         <Segment>First Name: <Input name="firstName" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
                         <Segment>Last Name <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
                         <Segment>Email: <Input name="email" onChange={this.onChange} value={this.state.email} type="text"/></Segment>
                         <Segment>Password: <Input name="password" type={this.state.showPass} value={this.state.password} onChange={this.onChange}/>
-                        <img onClick={this.onEyeClick} style={this.state.closed} src={Closed} alt="Password hidden"/>
-                        <img onClick={this.onEyeClick} style={this.state.open} src={Open} alt="Password hidden"/>
+                        <div className="settings__icon">
+                            <img onClick={this.onEyeClick} style={this.state.closed} src={Closed} alt="Password hidden"/>
+                            <img onClick={this.onEyeClick} style={this.state.open} src={Open} alt="Password hidden"/>
+                        </div>
                         </Segment>
                         <Segment>Nickname: <Input name="nickname" onChange={this.onChange} value={this.state.nickname} type="text"/></Segment>
                     </Segment.Group>
                     <Button type="submit" content='Save' primary />
-                    </Container>
+                    {/* </Container> */}
                 </form>
             </div>
         )
@@ -106,10 +108,6 @@ class ProfileSettings extends Component {
 }
 
 const style = {
-    h3: {
-      marginTop: '0',
-      paddingTop: '5rem',
-    }
 }
 
 
