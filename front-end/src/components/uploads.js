@@ -60,7 +60,12 @@ export default class Uploads extends Component {
     }
 
     componentDidMount() {
-        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: sessionStorage.getItem('email')})
+        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: sessionStorage.getItem('email')}, {
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${window.sessionStorage.token}`
+            }
+        })
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
