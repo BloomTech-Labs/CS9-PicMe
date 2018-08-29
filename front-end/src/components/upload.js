@@ -51,10 +51,12 @@ class Upload extends Component{
 
 
      Axios({
-         url:"https://api.cloudinary.com/v1_1/picme/image/upload",
-         method: "POST",
+        url:"https://api.cloudinary.com/v1_1/picme/image/upload",
+        method: "POST",
         headers: { 
-            "X-Requested-With": "XMLHttpRequest" 
+            "X-Requested-With": "XMLHttpRequest",
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${window.sessionStorage.token}`
         },
         data: image
     }).then(response => {
