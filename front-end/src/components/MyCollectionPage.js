@@ -80,14 +80,13 @@ export default class MyCollectionPage extends Component {
         return(
             <div className="component-wrapper">
             <div className="header-container">
-            <div className="header-container">
-                    <h1 className="header-title"> Your photo collection: </h1>
+                    <h1 className="header-title"> Your photo collection </h1>
                 <div className="button-container">
                     <p>
                     <button className="toggle-select" onClick={this.toggleSelect}>
                         toggle select all images
                     </button>
-                    <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
+                    <button className="toggle-download-images" onClick={this.toggleDownloadSelected}>
                         Download selected images!
                     </button>
                     <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
@@ -95,7 +94,6 @@ export default class MyCollectionPage extends Component {
                     </button>
                     </p>
                 </div>
-            </div>
             </div>
             <div className="gallery-container">
             <Gallery
