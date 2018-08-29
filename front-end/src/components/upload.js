@@ -82,7 +82,7 @@ class Upload extends Component{
         return (
             <div className="uploads">
                 <div>
-                    <img src={this.state.preview} alt="" width="50%" height="40%"/>
+                    <img style ={this.state.show} src={this.state.preview} alt="" width="50%" height="40%"/>
                 </div>
 
                 <form id="Uploads__form" onSubmit={this.onSubmit} encType='multipart/form-data'>

@@ -89,7 +89,7 @@ class ProfileSettings extends Component {
                     {/* <Container text> */}
                     <Segment.Group className="settings-container">
                         <Segment>First Name: <Input name="firstName" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
-                        <Segment>Last Name <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
+                        <Segment>Last Name: <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
                         <Segment>Email: <Input name="email" onChange={this.onChange} value={this.state.email} type="text"/></Segment>
                         <Segment>Password: <Input name="password" type={this.state.showPass} value={this.state.password} onChange={this.onChange}/>
                         <div className="settings__icon">

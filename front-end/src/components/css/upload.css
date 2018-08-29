@@ -1,7 +1,14 @@
+.uploads {
+    margin-bottom: 4rem;
+    height: 100%;
+}
+
+
 .uploads img {
     margin: 0 auto;
     display: block;
     width: 60%;
+    height: 60vh;
     position: relative;
     bottom: 2rem;
 }
@@ -110,8 +117,19 @@ form {
 
     .uploads img {
         right: 2rem;
+        width: 80%;
     }
 }
+
+
+@media (min-width: 0px) and (max-width: 600px)  {
+    .uploads img {
+        width: 100%;
+        left: .2rem;
+        height: 40vh;
+    }
+}
+
 
 @media (min-width: 0px) and (max-width: 367px) {
     .uploads label {
