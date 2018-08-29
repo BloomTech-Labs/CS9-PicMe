@@ -27,65 +27,156 @@ img:hover {
 }
 
 .toggle-select {
-    color: #fff;
-    margin-right: 20px;
-    margin-left: 20px;
-    border-radius: 5px;
-    background-color: #3e8ed8;
-    border: 1px solid aqua;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 0 15px;
+    margin-left: 50px;
+    padding: 8px 20px 10px;
+    border: 1px solid rgb(31,45,77);
+    border-top-color: rgb(56,83,140);
+    border-bottom-color: rgb(21,30,51);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: #3498db;
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    text-shadow: 0 -1px 1px rgb(30,45,77) ;
 }
 
 .toggle-select:hover {
-    margin-right: 20px;
-    margin-left: 20px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
     cursor: pointer;
+    background: rgba(79,172,234,1);
+    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+
+    animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
+.toggle-select:active {
+    cursor: pointer;
+    margin: 0px 0 10px;
+    margin-left: 50px;
+    background: rgb(65, 98, 168);
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+}
+
+.toggle-select:focus {
+    outline: none;
+    animation: jello-horizontal 0.9s both;
+}
+
+
+
 .remove-from-your-collection {
-    color: #fff;
     float: right;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 0 15px;
     margin-right: 20px;
-    border-radius: 5px;
-    background-color: #3e8ed8;
-    border: 1px solid aqua;
+    padding: 8px 20px 10px;
+    border: 1px solid rgb(31,45,77);
+    border-top-color: rgb(56,83,140);
+    border-bottom-color: rgb(21,30,51);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: #3498db;
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    text-shadow: 0 -1px 1px rgb(30,45,77) ;
+    margin-right: 50px;
 }
 
 .remove-from-your-collection:hover {
     float: right;
-    margin-right: 20px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
     cursor: pointer;
+    background: red;
+    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    cursor: pointer;
+    margin-right: 50px;
+
+    animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.toggle-download-selected {
-    color: #fff;
-    margin-left: 30px;
-    margin-left: 240px;
-    border-radius: 5px;
-    background-color: #3e8ed8;
-    border: 1px solid aqua;
+.remove-from-your-collection:active {
+    margin: 5px 0 10px;
+    margin-right: 50px;
+    background: rgb(65, 98, 168);
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+
+    animation: jello-horizontal 0.9s both;
 }
 
-.toggle-download-selected:hover {
-    margin-left: 30px;
-    margin-left: 240px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
+.remove-from-your-collection:focus {
+    outline: none;
 }
+
+.toggle-download-images {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 0 15px;
+    padding: 8px 20px 10px;
+    border: 1px solid rgb(31,45,77);
+    border-top-color: rgb(56,83,140);
+    border-bottom-color: rgb(21,30,51);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: #3498db;
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    text-shadow: 0 -1px 1px rgb(30,45,77) ;
+    margin-left: 200px;
+}
+
+.toggle-download-images:hover {
+    cursor: pointer;
+    background: green;
+    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
+    margin-left: 200px;
+
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+.toggle-download-images:active {
+    background: rgb(65, 98, 168);
+    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
+    margin-left: 200px;
+
+    animation: jello-horizontal 0.9s both;
+}
+
+.toggle-download-images:focus {
+    outline: none;
+}
+
+
 
 .share__button {
     border: 1px solid black;
-    background-color: aqua;
+    background-color: #fff;
     border-radius: 1rem;
     margin-left: .6rem;
 }
@@ -114,7 +205,8 @@ img:hover {
 }
 
 .header-title {
-    color: #5040CE;
+    font-family: 'Fjalla One', sans-serif;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -124,11 +216,91 @@ img:hover {
     z-index: 1;
     position: sticky;
     top: 0;
-    background-color: #000000;
-    height: 80px;
+    height: 100px;
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+
+    /* animation */
+    animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 .gallery-container {
     z-index: -1;
 }
+
+
+
+/* keyframe animation creation */
+
+@keyframes puff-in-center {
+    0% {
+      transform: scale(2);
+      filter: blur(2px);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  /* pulsate on hover buttons */
+  @keyframes heartbeat {
+    from {
+      transform: scale(1);
+      transform-origin: center center;
+      animation-timing-function: ease-out;
+    }
+    10% {
+      transform: scale(0.91);
+      animation-timing-function: ease-in;
+    }
+    17% {
+      transform: scale(0.98);
+      animation-timing-function: ease-out;
+    }
+    33% {
+      transform: scale(0.87);
+      animation-timing-function: ease-in;
+    }
+    45% {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @keyframes jello-horizontal {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+
+
 
