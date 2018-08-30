@@ -23,38 +23,36 @@ import {
  * such things.
  */
 
-const HomepageHeading = ({ mobile }) => (
-  <Container style={{marginBottom: "20px"}} text>
-    <Header
-      as='h1'
-      content='PicMe'
-      inverted
-      style={{
-        fontSize: mobile ? '6em' : '8em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-      }}
-    />
-    <Header
-      as='h2'
-      content='Share photos around the world!'
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-        marginBottom: '1.5em',
-      }}
-    />
-    <Link to="/register"><Button primary size='huge' style={{marginBottom: '20px'}}>
-      Get Started
-      <Icon name='right arrow' />
-    </Button></Link>
-  </Container>
-)
-
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool,
+const HomepageHeading = ({ mobile, ...props}) => { 
+  return (
+    <Container style={{marginBottom: "20px"}} text>
+      <Header
+        as='h1'
+        content='PicMe'
+        inverted
+        style={{
+          fontSize: mobile ? '6em' : '8em',
+          fontWeight: 'normal',
+          marginBottom: 0,
+        }}
+      />
+      <Header
+        as='h2'
+        content='Share photos around the world!'
+        inverted
+        style={{
+          fontSize: mobile ? '1.5em' : '1.7em',
+          fontWeight: 'normal',
+          marginTop: mobile ? '0.5em' : '1.5em',
+          marginBottom: '1.5em',
+        }}
+      />
+      <Button onClick={props.showRegistration} primary size='huge' style={{marginBottom: '20px'}}>
+        Get Started
+        <Icon name='right arrow' />
+      </Button>
+    </Container>
+  )
 }
 
 /* Heads up!
@@ -115,7 +113,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>
             </Menu>
-            <HomepageHeading />
+            <HomepageHeading showRegistration={this.showRegistration}/>
           </Segment>
         </Visibility>
         {children}
@@ -280,9 +278,9 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <Link to="/contact"><List.Item as='a'>Contact Us</List.Item></Link>
+                <Link to="/contact"><List.Item>Contact Us</List.Item></Link>
                 <br/>
-                <Link to="/aboutus"><List.Item as='a'>About Us</List.Item></Link>
+                <Link to="/aboutus"><List.Item>About Us</List.Item></Link>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>

@@ -18,10 +18,12 @@ class Browse extends Component {
   render() {
     return (
       //Changed to form so a user can hit enter to submit
-      <form onSubmit={this.handleClick} className="inputContainer">
-        <h2 className="inputLabel">Input your friend's unique code here:</h2>
-        <Input action={{ content: 'Browse', onClick: this.handleClick }} label='Unique code:' name="id" value={this.state.id} onChange={this.handleInput} onSubmit={this.handleSubmit}/>
-      </form>
+      <div className="form-container">
+        <form onSubmit={this.handleClick} className="inputContainer">
+          <h2 className="inputLabel">Input your friend's unique code here:</h2>
+          <Input className="browse-input" placeholder={"Enter a unique code..."} action={{ content: 'Browse', onClick: this.handleClick }} label='Unique code:' name="id" value={this.state.id} onChange={this.handleInput} onSubmit={this.handleSubmit}/>
+        </form>
+      </div>
     );
   }
 }
