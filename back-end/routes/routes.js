@@ -24,7 +24,7 @@ module.exports = server => {
     server.route('/collection/:email').get(validateToken, collection);
     server.route('/browse').get(validateToken, fetchImages);
     server.route('/currentuser/').get(currentuser);
-    server.route('/friend/:id').get(validateToken, fetchFriendUploads);
+    server.route('/friend/:id').get(fetchFriendUploads);
     server.route('/add-images-to-collection').post(validateToken, addImageToCollection);
     server.route('/fetchUserId').post(fetchUserId);
   };
