@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Header, Segment, Input, Button} from "semantic-ui-react";
+import {Header, Segment, Input, Button} from "semantic-ui-react";
 import "./css/profile-settings.css";
 // import Navbar from "../Navbar/Navbar"
 import Axios from "axios";

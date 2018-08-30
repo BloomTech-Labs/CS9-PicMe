@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import Gallery from 'react-photo-gallery';
 import './css/MyCollectionPage.css';
 import axios from "axios";
@@ -47,10 +47,7 @@ export default class friendsUploads extends Component {
         email: localStorage.email
       }
 
-      const response = await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload);
-      const credits = response.data.credits;
-
-      console.log(response)
+      await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload);
     }
 
     // select all photos function
