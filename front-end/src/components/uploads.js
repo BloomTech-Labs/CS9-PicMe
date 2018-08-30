@@ -60,7 +60,12 @@ export default class Uploads extends Component {
     }
 
     componentDidMount() {
-        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: localStorage.getItem('email')})
+        axios.post(`${process.env.REACT_APP_API}/uploads`, {email: localStorage.getItem('email')}, {
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${window.sessionStorage.token}`
+            }
+        })
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
@@ -88,6 +93,9 @@ export default class Uploads extends Component {
             const host = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
             link.innerHTML = `${host}/friend/uploads/${id}`;
 
+            let code = document.getElementById("code");
+            code.innerHTML = `Code: ${id}`;
+
         }).catch(err => {
             console.log(err)
         })
@@ -97,19 +105,22 @@ export default class Uploads extends Component {
     render() {
         return(
             <div className="component-wrapper">
-                <h1> Your photo uploads: </h1>
-            <p>
-              <button className="toggle-select" onClick={this.toggleSelect}>
-                Select all
-              </button>
-              <button className="toggle-download-selected" onClick={this.toggleDownloadSelected}>
-                Download selected images
-              </button>
-              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                Remove selected photos from uploads
-              </button>
-            </p>
-
+            <div className="header-container">
+                    <h1 className="header-title"> Your photo uploads </h1>
+                <div className="button-container">
+                    <p>
+                    <button className="toggle-select" onClick={this.toggleSelect}>
+                        Select all images
+                    </button>
+                    <button className="toggle-download-images" onClick={this.toggleDownloadSelected}>
+                        Download selected images!
+                    </button>
+                    <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
+                        Remove selected images
+                    </button>
+                    </p>
+                </div>
+            </div>
             <div>
             <button onClick={() => {
                 this.shareLink()
@@ -117,6 +128,7 @@ export default class Uploads extends Component {
             }} className="accordion">Share Link</button>
             <div style={this.state.show} className="panel">
                 <p id="link" style={show}></p>
+                <p id="code" style={show}></p>
             </div>
             </div>
                 {this.state.photos.length > 0 ? <Gallery
@@ -135,5 +147,9 @@ const nowshow = {
 }
 
 const show = {
-    display: "block"
+    display: "block",
+    height: "100%",
+    color: "#9358c4",
+    wordWrap: "break-word", //text can wrap
+    fontSize: "1.2rem"
 }

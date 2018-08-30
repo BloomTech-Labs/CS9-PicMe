@@ -9,6 +9,8 @@ Image.belongsTo(User, {foreignKey: 'uploaded_image_user_id', as: 'UploadedImageU
 const jwt = require('jsonwebtoken')
 const secret = process.env.JWT_SECRET;
 
+console.log("SECRET", secret)
+
 
 
 const fetchFriendUploads = (req, res) => {
@@ -19,6 +21,8 @@ const fetchFriendUploads = (req, res) => {
     jwt.verify(userId, secret, (err, decoded) => { //decodes it so we can use the user id below
         if(err) return;
         id = decoded.id
+
+        console.log("VERIFY", id)
     })
 
 

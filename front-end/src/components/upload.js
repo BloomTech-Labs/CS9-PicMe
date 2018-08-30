@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Axios from "axios";
-import "./css/upload.css"
+import "./css/upload.css";
+import Dropzone from 'react-dropzone';
    
 class Upload extends Component{
     constructor() {
@@ -24,6 +25,19 @@ class Upload extends Component{
 
     }
 
+    onDrop(files) {
+        this.setState({
+            show: show,
+            move: left
+        })
+        
+        this.setState({
+          image: files[0],
+          preview: URL.createObjectURL(files[0])
+
+        });
+      }
+
     onSubmit = (event) => {
         event.preventDefault();
         const image = new FormData();
@@ -33,10 +47,10 @@ class Upload extends Component{
         image.append("timestamp", (Date.now() / 1000) | 0);
 
      Axios({
-         url:"https://api.cloudinary.com/v1_1/picme/image/upload",
-         method: "POST",
+        url:"https://api.cloudinary.com/v1_1/picme/image/upload",
+        method: "POST",
         headers: { 
-            "X-Requested-With": "XMLHttpRequest" 
+            "X-Requested-With": "XMLHttpRequest"
         },
         data: image
     }).then(response => {
@@ -64,13 +78,25 @@ class Upload extends Component{
         return (
             <div className="uploads">
                 <div>
-                    <img src={this.state.preview} alt="" width="50%" height="40%"/>
+                    <img style ={this.state.show} src={this.state.preview} alt="" width="50%" height="40%"/>
                 </div>
 
                 <form id="Uploads__form" onSubmit={this.onSubmit} encType='multipart/form-data'>
-                    <div className="Uploads__pic">
+
+                <div className="dropzone">
+                <Dropzone disableClick={true} className="dropzone__input" onDrop={this.onDrop.bind(this)}>
+                    <p>Drop a file to upload or  
+
                         <input style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
-                        <label style={this.state.move} htmlFor="file">Choose a file</label>
+                        <label htmlFor="file">Choose a file</label>
+                    </p>
+                </Dropzone>
+                </div>
+                    <div className="Uploads__pic">
+                        <div className="tablet__label">
+                            <input  style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
+                            <label htmlFor="file">Choose a file</label>
+                        </div>
                         <button style={this.state.show} type="submit">submit</button>
                     </div>
                 </form>

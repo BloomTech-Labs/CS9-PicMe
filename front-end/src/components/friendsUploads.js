@@ -5,7 +5,8 @@ import './css/MyCollectionPage.css';
 import axios from "axios";
 import SelectedImage from "./SelectedImage";
 
-const PHOTO_SET = [
+
+let PHOTO_SET = [
 
 ]
 
@@ -74,6 +75,13 @@ export default class friendsUploads extends Component {
     }
 
     componentDidMount() {
+        PHOTO_SET = [ //Needs to be reset or else the state for photo_set lingers and causes bugs
+
+        ]
+        this.setState({
+            photos: ""
+        })
+        // window.location.reload()
         //Grab the user id from shareable link
         let id = window.location.href.split("/")[5]
         //pass the id onto our route in order to fetch images

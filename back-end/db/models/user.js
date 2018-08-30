@@ -18,7 +18,7 @@ module.exports = (sequelize, datatype) => {
       email: datatype.STRING,
       password: datatype.STRING,
       credits: datatype.INTEGER,
-      hashed_id: datatype.INTEGER
+      hashed_id: datatype.STRING
     },
     {
       indexes: [
