@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Gallery from 'react-photo-gallery';
+import axios from "axios";
 import selfieImages from './selfies-test-images';
 import './css/MyCollectionPage.css';
 import SelectedImage from "./SelectedImage";
@@ -37,26 +38,45 @@ export default class MyCollectionPage extends Component {
     constructor(props) {
         super(props);
         this.state= {
-            photos: PHOTO_SET,
+          photos: [
+            // {
+            //   src: null,
+            //   width: null,
+            //   height: null
+            // }
+          ],
             selectAll: false
         };
 
-            // select photo binding
             this.selectPhoto = this.selectPhoto.bind(this);
-            // select binding
             this.toggleSelect = this.toggleSelect.bind(this);
-            // add to collection binding
             this.toggleSubmit = this.toggleSubmit.bind(this);
-            // download selected
             this.toggleDownloadSelected = this.toggleDownloadSelected.bind(this);
-    }
-
-    // select photo function
-    selectPhoto(event, obj) {
-        let photos = this.state.photos;
-        photos[obj.index].selected = !photos[obj.index].selected;
-        this.setState({ photos: photos });
       }
+
+  async componentWillMount() {
+    let photos = (await axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`)).data;
+    if (photos.length > 0) {
+      photos = photos.map( photo => {
+        return {
+          src: photo.url,
+          width: 1,
+          height: 1,
+          id: photo.id,
+          ownerId: photo.uploaded_image_user_id
+        }
+      });
+
+      this.setState({ photos: photos });
+    }
+  }
+
+      // select photo function
+      selectPhoto(event, obj) {
+          let photos = this.state.photos;
+          photos[obj.index].selected = !photos[obj.index].selected;
+          this.setState({ photos: photos });
+        }
 
       // select all photos function
       toggleSelect() {
@@ -91,12 +111,13 @@ export default class MyCollectionPage extends Component {
                 Remove selected photos from collection
               </button>
             </p>
+            { this.state.photos.length > 0 ? 
             <Gallery
               photos={this.state.photos}
               onClick={this.selectPhoto}
               ImageComponent={SelectedImage}
               direction={"column"}
-            />
+            /> : null }
           </div>
         );
     }

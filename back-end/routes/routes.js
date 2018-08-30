@@ -22,7 +22,7 @@ module.exports = server => {
     server.route('/charge').post(StripeCharge);
     server.route('/upload').post(uploadImage);
     server.route('/uploads').post(uploads);
-    server.route('/collection').post(collection);
+    server.route('/collection/:email').get(collection);
     server.route('/browse').get(fetchImages);
     server.route('/currentuser/').get(currentuser);
     server.route('/friend/:id').get(fetchFriendUploads);

@@ -8,7 +8,7 @@ User.belongsToMany(Image, { through: 'user_collection_image', as: 'CollectionIma
 Image.belongsToMany(User, { through: 'user_collection_image', as: 'Users'});
 
 const collection = (req, res) => {
-  const { email } = req.body;
+  const { email } = req.params;
   User.findOne({ where: { email: email } }).then(user => {
     if(!user) {
       return res.status(422).json({error: 'No user with that email found'});
