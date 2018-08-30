@@ -6,7 +6,11 @@ export const REFRESH_USER = 'REFRESH_USER';
 
 export const buyCredits = payload => {
   return dispatch => {
-    axios.post(`${process.env.REACT_APP_API}/charge`, payload)
+    axios.post(`${process.env.REACT_APP_API}/charge`, payload, {
+      headers: {
+        "Authorization": `Bearer ${window.sessionStorage.token}`
+      }
+    })
       .then(response => {
         dispatch({ type: CHARGE_SUCCESS, payload: response.data });
       })
