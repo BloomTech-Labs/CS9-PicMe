@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Segment, Modal } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom' //need this for history.push
 import { connect } from 'react-redux';
 import axios from 'axios';
+import './css/registrationform.css';
 
 import { signIn } from '../actions';
 
@@ -82,7 +83,7 @@ class RegistrationForm extends Component {
           `}</style>
           <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 650 }}>
-              <Header as='h2' color='teal' textAlign='center'>
+              <Header as='h2' color='teal' textAlign='center' style={{ marginTop: '15px' }}>
                 Register for a new account  
               </Header>
               <Form size='large' onSubmit={this.handleSubmit}>

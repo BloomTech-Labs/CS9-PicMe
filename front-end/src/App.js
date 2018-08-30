@@ -13,6 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import Browse from './components/browse';
 import friendsUploads from "./components/friendsUploads";
 import AboutUs from "./components/AboutUs";
+import ContactUs from "./components/ContactUs";
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
             <PrivateRoute exact path="/collection" component={MyCollectionPage} />
             <PrivateRoute path="/friend/uploads" component={friendsUploads}/>
             <Route exact path="/aboutus" component={AboutUs}/>
+            <Route exact path="/contact" component={ContactUs}/>
           </Layout>
         </Switch>
       </BrowserRouter>
