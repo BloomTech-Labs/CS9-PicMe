@@ -95,7 +95,6 @@ export default class Uploads extends Component {
 
             let code = document.getElementById("code");
             code.innerHTML = `Code: ${id}`;
-
         }).catch(err => {
             console.log(err)
         })

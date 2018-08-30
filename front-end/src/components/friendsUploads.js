@@ -85,7 +85,11 @@ export default class friendsUploads extends Component {
         //Grab the user id from shareable link
         let id = window.location.href.split("/")[5]
         //pass the id onto our route in order to fetch images
-        axios.get(`${process.env.REACT_APP_API}/friend/${id}`)
+        axios.get(`${process.env.REACT_APP_API}/friend/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${window.sessionStorage.token}`
+              }
+        })
         .then(response => {
             response.data.forEach(image => {
                 PHOTO_SET.push({
