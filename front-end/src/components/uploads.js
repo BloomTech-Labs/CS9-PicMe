@@ -3,6 +3,7 @@ import Gallery from 'react-photo-gallery';
 import './css/MyCollectionPage.css';
 import axios from "axios";
 import SelectedImage from "./SelectedImage";
+import { Modal, Button } from 'semantic-ui-react';
 
 
 export default class Uploads extends Component {
@@ -11,7 +12,9 @@ export default class Uploads extends Component {
         this.state= {
             photos: [],
             id: "",
-            show: nowshow
+            show: nowshow,
+            modalOpen: false,
+            modalDescription: ""
         };
         // select photo binding
         this.selectPhoto = this.selectPhoto.bind(this);
@@ -40,11 +43,11 @@ export default class Uploads extends Component {
 
     //submit
     toggleSubmit(event, obj, index) {
-        alert("Selected Photos have been removed from your uploads.");
+        this.handleOpen("Selected Photos have been removed from your uploads.");
     }
 
     toggleDownloadSelected(event, obj, index) {
-        alert("Now downloading your selected images...");
+        this.handleOpen("Now downloading your selected images...");
     }
 
     show = () => {
@@ -59,6 +62,10 @@ export default class Uploads extends Component {
         }
     }
 
+    handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
+
+    handleClose = () => this.setState({ modalOpen: false })
+
     componentDidMount() {
         axios.post(`${process.env.REACT_APP_API}/uploads`, {email: localStorage.getItem('email')}, {
             headers: {
@@ -69,11 +76,7 @@ export default class Uploads extends Component {
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
-                const img = { src: imgData.url, name: imgData.name };
-                const image = new Image();
-                image.src = img.src;
-                img.width = image.naturalWidth;
-                img.height = image.naturalHeight;
+                const img = { src: imgData.url, name: imgData.name, height: 1, width: 1 };
                 imgs.push(img);
             })
             this.setState({photos: imgs});
@@ -102,8 +105,25 @@ export default class Uploads extends Component {
     }
 
     render() {
+        const modalStyle = {
+            margin: 'auto',
+            marginTop: '50% - 80px',
+            height: '160px'
+        };
         return(
             <div className="component-wrapper">
+            <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
+                <Modal.Content>
+                    <Modal.Description>
+                        <h4>{this.state.modalDescription}</h4>
+                    </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button primary onClick={this.handleClose}>
+                        OK
+                    </Button>
+                </Modal.Actions>
+            </Modal>
             <div className="header-container">
                     <h1 className="header-title"> Your photo uploads </h1>
                 <div className="button-container">

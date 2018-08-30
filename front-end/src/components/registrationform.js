@@ -12,7 +12,8 @@ class RegistrationForm extends Component {
     last_name: '',
     email: '',
     password: '',
-    password_confirm: ''
+    password_confirm: '',
+    modalOpen: false
   }
 
   handleInput = e => this.setState({ [e.target.name]: e.target.value });
@@ -39,85 +40,106 @@ class RegistrationForm extends Component {
             this.props.history.push('/upload')
           })
       }).catch(err => {
-        alert("Registration failed, please make sure no field is left blank");
         this.setState({
           first_name: "",
           last_name: "",
           email: "",
-          password: ""
+          password: "",
+          modalOpen: true
         })
-      })
-    }
+    })
+  }
+    
+  handleClose = () => this.setState({ modalOpen: false })
 
   render() {
+    const modalStyle = {
+      margin: 'auto',
+      marginTop: 'auto !important',
+      height: '160px'
+    };
     return (
-      <div className='login-form'>
-        <style>{`
-          body > div,
-          body > div > div,
-          body > div > div > div.login-form {
-            height: 100%;
-          }
-        `}</style>
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 650 }}>
-            <Header as='h2' color='teal' textAlign='center'>
-              Register for a new account  
-            </Header>
-            <Form size='large' onSubmit={this.handleSubmit}>
-              <Segment stacked>
-                <Form.Input
-                  onChange={this.handleInput}
-                  name="first_name"
-                  value={this.state.first_name}
-                  fluid icon='user'
-                  iconPosition='left'
-                  placeholder='First Name'
-                />
-                <Form.Input
-                  onChange={this.handleInput}
-                  name="last_name"
-                  value={this.state.last_name}
-                  fluid icon='user'
-                  iconPosition='left'
-                  placeholder='Last Name'
-                />
-                <Form.Input
-                  onChange={this.handleInput}
-                  name="email"
-                  value={this.state.email}
-                  fluid icon='mail'
-                  iconPosition='left'
-                  placeholder='E-mail address'
-                />
-                <Form.Input
-                  onChange={this.handleInput}
-                  name="password"
-                  value={this.state.password}
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  type='password'
-                />
-                <Form.Input
-                  onChange={this.handleInput}
-                  name="password_confirm"
-                  value={this.state.password_confirm}
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password Confirm'
-                  type='password'
-                />
+      <div>
+        <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
+          <Modal.Content>
+            <Modal.Description>
+                <h4>Registration failed, please make sure no field is left blank</h4>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button primary onClick={this.handleClose}>
+                OK
+            </Button>
+          </Modal.Actions>
+        </Modal>
+        <div className='login-form'>
+          <style>{`
+            body > div,
+            body > div > div,
+            body > div > div > div.login-form {
+              height: 100%;
+            }
+          `}</style>
+          <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 650 }}>
+              <Header as='h2' color='teal' textAlign='center'>
+                Register for a new account  
+              </Header>
+              <Form size='large' onSubmit={this.handleSubmit}>
+                <Segment stacked>
+                  <Form.Input
+                    onChange={this.handleInput}
+                    name="first_name"
+                    value={this.state.first_name}
+                    fluid icon='user'
+                    iconPosition='left'
+                    placeholder='First Name'
+                  />
+                  <Form.Input
+                    onChange={this.handleInput}
+                    name="last_name"
+                    value={this.state.last_name}
+                    fluid icon='user'
+                    iconPosition='left'
+                    placeholder='Last Name'
+                  />
+                  <Form.Input
+                    onChange={this.handleInput}
+                    name="email"
+                    value={this.state.email}
+                    fluid icon='mail'
+                    iconPosition='left'
+                    placeholder='E-mail address'
+                  />
+                  <Form.Input
+                    onChange={this.handleInput}
+                    name="password"
+                    value={this.state.password}
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Password'
+                    type='password'
+                  />
+                  <Form.Input
+                    onChange={this.handleInput}
+                    name="password_confirm"
+                    value={this.state.password_confirm}
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Password Confirm'
+                    type='password'
+                  />
 
-                <Button color='teal' fluid size='large'>
-                  Register
-                </Button>
-              </Segment>
-            </Form>
-          </Grid.Column>
-        </Grid>
+                  <Button color='teal' fluid size='large'>
+                    Register
+                  </Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </div>
       </div>
     );
   }
