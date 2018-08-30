@@ -84,7 +84,7 @@ export default class friendsUploads extends Component {
         //pass the id onto our route in order to fetch images
         axios.get(`${process.env.REACT_APP_API}/friend/${id}`, {
             headers: {
-                "Authorization": `Bearer ${window.sessionStorage.token}`
+                "Authorization": `Bearer ${window.localStorage.token}`
               }
         })
         .then(response => {

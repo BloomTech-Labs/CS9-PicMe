@@ -70,7 +70,7 @@ export default class Uploads extends Component {
         axios.post(`${process.env.REACT_APP_API}/uploads`, {email: localStorage.getItem('email')}, {
             headers: {
                 "Content-type": "application/json",
-                "Authorization": `Bearer ${window.sessionStorage.token}`
+                "Authorization": `Bearer ${window.localStorage.token}`
             }
         })
         .then(response => {

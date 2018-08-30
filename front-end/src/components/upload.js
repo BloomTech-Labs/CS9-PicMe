@@ -64,7 +64,7 @@ class Upload extends Component{
 
       Axios.post(`${process.env.REACT_APP_API}/upload`, uploads, {
           headers: {
-            "Authorization": `Bearer ${window.sessionStorage.token}`
+            "Authorization": `Bearer ${window.localStorage.token}`
           }
       })
       .then(res => {

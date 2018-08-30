@@ -8,7 +8,7 @@ export const buyCredits = payload => {
   return dispatch => {
     axios.post(`${process.env.REACT_APP_API}/charge`, payload, {
       headers: {
-        "Authorization": `Bearer ${window.sessionStorage.token}`
+        "Authorization": `Bearer ${window.localStorage.token}`
       }
     })
       .then(response => {
