@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Button, Form, Grid, Header, Message, Segment, Modal } from 'semantic-ui-react'
 import Gallery from 'react-photo-gallery';
 import './css/MyCollectionPage.css';
 import axios from "axios";
@@ -15,7 +16,8 @@ export default class friendsUploads extends Component {
         this.state= {
             photos: PHOTO_SET,
             id: "",
-            show: nowshow
+            show: nowshow,
+            selectedImageIds: []
         };
         // select photo binding
         this.selectPhoto = this.selectPhoto.bind(this);
@@ -28,8 +30,26 @@ export default class friendsUploads extends Component {
     // select photo function
     selectPhoto(event, obj) {
         let photos = this.state.photos;
+        let selectedImageIds = this.state.selectedImageIds;
         photos[obj.index].selected = !photos[obj.index].selected;
-        this.setState({ photos: photos });
+        if (photos[obj.index].selected) {
+          selectedImageIds.push(photos[obj.index].id)
+        } else {
+          selectedImageIds = selectedImageIds.filter( id => id !== photos[obj.index].id )
+        }
+          this.setState({ photos: photos, selectedImageIds: selectedImageIds });
+    }
+
+    handleButtonClick = async () => {
+      const payload = {
+        imageIds: this.state.selectedImageIds,
+        email: localStorage.email
+      }
+
+      const response = await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload);
+      const credits = response.data.credits;
+
+      console.log(response)
     }
 
     // select all photos function
@@ -62,7 +82,7 @@ export default class friendsUploads extends Component {
             response.data.forEach(image => {
                 PHOTO_SET.push({
                     src: image.url,
-                    userId: image.uploaded_image_user_id,
+                    id: image.id,
                     width: 1,
                     height: .7
                 })
@@ -79,6 +99,10 @@ export default class friendsUploads extends Component {
 
     render() {
         return(
+          <div>
+            <Button onClick={this.handleButtonClick} color='blue' size='large'>Add Selected Photos to My Collection</Button>
+            <br />
+            <br />
             <div className="component-wrapper">
                 <h1> Friends photo uploads: </h1>
 
@@ -88,6 +112,7 @@ export default class friendsUploads extends Component {
                 ImageComponent={SelectedImage}
                 direction={"column"}
                 /> : null}
+            </div>
           </div>
         );
     }
