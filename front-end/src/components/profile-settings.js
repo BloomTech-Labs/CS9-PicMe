@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Header, Segment, Input, Button} from "semantic-ui-react";
+import {Container, Modal, Header, Segment, Input, Button} from "semantic-ui-react";
 import "./css/profile-settings.css";
 // import Navbar from "../Navbar/Navbar"
 import Axios from "axios";
@@ -20,7 +20,8 @@ class ProfileSettings extends Component {
             //Styling below
             closed: show,
             open: noshow,
-            showPass: "password"
+            showPass: "password",
+            modalOpen: false
         }
     }
 
@@ -65,25 +66,44 @@ class ProfileSettings extends Component {
             }
         })
         .then(response => {
-            alert("Settings Changed");
             this.setState({
                 firstName: "",
                 lastName: "",
                 email: "",
                 password: "",
-                nickname: ""
+                nickname: "",
+                modalOpen: true
             });
         }).catch(err => {
             console.log(err)
         })
     }
 
+    handleClose = () => this.setState({ modalOpen: false })
+
     //Post method will be here, server needs work first
 
 
     render() {
+        const modalStyle = {
+            margin: 'auto',
+            marginTop: '50% - 80px',
+            height: '160px'
+        };
         return(
             <div className="settings__nav">
+                <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
+                    <Modal.Content>
+                        <Modal.Description>
+                            <h4>Settings Changed</h4>
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button primary onClick={this.handleClose}>
+                            OK
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
                 <form onSubmit={this.onSubmit} className="settings">
                     <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
                     {/* <Container text> */}

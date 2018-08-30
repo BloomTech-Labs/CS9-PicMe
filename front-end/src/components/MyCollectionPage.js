@@ -3,6 +3,7 @@ import Gallery from 'react-photo-gallery';
 import selfieImages from './selfies-test-images';
 import './css/MyCollectionPage.css';
 import SelectedImage from "./SelectedImage";
+import { Modal, Button } from 'semantic-ui-react';
 
 
 const PHOTO_SET = [
@@ -56,29 +57,49 @@ export default class MyCollectionPage extends Component {
         let photos = this.state.photos;
         photos[obj.index].selected = !photos[obj.index].selected;
         this.setState({ photos: photos });
-      }
+    }
 
-      // select all photos function
-      toggleSelect() {
-        let photos = this.state.photos.map((photo, index) => {
-          return { ...photo, selected: !this.state.selectAll };
-        });
-        this.setState({ photos: photos, selectAll: !this.state.selectAll });
-      }
+    // select all photos function
+    toggleSelect() {
+    let photos = this.state.photos.map((photo, index) => {
+        return { ...photo, selected: !this.state.selectAll };
+    });
+    this.setState({ photos: photos, selectAll: !this.state.selectAll });
+    }
 
-      //submit
-      toggleSubmit(event, obj, index) {
-          alert("Selected Photos have been removed from your collection");
-      }
+    //submit
+    toggleSubmit(event, obj, index) {
+        this.handleOpen("Selected Photos have been removed from your collection");
+    }
 
-      toggleDownloadSelected(event, obj, index) {
-          alert("Thanks for downloading your selected images. The credits have been removed from your account.");
-      }
+    toggleDownloadSelected(event, obj, index) {
+        this.handleOpen("Thanks for downloading your selected images. The credits have been removed from your account.");
+    }
 
+    handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
 
-        render() {
+    handleClose = () => this.setState({ modalOpen: false })
+
+    render() {
+        const modalStyle = {
+            margin: 'auto',
+            marginTop: '50% - 80px',
+            height: '160px'
+        };
         return(
             <div className="component-wrapper">
+            <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
+                <Modal.Content>
+                    <Modal.Description>
+                        <h4>{this.state.modalDescription}</h4>
+                    </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button primary onClick={this.handleClose}>
+                        OK
+                    </Button>
+                </Modal.Actions>
+            </Modal>
             <div className="header-container">
                     <h1 className="header-title"> Your photo collection </h1>
                 <div className="button-container">
