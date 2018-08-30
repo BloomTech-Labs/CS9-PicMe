@@ -43,7 +43,7 @@ const dbTest = async () => {
 
   // in development. this resets the db each server startup
   // comment out in production
-  // await db.sync({force: true});
+  await db.sync({force: true});
 
 
   // Create two users 
