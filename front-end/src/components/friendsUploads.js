@@ -47,7 +47,13 @@ export default class friendsUploads extends Component {
         email: localStorage.email
       }
 
-      await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload);
+      const headers = {
+        headers: {
+          "Authorization": `Bearer ${window.localStorage.token}`
+        }
+      };
+
+      await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload, headers);
     }
 
     // select all photos function

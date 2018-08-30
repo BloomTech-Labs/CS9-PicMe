@@ -12,8 +12,13 @@ export default class MyCollectionPage extends Component {
   };
 
   async componentWillMount() {
-    let photos = (await axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`)).data;
+    const headers = {
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.token}`
+      }
+    };
 
+    let photos = (await axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`, headers)).data;
     if (photos.length > 0) {
       photos = photos.map( photo => {
         return {
