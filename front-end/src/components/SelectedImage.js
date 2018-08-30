@@ -1,5 +1,4 @@
 import React from "react";
-import TagsMaker from './TagsMaker';
 
 const Checkmark = ({ selected }) => (
   <div

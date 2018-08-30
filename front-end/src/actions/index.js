@@ -8,7 +8,7 @@ export const buyCredits = payload => {
   return dispatch => {
     axios.post(`${process.env.REACT_APP_API}/charge`, payload, {
       headers: {
-        "Authorization": `Bearer ${window.sessionStorage.token}`
+        "Authorization": `Bearer ${window.localStorage.token}`
       }
     })
       .then(response => {
@@ -37,7 +37,7 @@ export const signIn = (email, password) => {
 
 export const refreshUserState = () => {
   return dispatch => {
-    const email = sessionStorage.getItem('email');
+    const email = localStorage.getItem('email');
     axios.get(`${process.env.REACT_APP_API}/currentuser?email=${email}`)
       .then(response => {
         dispatch({ type: REFRESH_USER, payload: response.data });

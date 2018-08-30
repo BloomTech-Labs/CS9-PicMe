@@ -46,10 +46,6 @@ class Upload extends Component{
         image.append("api_key", "895718742668927")
         image.append("timestamp", (Date.now() / 1000) | 0);
 
-        // image.append("Email", window.sessionStorage.email)
-
-
-
      Axios({
         url:"https://api.cloudinary.com/v1_1/picme/image/upload",
         method: "POST",
@@ -61,14 +57,14 @@ class Upload extends Component{
       const data = response.data;
       console.log(response)
       const uploads = {
-          email: window.sessionStorage.email,
+          email: localStorage.email,
           name: data.public_id,
           url: data.url,
       }
 
       Axios.post(`${process.env.REACT_APP_API}/upload`, uploads, {
           headers: {
-            "Authorization": `Bearer ${window.sessionStorage.token}`
+            "Authorization": `Bearer ${window.localStorage.token}`
           }
       })
       .then(res => {
