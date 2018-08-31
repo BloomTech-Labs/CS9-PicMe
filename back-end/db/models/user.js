@@ -50,16 +50,20 @@ module.exports = (sequelize, datatype) => {
 
   User.prototype.friendRequest = async function(requestee) {
     await Relationship.create({
-      user_one_id: this.id,
-      user_two_id: requestee.id,
+      requester_id: this.id,
+      requestee_id: requestee.id,
       status: 'pending',
       action_user_id: this.id
     });
   }
 
   User.prototype.acceptFriendRequest = function(requestee) {
-
-  }
+    Relationship.update({
+        status: 'accepted',
+      }, {
+        where: { requestee_id: this.id, requester_id: requestee.id }
+      }
+    )};
 
   return User;
 };

@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Relationship = sequelize.define('Relationship', {
-    user_one_id: DataTypes.INTEGER,
-    user_two_id: DataTypes.INTEGER,
+    requester_id: DataTypes.INTEGER,
+    requestee_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
     action_user_id: DataTypes.INTEGER
   }, {});

@@ -153,6 +153,8 @@ const dbTest = async () => {
   console.log(`User who uploaded myCollectionImage3 is ${myuser.first_name}`);
 
   Bob.friendRequest(Jerry);
+
+  Jerry.acceptFriendRequest(Bob);
 }
 
 
