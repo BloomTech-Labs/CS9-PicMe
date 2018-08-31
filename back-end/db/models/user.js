@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const db = require('../dbconnection');
 const Relationship = require('./relationship')(db, Sequelize);
 
@@ -57,13 +58,23 @@ module.exports = (sequelize, datatype) => {
     });
   }
 
-  User.prototype.acceptFriendRequest = function(requestee) {
-    Relationship.update({
+  User.prototype.acceptFriendRequest = async function(requestee) {
+    await Relationship.update({
         status: 'accepted',
       }, {
         where: { requestee_id: this.id, requester_id: requestee.id }
       }
     )};
+
+  User.prototype.isFriendsWith = async function(user) {
+    return Boolean(await Relationship.findOne({ where: { 
+      [Op.or]: [
+        { [Op.and]: { requestee_id: this.id, requester_id: user.id } },
+        { [Op.and]: { requestee_id: user.id, requester_id: this.id } },
+      ],
+      [Op.and]: { status: 'accepted'}
+    }}));
+  }
 
   return User;
 };

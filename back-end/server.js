@@ -61,12 +61,21 @@ const dbTest = async () => {
     first_name: 'Jerry',
     last_name: 'Brown',
     nick_names: '',
-    email: 'jerry@brown.com',
+    email: 'jerry',
     password: "jerry",
     credits: 15,
     hashed_id: 2
   })
 
+  const Sue = await User.create({
+    first_name: 'Sue',
+    last_name: 'Williams',
+    nick_names: '',
+    email: 'sue',
+    password: "sue",
+    credits: 15,
+    hashed_id: 3
+  })
 
   // Create two images 
   const myCollectionImage1 = await Image.create({
@@ -152,9 +161,18 @@ const dbTest = async () => {
   const myuser = await (await myCollectionImage3.reload()).getUploadedImageUser();
   console.log(`User who uploaded myCollectionImage3 is ${myuser.first_name}`);
 
-  Bob.friendRequest(Jerry);
+  await Bob.friendRequest(Jerry);
 
-  Jerry.acceptFriendRequest(Bob);
+  await Jerry.acceptFriendRequest(Bob);
+
+  let result = await Bob.isFriendsWith(Jerry);
+  console.log("Bob is friends with Jerry", result);
+
+  result = await Jerry.isFriendsWith(Bob);
+  console.log("Jerry is friends with Bob", result);
+
+  result = await Jerry.isFriendsWith(Sue);
+  console.log("Jerry is friends with Sue", result);
 }
 
 
