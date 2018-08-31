@@ -14,14 +14,26 @@ class RegistrationForm extends Component {
     email: '',
     password: '',
     password_confirm: '',
-    modalOpen: false
+    modalOpen: false,
+    show: noshow
   }
 
   handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = e => {
     e.preventDefault();
+
+
+    //Checks if a field is blank and passwords match
+    if((this.state.password !== this.state.password_confirm) || this.state.password.length === 0 || this.state.email.length === 0 || this.state.password_confirm.length === 0 || this.state.first_name.length === 0 || this.state.last_name.length === 0) {
+      this.setState({
+        show: show //Shows error message
+      })
+      return; //Stop submission process
+    }
+
     console.log("The input values are", Object.values(this.state));
+
 
     const newUser = {
       first_name: this.state.first_name,
@@ -64,7 +76,7 @@ class RegistrationForm extends Component {
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
           <Modal.Content>
             <Modal.Description>
-                <h4>Registration failed, please make sure no field is left blank</h4>
+                <h4>A user with that email already exists</h4>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
@@ -86,6 +98,7 @@ class RegistrationForm extends Component {
               <Header as='h2' color='teal' textAlign='center' style={{ marginTop: '15px' }}>
                 Register for a new account  
               </Header>
+              <p style={this.state.show}>All fields required &amp; passwords should match</p>
               <Form size='large' onSubmit={this.handleSubmit}>
                 <Segment stacked>
                   <Form.Input
@@ -144,6 +157,14 @@ class RegistrationForm extends Component {
       </div>
     );
   }
+}
+
+const noshow = {
+  display: "none",
+}
+
+const show = {
+
 }
 
 const ModalContainer = props => (
