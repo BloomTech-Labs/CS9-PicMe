@@ -1,13 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Relationship = sequelize.define('Relationship', {
+  const Relationship = sequelize.define('Relationship', {
     user_one_id: DataTypes.INTEGER,
     user_two_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
     action_user_id: DataTypes.INTEGER
   }, {});
+
   Relationship.associate = function(models) {
     // associations can be defined here
   };
+
   return Relationship;
 };
+
+

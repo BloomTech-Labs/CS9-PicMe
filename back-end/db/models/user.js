@@ -1,5 +1,9 @@
 const bcrypt = require('bcrypt');
 
+const Sequelize = require('sequelize');
+const db = require('../dbconnection');
+const Relationship = require('./relationship')(db, Sequelize);
+
 const encrypt = (user, options) => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(user.password, 8, (err, data) => {
@@ -42,6 +46,19 @@ module.exports = (sequelize, datatype) => {
       return this;
     else
       return false;
+  }
+
+  User.prototype.friendRequest = async function(requestee) {
+    await Relationship.create({
+      user_one_id: this.id,
+      user_two_id: requestee.id,
+      status: 'pending',
+      action_user_id: this.id
+    });
+  }
+
+  User.prototype.acceptFriendRequest = function(requestee) {
+
   }
 
   return User;
