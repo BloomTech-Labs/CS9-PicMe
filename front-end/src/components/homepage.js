@@ -185,12 +185,6 @@ class MobileContainer extends Component {
                     <Icon name='sidebar' style={{position: "relative", right: "2.5rem", fontSize: "2.5rem"}}/>
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    {/* <Button onClick={this.showLogin} inverted>
-                      Log in
-                    </Button> */}
-                   {/* <Button onClick={this.showRegistration} inverted style={{ marginLeft: '0.5em' }}>
-                      Sign Up
-                    </Button> */}
                   </Menu.Item>
                 </Menu>
               </Container>
