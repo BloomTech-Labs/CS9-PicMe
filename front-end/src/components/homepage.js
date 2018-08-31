@@ -182,19 +182,13 @@ class MobileContainer extends Component {
               <Container>
                 <Menu inverted pointing secondary size='large'>
                   <Menu.Item onClick={this.handleToggle}>
-                    <Icon name='sidebar' />
+                    <Icon name='sidebar' style={{position: "relative", right: "2.5rem", fontSize: "2.5rem"}}/>
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    <Button onClick={this.showLogin} inverted>
-                      Log in
-                    </Button>
-                   <Button onClick={this.showRegistration} inverted style={{ marginLeft: '0.5em' }}>
-                      Sign Up
-                    </Button>
                   </Menu.Item>
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              <HomepageHeading showRegistration={this.showRegistration} />
             </Segment>
             {children}
           </Sidebar.Pusher>
@@ -244,7 +238,7 @@ const HomepageLayout = () => (
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign='left' style={{ marginLeft: "40%" }}>
+          <Grid.Column textAlign='left' style={{position: "relative", left: "40%" }}>
             <Link to="/aboutUs"><Button primary size='huge'>Check out more</Button></Link>
           </Grid.Column>
         </Grid.Row>
