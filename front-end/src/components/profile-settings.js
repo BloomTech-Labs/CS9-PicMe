@@ -108,19 +108,19 @@ class ProfileSettings extends Component {
                     </Modal.Actions>
                 </Modal>
                 <form onSubmit={this.onSubmit} className="settings">
-                    <Header as='h3' content='Edit Profile' style={style.h3} textAlign='center' />
+                    <Header as='h3' content='Edit Profile' className="header-title" style={style.h3} textAlign='center' style={{ color: 'white', fontFamily: 'Fjalla One' }} />
                     {/* <Container text> */}
                     <Segment.Group className="settings-container">
-                        <Segment>First Name: <Input name="firstName" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
-                        <Segment>Last Name: <Input name="lastName" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
-                        <Segment>Email: <Input name="email" onChange={this.onChange} value={this.state.email} type="text"/></Segment>
-                        <Segment>Password: <Input name="password" type={this.state.showPass} value={this.state.password} onChange={this.onChange}/>
+                        <Segment className="first-name-segment">First Name: <Input name="firstName" className="first-name-input" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
+                        <Segment>Last Name: <Input name="lastName" className="second-name-input" onChange={this.onChange} value={this.state.lastName} type="text"/></Segment>
+                        <Segment>Email: <Input name="email" className="email-input" onChange={this.onChange} value={this.state.email} type="text"/></Segment>
+                        <Segment>Password: <Input name="password" className="password-input" type={this.state.showPass} value={this.state.password} onChange={this.onChange}/>
                         <div className="settings__icon">
                             <img onClick={this.onEyeClick} style={this.state.closed} src={Closed} alt="Password hidden"/>
                             <img onClick={this.onEyeClick} style={this.state.open} src={Open} alt="Password hidden"/>
                         </div>
                         </Segment>
-                        <Segment>Nickname: <Input name="nickname" onChange={this.onChange} value={this.state.nickname} type="text"/></Segment>
+                        <Segment>Nickname: <Input name="nickname" className="nickname-input" onChange={this.onChange} value={this.state.nickname} type="text"/></Segment>
                     </Segment.Group>
                     <Button type="submit" content='Save' primary />
                     {/* </Container> */}

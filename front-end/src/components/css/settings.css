@@ -19,3 +19,39 @@
 .settings__nav button {
     width: 8rem;
 }
+
+.settings {
+    background-color: black;
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.first-name-input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.second-name-input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.email-input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.password-input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.nickname-input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.settings-container {
+    font-family: 'Fjalla One', sans-serif;
+}
