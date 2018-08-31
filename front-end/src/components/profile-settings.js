@@ -4,8 +4,10 @@ import "./css/profile-settings.css";
 // import Navbar from "../Navbar/Navbar"
 import Axios from "axios";
 import Closed from "./icons/closed.png";
-import Open from "./icons/open.png"
-import "./css/settings.css"
+import Open from "./icons/open.png";
+import "./css/settings.css";
+import { connect } from 'react-redux';
+import { refreshUserState } from "../actions";
 
 class ProfileSettings extends Component {
     constructor() {
@@ -74,6 +76,7 @@ class ProfileSettings extends Component {
                 nickname: "",
                 modalOpen: true
             });
+            this.props.refreshUserState() //Refreshes state so name appears in nav
         }).catch(err => {
             console.log(err)
         })
@@ -139,4 +142,4 @@ const noshow = {
     display: "none"
 }
 
-export default ProfileSettings;
+export default connect(null, {refreshUserState})(ProfileSettings);
