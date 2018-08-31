@@ -173,6 +173,16 @@ const dbTest = async () => {
 
   result = await Jerry.isFriendsWith(Sue);
   console.log("Jerry is friends with Sue", result);
+
+  await Bob.friendRequest(Sue);
+
+  await Sue.acceptFriendRequest(Bob);
+
+
+  console.log("All of Bob's friends");
+  const friends = await Bob.friendsList();
+  friends.map( friend => console.log(friend.fullName));
+
 }
 
 

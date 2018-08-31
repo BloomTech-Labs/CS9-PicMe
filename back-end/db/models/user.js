@@ -76,5 +76,9 @@ module.exports = (sequelize, datatype) => {
     }}));
   }
 
+  User.prototype.friendsList = async function() {
+    return await sequelize.query(`SELECT * from relationships JOIN users on (requester_id = users.id OR requestee_id = users.id) AND users.id != ${this.id} WHERE requester_id = ${this.id} OR requestee_id = ${this.id}  GROUP BY users.id`, { model: User });
+  }
+
   return User;
 };
