@@ -2,6 +2,20 @@ import React, {Component} from "react";
 import Axios from "axios";
 import "./css/upload.css";
 import Dropzone from 'react-dropzone';
+import { Alert } from "react-bootstrap";
+import {
+    ChasingDots,
+    Circle,
+    CubeGrid,
+    DoubleBounce,
+    FadingCircle,
+    FoldingCube,
+    Pulse,
+    RotatingPlane,
+    ThreeBounce,
+    WanderingCubes,
+    Wave
+  } from 'better-react-spinkit'
    
 class Upload extends Component{
     constructor() {
@@ -10,6 +24,8 @@ class Upload extends Component{
             show: noShow,
             move: show,
             image: "",
+            isLoading: false,
+            showSuccessMessage: false
         }
     }
 
@@ -46,6 +62,9 @@ class Upload extends Component{
         image.append("api_key", "895718742668927")
         image.append("timestamp", (Date.now() / 1000) | 0);
 
+        //set state to true for loading in order to display spinner
+        this.setState({ isLoading: true });
+
      Axios({
         url:"https://api.cloudinary.com/v1_1/picme/image/upload",
         method: "POST",
@@ -69,6 +88,7 @@ class Upload extends Component{
       })
       .then(res => {
           console.log(res);
+          this.setState({ isLoading: false, showSuccessMessage: true });
           window.location.reload()
       }).catch(err => {
           console.log(err);
@@ -78,35 +98,44 @@ class Upload extends Component{
     })
 }
 
+
+
     render() {
-        return (
-            <div className="uploads">
-                <div>
-                    <img style ={this.state.show} src={this.state.preview} alt="" width="50%" height="40%"/>
-                </div>
-
-                <form id="Uploads__form" onSubmit={this.onSubmit} encType='multipart/form-data'>
-
-                <div className="dropzone">
-                <Dropzone disableClick={true} className="dropzone__input" onDrop={this.onDrop.bind(this)}>
-                    <p>Drop a file to upload or  
-
-                        <input style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
-                        <label htmlFor="file">Choose a file</label>
-                    </p>
-                </Dropzone>
-                </div>
-                    <div className="Uploads__pic">
-                        <div className="tablet__label">
-                            <input  style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
-                            <label htmlFor="file">Choose a file</label>
-                        </div>
-                        <button style={this.state.show} type="submit">submit</button>
+            return (
+                <div className="uploads">
+                    <div>
+                        <img style ={this.state.show} src={this.state.preview} alt="" width="50%" height="40%"/>
                     </div>
-                </form>
-            </div>
-        )
-    }
+                    <div className="Settings">
+                        { this.state.showSuccessMessage ?
+                        <Alert bsStyle="success" onDismiss={this.handleOnDismiss}> 
+                        Photo upload was succesful!
+                        </Alert> : null }
+                        { this.state.isLoading ? <CubeGrid style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', marginBottom: '20px' }} /> : null }
+                    </div>
+    
+                    <form id="Uploads__form" onSubmit={this.onSubmit} encType='multipart/form-data'>
+    
+                    <div className="dropzone">
+                    <Dropzone disableClick={true} className="dropzone__input" onDrop={this.onDrop.bind(this)}>
+                        <p>Drop a file to upload or  
+    
+                            <input style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
+                            <label htmlFor="file">Choose a file</label>
+                        </p>
+                    </Dropzone>
+                    </div>
+                        <div className="Uploads__pic">
+                            <div className="tablet__label">
+                                <input  style={noShow} name="image" id="file" type="file" onChange={this.handleFileUpload}/>
+                                <label htmlFor="file">Choose a file</label>
+                            </div>
+                            <button style={this.state.show} type="submit">submit</button>
+                        </div>
+                    </form>
+                </div>
+            )
+        }
 }
 
 const noShow={
