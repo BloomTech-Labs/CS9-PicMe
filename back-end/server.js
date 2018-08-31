@@ -150,11 +150,16 @@ const dbTest = async () => {
     url: 'https://res.cloudinary.com/picme/image/upload/v1534982481/Selfie-Images/apple-camera-fashion-5164.jpg'
   })
 
-  // Bob uploads two images 
-  await Bob.addUploadedImages([myCollectionImage3, myCollectionImage4, myCollectionImage5, myCollectionImage6]);
+  // Jerry uploads some images 
+  await Jerry.addUploadedImages([myCollectionImage3, myCollectionImage4, myCollectionImage5]);
 
-  // List Bob's uploaded images
-  (await Bob.getUploadedImages()).forEach(img => console.log('Image is', img.name));
+  await Sue.addUploadedImages(myCollectionImage6);
+
+
+
+  // List Jerry's uploaded images
+  console.log("Jerry's uploaded images");
+  (await Jerry.getUploadedImages()).forEach(img => console.log('Image is', img.name));
 
   // for a particular image, list the user who uploaded it
   // Need to first reload the image model to retrieve the updated data
@@ -179,10 +184,17 @@ const dbTest = async () => {
   await Sue.acceptFriendRequest(Bob);
 
 
-  console.log("All of Bob's friends");
   const friends = await Bob.friendsList();
+  console.log("All of Bob's friends");
   friends.map( friend => console.log(friend.fullName));
 
+  const pics = await Bob.friendsUploadedImages();
+  const allUsers = await User.all();
+  console.log("All of Bob's friends uploaded images");
+  pics.map( pic => {
+    const owner = allUsers.find( user => user.id === pic.uploaded_image_user_id);
+    console.log(pic.name, owner.fullName);
+  }); 
 }
 
 
