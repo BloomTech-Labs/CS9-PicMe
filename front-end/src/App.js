@@ -28,6 +28,7 @@ class App extends Component {
             <PrivateRoute exact path="/settings" component={ProfileSettings}/>
             <PrivateRoute exact path="/browse" component={Browse} />
             <PrivateRoute exact path="/collection" component={MyCollectionPage} />
+            <PrivateRoute exact path="/collection" component={MyCollectionPage} />
             <PrivateRoute path="/friend/uploads" component={friendsUploads}/>
             <Route exact path="/aboutus" component={AboutUs}/>
             <Route exact path="/contact" component={ContactUs}/>
