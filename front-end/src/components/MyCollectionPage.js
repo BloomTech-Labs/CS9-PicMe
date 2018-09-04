@@ -13,28 +13,9 @@ export default class MyCollectionPage extends Component {
 
   async componentWillMount() {
     this.getPhotos();
-    // const headers = {
-    //   headers: {
-    //     "Authorization": `Bearer ${window.localStorage.token}`
-    //   }
-    // };
-
-    // let photos = (await axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`, headers)).data;
-    // if (photos.length > 0) {
-    //   photos = photos.map( photo => {
-    //     return {
-    //       src: photo.url,
-    //       width: 1,
-    //       height: 1,
-    //       id: photo.id,
-    //       ownerid: photo.uploaded_image_user_id
-    //     }
-    //   });
-    // }
-
-    // this.setState({ photos: photos });
   }
 
+  // Retrieves photos from the backend and updates state
   getPhotos = () => {
     const headers = {headers: {"Authorization": `Bearer ${window.localStorage.token}`}};
     axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`, headers)
