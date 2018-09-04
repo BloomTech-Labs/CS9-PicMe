@@ -1,7 +1,7 @@
 .inputContainer {
-  width: 600px;
+  width: 80%;
   margin: 0 auto;
-  padding: 40px;
+  padding: 3rem;
 }
 
 .inputLabel {
@@ -9,6 +9,7 @@
   text-align: center;
   margin-bottom: 30px;
   color: #fff;
+  width: 100%;
 
   /* animation */
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
@@ -19,7 +20,7 @@
 }
 
 .form-container {
-  height: 200px;
+  height: 100%;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -38,10 +39,14 @@
   background-clip: border-box;
   -webkit-background-size: 20px 20px;
   background-size: 20px 20px;
-
   border-radius: 12px;
 }
 
+
+.browse-input {
+  position: relative;
+  right: 1rem;
+}
 
 
 
@@ -62,5 +67,28 @@
     -webkit-transform-origin: 50% 1400px;
             transform-origin: 50% 1400px;
     opacity: 1;
+  }
+}
+
+@media (min-width: 520px) and (max-width: 560px) {
+  .browse-input {
+    position: relative;
+    right: 3rem;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 519px) {
+  .browse-input {
+    right: 2rem;
+  }
+
+
+  .browse-button {
+    padding: .8rem;
+    margin-top: 2rem;
+    position: relative;
+    right: 2rem;
+    border: none;
+    cursor: pointer;
   }
 }
