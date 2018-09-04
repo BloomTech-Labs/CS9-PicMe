@@ -6,11 +6,28 @@ import { Container, Dropdown, Menu, } from 'semantic-ui-react'
 
 import { refreshUserState } from '../actions';
 
+let windowSize;
+
 class TopNavBarLayout extends Component {
+  constructor(){
+    super()
+    this.state = {
+      windowSize: window.innerWidth
+    }
+  }
+
 
   componentDidMount() {
     // in case the page gets reloaded, need to load in user state from db again
     this.props.refreshUserState();
+    window.addEventListener("resize", this.resize)
+  }
+
+  resize = () => {
+    windowSize = window.innerWidth;
+    this.setState({
+      windowSize: windowSize
+    })
   }
 
   handleClickSignOut = e => {
@@ -19,9 +36,9 @@ class TopNavBarLayout extends Component {
   }
 
   render() {
-    const black = { color: 'black' }
+    const black = { color: 'black', margin: "0" }
 
-    return (
+    return (this.state.windowSize > 620) ? (
       <div>
         <Menu fixed='top' inverted>
           <Container>
@@ -55,7 +72,36 @@ class TopNavBarLayout extends Component {
           {this.props.children}
         </Container>
       </div>
-    );
+    ) : 
+    (
+      <div>
+        <Menu fixed='top' inverted>
+          <Container>
+            <Dropdown item openOnFocus simple text='Pictures'>
+              <Dropdown.Menu>
+                <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/browse'>Browse</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/collection'>My Collection</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/billing'>Billing</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/settings'>Settings</Link></Dropdown.Item>
+                <Dropdown.Item onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Menu.Item>
+              Credits: {this.props.credits} 
+            </Menu.Item>
+            <Menu.Item>
+              Hi, {this.props.first_name} 
+            </Menu.Item>
+          </Container>
+        </Menu>
+
+        <Container textAlign='left' style={{ marginTop: '7em' }}>
+          {this.props.children}
+        </Container>
+      </div>
+    )
   }
 }
 
