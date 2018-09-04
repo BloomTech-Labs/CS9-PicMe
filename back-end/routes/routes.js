@@ -11,6 +11,7 @@ const {fetchImages} = require("../controllers/fetchImages")
 const {fetchFriendUploads} = require("../controllers/fetchFriendUploads")
 const {addImageToCollection} = require("../controllers/addImageToCollection")
 const {fetchUserId} = require("../controllers/fetchUserId")
+const {removeFromCollection} = require("../controllers/removeFromCollection")
 
 
 
@@ -27,4 +28,5 @@ module.exports = server => {
     server.route('/friend/:id').get(fetchFriendUploads);
     server.route('/add-images-to-collection').post(validateToken, addImageToCollection);
     server.route('/fetchUserId').post(fetchUserId);
+    server.route('/removeFromCollection').post(removeFromCollection);
   };
