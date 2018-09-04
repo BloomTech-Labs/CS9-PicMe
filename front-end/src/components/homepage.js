@@ -224,7 +224,7 @@ const HomepageLayout = () => (
             </Header>
             <p style={{ fontSize: '1.33em', color: '#919191' }}>
               PicMe is a social media, image-sharing platform. 
-              Upload your images, tag your friends, add photos 
+              Upload your images, add photos 
               to your collection, and share your experiences with the world!
             </p>
             <Header as='h3' style={{ fontSize: '2em' }}>

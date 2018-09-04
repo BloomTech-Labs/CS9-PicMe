@@ -11,8 +11,7 @@ class AboutUs extends Component {
                 <h1 className="about-us-header">About PicMe</h1>
                 <h3 className="about-us-sub"> Built by a team of 5 software engineers, over the course of 4 weeks.</h3>
                 <p className="about-us-p"> PicMe is a unique social media image sharing 
-                    platform. Browse your friends images and see if 
-                    you got tagged, post your own images, tag your friends, 
+                    platform. Browse your friends images, post your own images, 
                     and share some awesome experiences! Thank you for stopping 
                     by, and taking part! 
                 <br/>
