@@ -61,12 +61,21 @@ const dbTest = async () => {
     first_name: 'Jerry',
     last_name: 'Brown',
     nick_names: '',
-    email: 'jerry@brown.com',
+    email: 'jerry',
     password: "jerry",
     credits: 15,
     hashed_id: 2
   })
 
+  const Sue = await User.create({
+    first_name: 'Sue',
+    last_name: 'Williams',
+    nick_names: '',
+    email: 'sue',
+    password: "sue",
+    credits: 15,
+    hashed_id: 3
+  })
 
   // Create two images 
   const myCollectionImage1 = await Image.create({
@@ -141,16 +150,53 @@ const dbTest = async () => {
     url: 'https://res.cloudinary.com/picme/image/upload/v1534982481/Selfie-Images/apple-camera-fashion-5164.jpg'
   })
 
-  // Bob uploads two images 
-  await Bob.addUploadedImages([myCollectionImage3, myCollectionImage4, myCollectionImage5, myCollectionImage6]);
+  // Jerry uploads some images 
+  await Jerry.addUploadedImages([myCollectionImage3, myCollectionImage4, myCollectionImage5]);
 
-  // List Bob's uploaded images
-  (await Bob.getUploadedImages()).forEach(img => console.log('Image is', img.name));
+  await Sue.addUploadedImages(myCollectionImage6);
+
+
+
+  // List Jerry's uploaded images
+  console.log("Jerry's uploaded images");
+  (await Jerry.getUploadedImages()).forEach(img => console.log('Image is', img.name));
 
   // for a particular image, list the user who uploaded it
   // Need to first reload the image model to retrieve the updated data
   const myuser = await (await myCollectionImage3.reload()).getUploadedImageUser();
   console.log(`User who uploaded myCollectionImage3 is ${myuser.first_name}`);
+
+  await Bob.friendRequest(Jerry);
+
+  await Jerry.acceptFriendRequest(Bob);
+
+  let result = await Bob.isFriendsWith(Jerry);
+  console.log("Bob is friends with Jerry", result);
+
+  result = await Jerry.isFriendsWith(Bob);
+  console.log("Jerry is friends with Bob", result);
+
+  result = await Jerry.isFriendsWith(Sue);
+  console.log("Jerry is friends with Sue", result);
+
+  await Bob.friendRequest(Sue);
+
+  await Sue.acceptFriendRequest(Bob);
+
+
+  const friends = await Bob.friendsList();
+  console.log("All of Bob's friends");
+  friends.map( friend => console.log(friend.fullName));
+
+  const pics = await Bob.friendsUploadedImages();
+  const allUsers = await User.all();
+  console.log("All of Bob's friends uploaded images");
+  pics.map( pic => {
+    const owner = allUsers.find( user => user.id === pic.uploaded_image_user_id);
+    console.log(pic.name, owner.fullName);
+  }); 
 }
+
+
 
 dbTest();

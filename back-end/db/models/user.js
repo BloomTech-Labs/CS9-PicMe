@@ -1,5 +1,11 @@
 const bcrypt = require('bcrypt');
 
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+const db = require('../dbconnection');
+const Relationship = require('./relationship')(db, Sequelize);
+const Image = require('./image')(db, Sequelize);
+
 const encrypt = (user, options) => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(user.password, 8, (err, data) => {
@@ -42,6 +48,48 @@ module.exports = (sequelize, datatype) => {
       return this;
     else
       return false;
+  }
+
+  User.prototype.friendRequest = async function(requestee) {
+    await Relationship.create({
+      requester_id: this.id,
+      requestee_id: requestee.id,
+      status: 'pending',
+      action_user_id: this.id
+    });
+  }
+
+  User.prototype.acceptFriendRequest = async function(requestee) {
+    await Relationship.update({
+        status: 'accepted',
+      }, {
+        where: { requestee_id: this.id, requester_id: requestee.id }
+      }
+    )};
+
+  User.prototype.isFriendsWith = async function(user) {
+    return Boolean(await Relationship.findOne({ where: { 
+      [Op.or]: [
+        { [Op.and]: { requestee_id: this.id, requester_id: user.id } },
+        { [Op.and]: { requestee_id: user.id, requester_id: this.id } },
+      ],
+      [Op.and]: { status: 'accepted'}
+    }}));
+  }
+
+  User.prototype.friendsList = async function() {
+    return await sequelize.query(`SELECT * from relationships JOIN users on (requester_id = users.id OR requestee_id = users.id) AND users.id != ${this.id} WHERE requester_id = ${this.id} OR requestee_id = ${this.id}  GROUP BY users.id`, { model: User });
+  }
+
+  User.prototype.friendsUploadedImages = async function() {
+    const sql = 
+      `SELECT * from relationships JOIN users JOIN images
+       ON (requester_id = users.id OR requestee_id = users.id) 
+         AND users.id = images.uploaded_image_user_id
+         AND users.id != ${this.id}
+       WHERE requester_id = ${this.id} OR requestee_id = ${this.id}`;
+
+    return await sequelize.query(sql, { model: Image });
   }
 
   return User;
