@@ -4,17 +4,7 @@ import "./css/upload.css";
 import Dropzone from 'react-dropzone';
 import { Alert } from "react-bootstrap";
 import {
-    ChasingDots,
-    Circle,
-    CubeGrid,
-    DoubleBounce,
-    FadingCircle,
-    FoldingCube,
-    Pulse,
-    RotatingPlane,
-    ThreeBounce,
-    WanderingCubes,
-    Wave
+    CubeGrid
   } from 'better-react-spinkit'
    
 class Upload extends Component{

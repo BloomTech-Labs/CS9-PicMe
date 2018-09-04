@@ -12,14 +12,15 @@ export default class MyCollectionPage extends Component {
   };
 
   async componentWillMount() {
-    const headers = {
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.token}`
-      }
-    };
+    this.getPhotos();
+  }
 
-    let photos = (await axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`, headers)).data;
-    if (photos.length > 0) {
+  // Retrieves photos from the backend and updates state
+  getPhotos = () => {
+    const headers = {headers: {"Authorization": `Bearer ${window.localStorage.token}`}};
+    axios.get(`${process.env.REACT_APP_API}/collection/${localStorage.email}`, headers)
+    .then(response => {
+      let photos = response.data;
       photos = photos.map( photo => {
         return {
           src: photo.url,
@@ -29,9 +30,8 @@ export default class MyCollectionPage extends Component {
           ownerid: photo.uploaded_image_user_id
         }
       });
-    }
-
-    this.setState({ photos: photos });
+      this.setState({ photos: photos });
+    }).catch(err => console.log(err))
   }
 
   selectPhoto = (event, obj) => {
@@ -48,7 +48,21 @@ export default class MyCollectionPage extends Component {
   }
 
   toggleSubmit = (event, obj, index) => {
-    this.handleOpen("Selected Photos have been removed from your collection");
+    const imageData = {
+      email: window.localStorage.email,
+      imageIds: this.state.photos.filter(x => x.selected).map(x => x.id)
+    }
+    axios.post(`${process.env.REACT_APP_API}/removeFromCollection/`, imageData, {
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.token}`
+      }
+    }).then(response => {
+      this.getPhotos();
+      this.handleOpen("Selected photos have been removed from your collection");
+    }).catch(err => {
+      console.log(err);
+      this.handleOpen("There was an error removing photos from your collection");
+    })
   }
 
   toggleDownloadSelected = (event, obj, index) => {
