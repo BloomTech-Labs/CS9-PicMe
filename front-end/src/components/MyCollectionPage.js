@@ -65,10 +65,6 @@ export default class MyCollectionPage extends Component {
     })
   }
 
-  toggleDownloadSelected = (event, obj, index) => {
-    this.handleOpen("Thanks for downloading your selected images. The credits have been removed from your account.");
-  }
-
   handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
 
   handleClose = () => this.setState({ modalOpen: false })
@@ -100,9 +96,6 @@ export default class MyCollectionPage extends Component {
             <p>
               <button className="toggle-select" onClick={this.toggleSelect}>
                 toggle select all images
-              </button>
-              <button className="toggle-download-images" onClick={this.toggleDownloadSelected}>
-                Download selected images!
               </button>
               <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
                 Remove selected images

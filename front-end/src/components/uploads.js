@@ -23,7 +23,6 @@ export default class Uploads extends Component {
         // add to collection binding
         this.toggleSubmit = this.toggleSubmit.bind(this);
         // download selected
-        this.toggleDownloadSelected = this.toggleDownloadSelected.bind(this);
     }
 
     // select photo function
@@ -44,10 +43,6 @@ export default class Uploads extends Component {
     //submit
     toggleSubmit(event, obj, index) {
         this.handleOpen("Selected Photos have been removed from your uploads.");
-    }
-
-    toggleDownloadSelected(event, obj, index) {
-        this.handleOpen("Now downloading your selected images...");
     }
 
     show = () => {
@@ -130,9 +125,6 @@ export default class Uploads extends Component {
                     <p>
                     <button className="toggle-select" onClick={this.toggleSelect}>
                         Select all images
-                    </button>
-                    <button className="toggle-download-images" onClick={this.toggleDownloadSelected}>
-                        Download selected images!
                     </button>
                     <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
                         Remove selected images
