@@ -60,6 +60,7 @@ class ProfileSettings extends Component {
         if (this.state.email !== "") updatedUser.email = this.state.email;
         if (this.state.password !== "") updatedUser.password = this.state.password;
         if (this.state.nickname !== "") updatedUser.nick_names = this.state.nickname;
+        if (Object.keys(updatedUser).length === 1) return;
 
         Axios.put(`${process.env.REACT_APP_API}/update`, updatedUser, {
             headers: {
@@ -98,7 +99,7 @@ class ProfileSettings extends Component {
                 <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
                     <Modal.Content>
                         <Modal.Description>
-                            <h4>Settings Changed</h4>
+                            <h4>Settings changed</h4>
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
