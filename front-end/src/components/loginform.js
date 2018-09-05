@@ -7,25 +7,37 @@ import { signIn } from '../actions';
 class LoginForm extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    show: noshow
   }
 
   handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("The input values are", Object.values(this.state));
+    let bool;
 
-    this.props.signIn(this.state.email, this.state.password)
+
+
+    if((this.state.password.length < 1 )|| (this.state.email.length < 1)) {
+      this.setState({show: show});
+      return;
+    } else {
+      bool = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)
+      
+      if(bool === false) {this.setState({show: show}); return};
+
+      this.props.signIn(this.state.email, this.state.password)
       .then(response => {
-        console.log("The token is" + response.data.token);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', this.state.email);
         this.props.history.push('/upload')
       })
       .catch( err => {
-        alert(`Error with login ${err}`);
+        alert(`Error with login`);
       })
+      }
+    
   }
 
   render() {
@@ -48,6 +60,7 @@ class LoginForm extends Component {
             <Header as='h2' color='teal' textAlign='center'>
               Log-in to your account
             </Header>
+            <p style={this.state.show}>Please make sure all fields are filled out correctly</p>
             <Form size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
@@ -82,6 +95,11 @@ class LoginForm extends Component {
       </div>
     );
   }
+}
+
+const show = {}
+const noshow = {
+  display: "none"
 }
 
 const ModalContainer = props => (

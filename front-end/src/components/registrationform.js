@@ -22,7 +22,7 @@ class RegistrationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    let bool;
 
     //Checks if a field is blank and passwords match
     if((this.state.password !== this.state.password_confirm) || this.state.password.length === 0 || this.state.email.length === 0 || this.state.password_confirm.length === 0 || this.state.first_name.length === 0 || this.state.last_name.length === 0) {
@@ -32,8 +32,9 @@ class RegistrationForm extends Component {
       return; //Stop submission process
     }
 
-    console.log("The input values are", Object.values(this.state));
-
+    bool = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)
+      
+    if(bool === false) {this.setState({show: show}); return};
 
     const newUser = {
       first_name: this.state.first_name,
@@ -47,7 +48,6 @@ class RegistrationForm extends Component {
       .then(response => {
         this.props.signIn(newUser.email, newUser.password)
           .then(response => {
-            console.log("The token is" + response.data.token);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('email', this.state.email);
             this.props.history.push('/upload')
