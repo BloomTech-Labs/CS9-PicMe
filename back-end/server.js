@@ -45,8 +45,7 @@ const dbTest = async () => {
   // comment out in production
   await db.sync({force: true});
 
-
-  // Create two users 
+  // Create users 
   let Bob = await User.create({
     first_name: 'Bob',
     last_name: 'Smith',
@@ -73,6 +72,26 @@ const dbTest = async () => {
     nick_names: '',
     email: 'sue',
     password: "sue",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const Rich = await User.create({
+    first_name: 'Richard',
+    last_name: 'dude',
+    nick_names: '',
+    email: 'rich',
+    password: "rich",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const Jenny = await User.create({
+    first_name: 'Jenny',
+    last_name: 'Oh',
+    nick_names: '',
+    email: 'jenny',
+    password: "jenny",
     credits: 15,
     hashed_id: 3
   })
@@ -195,6 +214,9 @@ const dbTest = async () => {
     const owner = allUsers.find( user => user.id === pic.uploaded_image_user_id);
     console.log(pic.name, owner.fullName);
   }); 
+
+  await Bob.friendRequest(Rich);
+  await Rich.friendRequest(Bob);
 }
 
 
