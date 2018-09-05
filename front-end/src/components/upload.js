@@ -5,14 +5,15 @@ import Dropzone from 'react-dropzone';
 import { Alert } from "react-bootstrap";
 import {
     CubeGrid
-  } from 'better-react-spinkit'
+  } from 'better-react-spinkit';
+  import { connect } from 'react-redux';
+  import { refreshUserState } from "../actions";
    
 class Upload extends Component{
     constructor() {
         super();
         this.state = {
             show: noShow,
-            move: show,
             image: "",
             isLoading: false,
             showSuccessMessage: false
@@ -22,7 +23,6 @@ class Upload extends Component{
     handleFileUpload = (e) => {
         this.setState({
             show: show,
-            move: left
         })
         this.setState({
             image: e.target.files[0],
@@ -34,7 +34,6 @@ class Upload extends Component{
     onDrop(files) {
         this.setState({
             show: show,
-            move: left
         })
         
         this.setState({
@@ -64,7 +63,6 @@ class Upload extends Component{
         data: image
     }).then(response => {
       const data = response.data;
-      console.log(response)
       const uploads = {
           email: localStorage.email,
           name: data.public_id,
@@ -77,9 +75,11 @@ class Upload extends Component{
           }
       })
       .then(res => {
-          console.log(res);
-          this.setState({ isLoading: false, showSuccessMessage: true });
-          window.location.reload()
+          this.setState({ isLoading: false, showSuccessMessage: true, show: noShow });
+          setTimeout(() => {
+            this.setState({showSuccessMessage: false})
+          }, 500) //Timeout so the success message can show for a small moment
+
       }).catch(err => {
           console.log(err);
       })
@@ -91,6 +91,7 @@ class Upload extends Component{
 
 
     render() {
+        this.props.refreshUserState() //Refreshs user state on component render
             return (
                 <div className="uploads">
                     <div>
@@ -135,9 +136,5 @@ const noShow={
 const show = {
 
 }
-const left = {
-    position: "relative",
-    right: "4rem"
-}
 
-export default Upload;
+export default connect(null, {refreshUserState})(Upload);
