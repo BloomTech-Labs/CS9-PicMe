@@ -79,7 +79,7 @@ export default class Uploads extends Component {
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
-                const img = { src: imgData.url, name: imgData.name, height: 1, width: 1 };
+                const img = { src: imgData.url, name: imgData.name, height: .7, width: 1 };
                 imgs.push(img);
             })
             this.setState({photos: imgs});
