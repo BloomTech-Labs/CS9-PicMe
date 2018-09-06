@@ -9,9 +9,9 @@ const users = async (req, res) => {
   const currentUser = await User.findOne({ where: { email: email } });
 
   let users = {};
-  users['WithNoRelationship'] = await currentUser.usersWithNoRelationship();
-  users['RequestingFriendshipWithMe'] = await currentUser.usersRequestingFriendshipWithMe();
-  users['IamRequestingFriendshipWith'] = await currentUser.usersIamRequestingFriendshipWith();
+  users['withNoRelationship'] = await currentUser.usersWithNoRelationship();
+  users['requestingFriendshipWithMe'] = await currentUser.usersRequestingFriendshipWithMe();
+  users['iamRequestingFriendshipWith'] = await currentUser.usersIamRequestingFriendshipWith();
   users['friends'] = await currentUser.friendsList();
 
   res.status(200).json(users);

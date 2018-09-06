@@ -108,7 +108,7 @@ class ProfileSettings extends Component {
                     </Modal.Actions>
                 </Modal>
                 <form onSubmit={this.onSubmit} className="settings">
-                    <Header as='h3' content='Edit Profile' className="header-title" style={style.h3} textAlign='center' style={{ color: 'white', fontFamily: 'Fjalla One' }} />
+                    <Header as='h3' content='Edit Profile' className="header-title" textAlign='center' style={{ color: 'white', fontFamily: 'Fjalla One' }} />
                     {/* <Container text> */}
                     <Segment.Group className="settings-container">
                         <Segment className="first-name-segment">First Name: <Input name="firstName" className="first-name-input" onChange={this.onChange} value={this.state.firstName} type="text"/></Segment>
@@ -128,9 +128,6 @@ class ProfileSettings extends Component {
             </div>
         )
     }
-}
-
-const style = {
 }
 
 
