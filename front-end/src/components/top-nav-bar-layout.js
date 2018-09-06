@@ -59,6 +59,7 @@ class TopNavBarLayout extends Component {
               this.props.history.push('/uploads');
             }} item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
               <Dropdown.Menu>
+              <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/settings'>Edit Profile</Link></Dropdown.Item>
                 <Dropdown.Item style={black} onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
               </Dropdown.Menu>
