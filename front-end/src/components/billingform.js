@@ -58,6 +58,11 @@ class BillingForm extends Component {
     this.setState({ isProcessing: false });
 
     this.props.onSubmit(this.state.credits, { token, error });
+    this._element.clear() //Clears stripe card
+    this.setState({name: ""}) //Clears name
+    document.getElementById("100").checked = false; //unchecks onsubmit
+    document.getElementById("5").checked = false;
+
   }
 
   render() {
@@ -86,6 +91,8 @@ class BillingForm extends Component {
           style={{
             base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif' }
           }}
+
+          onReady={(el) => this._element = el} //Needed to refrence the element to use in onsubmit clearing
         />
         <LoaderButton
           block
