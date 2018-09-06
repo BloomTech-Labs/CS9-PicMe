@@ -76,11 +76,10 @@ img:hover {
 
 
 .remove-from-your-collection {
-    float: right;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    margin: 0 0 15px;
+    margin-left: 4rem;
     margin-right: 20px;
     padding: 8px 20px 10px;
     border: 1px solid rgb(31,45,77);
@@ -97,11 +96,9 @@ img:hover {
     -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
     box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
     text-shadow: 0 -1px 1px rgb(30,45,77) ;
-    margin-right: 50px;
 }
 
 .remove-from-your-collection:hover {
-    float: right;
     cursor: pointer;
     background: red;
     -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
@@ -198,7 +195,7 @@ img:hover {
 }
 
 .panel {
-    padding: 0 18px;
+    padding: 0 1.1rem;
     background-color: white;
     display: none;
     overflow: hidden;
@@ -213,10 +210,11 @@ img:hover {
 }
 
 .header-container {
+    padding: 1rem;
     z-index: 1;
     position: sticky;
     top: 0;
-    height: 100px;
+    height: 100%;
     background:
     linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
     linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
@@ -236,6 +234,11 @@ img:hover {
     z-index: -1;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
 
 
 /* keyframe animation creation */
@@ -252,6 +255,7 @@ img:hover {
       opacity: 1;
     }
   }
+
 
   /* pulsate on hover buttons */
   @keyframes heartbeat {
@@ -305,3 +309,17 @@ img:hover {
 
 
 
+@media (min-width: 0px) and (max-width: 575px) {
+    .header-container{
+        height: 12rem;
+    }
+
+    .toggle-select {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .remove-from-your-collection{
+        margin: 0 auto;
+    }
+}
