@@ -32,9 +32,6 @@ class RegistrationForm extends Component {
       return; //Stop submission process
     }
 
-    console.log("The input values are", Object.values(this.state));
-
-
     const newUser = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
@@ -47,7 +44,6 @@ class RegistrationForm extends Component {
       .then(response => {
         this.props.signIn(newUser.email, newUser.password)
           .then(response => {
-            console.log("The token is" + response.data.token);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('email', this.state.email);
             this.props.history.push('/upload')
@@ -76,7 +72,7 @@ class RegistrationForm extends Component {
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
           <Modal.Content>
             <Modal.Description>
-                <h4>A user with that email already exists</h4>
+                <h4>Error registering, please try again</h4>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
