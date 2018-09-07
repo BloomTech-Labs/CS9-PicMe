@@ -25,7 +25,7 @@ class FriendCard extends Component {
                   </Button>
                 </div> :
                 <div className='ui center aligned'>
-                  <Button onClick={handleButton1Click.bind(this, this.props)} basic color={color}>
+                  <Button onClick={handleButton1Click} basic color={color}>
                      { btnTxt } 
                   </Button> 
                 </div>

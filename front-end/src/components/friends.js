@@ -20,9 +20,10 @@ class Friends extends Component {
     this.setState({ users });
   }
 
-  requestFriend = async (user) => {
+  friendAction = async (user, action) => {
     const payload = {
       friend: user,
+      action: action,
       email: localStorage.email
     }
 
@@ -32,44 +33,10 @@ class Friends extends Component {
       }
     };
 
-    const users = (await axios.post(`${process.env.REACT_APP_API}/request-friend`, payload, headers)).data;
-    console.log('updated usrs', users)
+    const users = (await axios.post(`${process.env.REACT_APP_API}/friend-action`, payload, headers)).data;
     this.setState({ users });
   }
   
-  unfriend = async user => {
-    const payload = {
-      friend: user,
-      email: localStorage.email
-    }
-
-    const headers = {
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.token}`
-      }
-    };
-
-    const users = (await axios.post(`${process.env.REACT_APP_API}/unfriend`, payload, headers)).data;
-    console.log('updated usrs', users)
-    this.setState({ users });
-  }
-
-  acceptFriend = async user => {
-    const payload = {
-      friend: user,
-      email: localStorage.email
-    }
-
-    const headers = {
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.token}`
-      }
-    };
-
-    const users = (await axios.post(`${process.env.REACT_APP_API}/request-friend`, payload, headers)).data;
-    console.log('updated usrs', users)
-    this.setState({ users });
-  }
 
   render() {
     const users = this.state.users;
@@ -77,13 +44,13 @@ class Friends extends Component {
       <Fragment>
         <h4>Search for new Friends</h4><br />
         <Card.Group>
-          { users.noRelationship.map(user => <FriendCard handleButton1Click={this.requestFriend} key={user.id} {...user} btnTxt="Request Friend" />) }
+          { users.noRelationship.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'requestFriend')} key={user.id} {...user} btnTxt="Request Friend" />) }
         </Card.Group>
 
         <br />
         <h4>Current Friends</h4>
         <Card.Group>
-          { users.friends.map(user => <FriendCard handleButton1Click={this.unfriend} key={user.id} {...user} btnTxt="Unfriend" btnColor="red" />) }
+          { users.friends.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'unFriend')} key={user.id} {...user} btnTxt="Unfriend" btnColor="red" />) }
         </Card.Group>
 
         <br />
