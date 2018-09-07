@@ -100,8 +100,18 @@ const dbTest = async () => {
     first_name: 'David',
     last_name: 'Man',
     nick_names: '',
-    email: 'ddvid',
-    password: "ddvid",
+    email: 'david',
+    password: "david",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const Page = await User.create({
+    first_name: 'Page',
+    last_name: 'Nelson',
+    nick_names: '',
+    email: 'page',
+    password: "page",
     credits: 15,
     hashed_id: 3
   })
@@ -225,7 +235,7 @@ const dbTest = async () => {
     console.log(pic.name, owner.fullName);
   }); 
 
-  await Bob.friendRequest(Rich);
+  await Bob.friendRequest(Page);
   await Rich.friendRequest(Bob);
 }
 

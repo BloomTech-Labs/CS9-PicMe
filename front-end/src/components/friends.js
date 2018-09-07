@@ -42,15 +42,15 @@ class Friends extends Component {
     const users = this.state.users;
     return (
       <Fragment>
-        <h4>Search for new Friends</h4><br />
+        <h4>Current Friends</h4><br />
         <Card.Group>
-          { users.noRelationship.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'requestFriend')} key={user.id} {...user} btnTxt="Request Friend" />) }
+          { users.friends.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'unFriend')} key={user.id} {...user} btnTxt="Unfriend" btnColor="red" />) }
         </Card.Group>
 
         <br />
-        <h4>Current Friends</h4>
+        <h4>Search for new Friends</h4>
         <Card.Group>
-          { users.friends.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'unFriend')} key={user.id} {...user} btnTxt="Unfriend" btnColor="red" />) }
+          { users.noRelationship.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'requestFriend')} key={user.id} {...user} btnTxt="Request Friend" />) }
         </Card.Group>
 
         <br />
