@@ -96,6 +96,16 @@ const dbTest = async () => {
     hashed_id: 3
   })
 
+  const David = await User.create({
+    first_name: 'David',
+    last_name: 'Man',
+    nick_names: '',
+    email: 'ddvid',
+    password: "ddvid",
+    credits: 15,
+    hashed_id: 3
+  })
+
   // Create two images 
   const myCollectionImage1 = await Image.create({
     name: 'my wedding',
