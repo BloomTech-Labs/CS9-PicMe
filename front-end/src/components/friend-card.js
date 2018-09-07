@@ -4,7 +4,7 @@ import { Button, Card, Icon } from 'semantic-ui-react'
 class FriendCard extends Component {
   
   render() {
-    const { fullName, btnTxt, btnColor, pending, handleButton1Click } = this.props;
+    const { fullName, btnTxt, btnColor, pending, handleButton1Click, handleButton2Click } = this.props;
     const color = btnColor || 'green';
 
     return (
@@ -17,10 +17,10 @@ class FriendCard extends Component {
             <Card.Content extra>
               { pending ? 
                 <div className='ui two buttons'>
-                  <Button basic color='green'>
+                  <Button onClick={handleButton1Click} basic color='green'>
                     Accept
                   </Button>
-                  <Button basic color='red'>
+                  <Button onClick={handleButton2Click} basic color='red'>
                     Decline
                   </Button>
                 </div> :

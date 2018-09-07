@@ -56,7 +56,7 @@ class Friends extends Component {
         <br />
         <h4>Pending Friend Requests</h4>
         <Card.Group>
-          { users.pending.map(user => <FriendCard handleButton1Click={this.acceptFriend} handleButton2Click={this.declineFriend} key={user.id} {...user} pending />) }
+          { users.pending.map(user => <FriendCard handleButton1Click={this.friendAction.bind(this, user, 'accept')} handleButton2Click={this.friendAction.bind(this, user, 'decline')} key={user.id} {...user} pending />) }
         </Card.Group>
 
         <br />

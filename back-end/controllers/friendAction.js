@@ -15,6 +15,9 @@ const friendAction = async (req, res) => {
     case 'unFriend':
       await currentUser.unFriend(friend);
       break;
+    case 'accept':
+      await currentUser.acceptFriendRequest(friend);
+      break;
 
     default:
       console.log(`Error, ${action} is an invalid action`);
