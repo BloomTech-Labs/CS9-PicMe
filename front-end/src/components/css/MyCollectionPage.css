@@ -39,33 +39,18 @@ img:hover {
     border-bottom-color: rgb(21,30,51);
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
     -o-text-overflow: clip;
     text-overflow: clip;
     background: #3498db;
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
     text-shadow: 0 -1px 1px rgb(30,45,77) ;
 }
 
 .toggle-select:hover {
     cursor: pointer;
     background: rgba(79,172,234,1);
-    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-
     animation: heartbeat 1.5s ease-in-out infinite both;
-}
-
-.toggle-select:active {
-    cursor: pointer;
-    margin: 0px 0 10px;
-    margin-left: 50px;
-    background: rgb(65, 98, 168);
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
 }
 
 .toggle-select:focus {
@@ -87,88 +72,26 @@ img:hover {
     border-bottom-color: rgb(21,30,51);
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
     color: rgb(255, 255, 255);
     text-align: center;
     -o-text-overflow: clip;
     text-overflow: clip;
     background: #3498db;
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
     text-shadow: 0 -1px 1px rgb(30,45,77) ;
 }
 
 .remove-from-your-collection:hover {
     cursor: pointer;
     background: red;
-    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
     cursor: pointer;
-    margin-right: 50px;
-
     animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.remove-from-your-collection:active {
-    margin: 5px 0 10px;
-    margin-right: 50px;
-    background: rgb(65, 98, 168);
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
-
-    animation: jello-horizontal 0.9s both;
-}
 
 .remove-from-your-collection:focus {
-    outline: none;
-}
-
-.toggle-download-images {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    margin: 0 0 15px;
-    padding: 8px 20px 10px;
-    border: 1px solid rgb(31,45,77);
-    border-top-color: rgb(56,83,140);
-    border-bottom-color: rgb(21,30,51);
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    font: normal normal bold 14px/1 "Coda", Helvetica, sans-serif;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    -o-text-overflow: clip;
-    text-overflow: clip;
-    background: #3498db;
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    text-shadow: 0 -1px 1px rgb(30,45,77) ;
-    margin-left: 200px;
-}
-
-.toggle-download-images:hover {
-    cursor: pointer;
-    background: green;
-    -webkit-box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    box-shadow: 0 0 20px 1px rgb(135,173,255) inset, 0 1px 0 0 rgb(29,44,77) , 0 6px 0 0 rgb(31,48,83) , 0 8px 4px 1px rgb(17,17,17) ;
-    margin-left: 200px;
-
-    animation: heartbeat 1.5s ease-in-out infinite both;
-}
-
-.toggle-download-images:active {
-    background: rgb(65, 98, 168);
-    -webkit-box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
-    box-shadow: 0 1px 10px 1px rgb(92,139,238) inset, 0 1px 0 0 rgb(29,44,77) , 0 2px 0 0 rgb(31,48,83) , 0 4px 3px 0 rgb(17,17,17) ;
-    margin-left: 200px;
-
+    outline: 0;
     animation: jello-horizontal 0.9s both;
 }
-
-.toggle-download-images:focus {
-    outline: none;
-}
-
 
 
 .share__button {
@@ -202,7 +125,6 @@ img:hover {
 }
 
 .header-title {
-    font-family: 'Fjalla One', sans-serif;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -309,9 +231,11 @@ img:hover {
 
 
 
-@media (min-width: 0px) and (max-width: 575px) {
+@media (min-width: 0px) and (max-width: 606px) {
     .header-container{
-        height: 12rem;
+        height: 100%;
+        padding: 2rem;
+        width: 100%;
     }
 
     .toggle-select {

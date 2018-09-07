@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Billing from './components/billing';
