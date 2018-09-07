@@ -42,7 +42,15 @@ export default class Uploads extends Component {
 
     //submit
     toggleSubmit(event, obj, index) {
-        this.handleOpen("Selected Photos have been removed from your uploads.");
+        let selected = false;
+        for (let photo in this.state.photos) {
+            if (photo.selected) selected = true;
+        }
+        if (selected) {
+            this.handleOpen("Selected Photos have been removed from your uploads");
+        } else {
+            this.handleOpen("No photos selected for removal");
+        }
     }
 
     show = () => {
@@ -71,7 +79,7 @@ export default class Uploads extends Component {
         .then(response => {
             const imgs = [];
             response.data.forEach(imgData => {
-                const img = { src: imgData.url, name: imgData.name, height: 1, width: 1 };
+                const img = { src: imgData.url, name: imgData.name, height: .7, width: 1 };
                 imgs.push(img);
             })
             this.setState({photos: imgs});

@@ -36,6 +36,10 @@ class Settings extends Component {
       alert(e);
     }
     this.setState({ isLoading: false, showSuccessMessage: true });
+
+    setTimeout(() => {
+      this.setState({showSuccessMessage: false})
+    }, 2500) //Clears green success message after 2.6 seconds
   }
 
   render() {

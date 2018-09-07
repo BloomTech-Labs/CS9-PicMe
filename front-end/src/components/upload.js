@@ -21,13 +21,17 @@ class Upload extends Component{
     }
 
     handleFileUpload = (e) => {
-        this.setState({
-            show: show,
-        })
-        this.setState({
-            image: e.target.files[0],
-            preview: URL.createObjectURL(e.target.files[0])
-        })
+        if(e.target.files[0]) { //Only if a file has been chosen do we run this
+            this.setState({
+                show: show,
+            })
+            this.setState({
+                image: e.target.files[0],
+                preview: URL.createObjectURL(e.target.files[0])
+            })
+        }
+
+        return; //Otherwise we return and let the image stay as is
 
     }
 

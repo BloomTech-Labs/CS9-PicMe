@@ -54,25 +54,24 @@ class TopNavBarLayout extends Component {
               <Dropdown.Menu>
                 <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/browse'>Browse</Link></Dropdown.Item>
-                <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/collection'>My Collection</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Menu.Item header>
               <Link to='/billing'>Billing</Link>
             </Menu.Item>
-            <Menu.Item header>
-              <Link to='/settings'>Settings</Link>
-            </Menu.Item>
-            <Menu.Item header onClick={this.handleClickSignOut}>
-              Sign Out
-            </Menu.Item>
             <Menu.Item position="right" header>
               Credits: {this.props.credits} 
             </Menu.Item>
-            <Menu.Item position="right" header>
-              Hi, {this.props.first_name + ' ' + this.props.last_name} 
-            </Menu.Item>
+            <Dropdown onClick={() => {
+              this.props.history.push('/uploads');
+            }} item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
+              <Dropdown.Menu>
+              <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
+                <Dropdown.Item><Link style={black} to='/settings'>Edit Profile</Link></Dropdown.Item>
+                <Dropdown.Item style={black} onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Container>
         </Menu>
 
@@ -89,19 +88,21 @@ class TopNavBarLayout extends Component {
               <Dropdown.Menu>
                 <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/browse'>Browse</Link></Dropdown.Item>
-                <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/collection'>My Collection</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/billing'>Billing</Link></Dropdown.Item>
-                <Dropdown.Item><Link style={black} to='/settings'>Settings</Link></Dropdown.Item>
-                <Dropdown.Item onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Menu.Item>
               Credits: {this.props.credits} 
             </Menu.Item>
-            <Menu.Item>
-              Hi, {this.props.first_name} 
-            </Menu.Item>
+            <Dropdown onClick={() => {
+              this.props.history.push('/uploads');
+            }} item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
+              <Dropdown.Menu>
+                <Dropdown.Item><Link style={black} to='/settings'>Edit Profile</Link></Dropdown.Item>
+                <Dropdown.Item style={black} onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Container>
         </Menu>
 

@@ -48,9 +48,14 @@ export default class MyCollectionPage extends Component {
   }
 
   toggleSubmit = (event, obj, index) => {
+    const imgs = this.state.photos.filter(x => x.selected).map(x => x.id);
+    if (imgs.length === 0) {
+      this.handleOpen("No photos selected for removal");
+      return;
+    }
     const imageData = {
       email: window.localStorage.email,
-      imageIds: this.state.photos.filter(x => x.selected).map(x => x.id)
+      imageIds: imgs
     }
     axios.post(`${process.env.REACT_APP_API}/removeFromCollection/`, imageData, {
       headers: {
