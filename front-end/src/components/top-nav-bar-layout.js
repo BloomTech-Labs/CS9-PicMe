@@ -58,13 +58,12 @@ class TopNavBarLayout extends Component {
             <Menu.Item position="right" header>
               Credits: {this.props.credits} 
             </Menu.Item>
-            <Dropdown onClick={() => {
-              this.props.history.push('/uploads');
-            }} item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
+            {/* Can't use an onClick event as it triggers for any selected element*/}
+            <Dropdown item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
               <Dropdown.Menu>
               <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/settings'>Edit Profile</Link></Dropdown.Item>
-                <Dropdown.Item style={black} onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
+                <Dropdown.Item><Link to="#" style={black} onClick={this.handleClickSignOut}>Sign Out</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Container>
@@ -90,12 +89,11 @@ class TopNavBarLayout extends Component {
             <Menu.Item>
               Credits: {this.props.credits} 
             </Menu.Item>
-            <Dropdown onClick={() => {
-              this.props.history.push('/uploads');
-            }} item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
+            <Dropdown item openOnFocus simple text={`Hi, ${this.props.first_name + ' ' + this.props.last_name}`}>
               <Dropdown.Menu>
+              <Dropdown.Item><Link style={black} to='/uploads'>My Uploads</Link></Dropdown.Item>
                 <Dropdown.Item><Link style={black} to='/settings'>Edit Profile</Link></Dropdown.Item>
-                <Dropdown.Item style={black} onClick={this.handleClickSignOut}>Sign Out</Dropdown.Item>
+                <Dropdown.Item><Link to="#" style={black} onClick={this.handleClickSignOut}>Sign Out</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Container>
