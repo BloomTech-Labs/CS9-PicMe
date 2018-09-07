@@ -34,7 +34,7 @@ const selectedImgStyle = {
   transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s"
 };
 const cont = {
-  backgroundColor: "#eee",
+  // backgroundColor: "#eee",
   cursor: "pointer",
   overflow: "hidden",
   position: "relative"
@@ -65,8 +65,7 @@ const SelectedImage = ({
       className={!photo.selected ? "not-selected" : ""}
     >
       <Checkmark selected={photo.selected ? true : false} />
-      <div className="tags-input">
-      </div>
+      <span>Owner: {photo.owner}</span>
       <img
         style={
           photo.selected

@@ -16,7 +16,6 @@ export default (state = intialState, action) => {
     case SIGNIN_SUCCESS:
       return { ...state, ...action.payload };
     case REFRESH_USER:
-      console.log('refresh user payload', action.payload)
       return { ...state, ...action.payload };
 
     default:

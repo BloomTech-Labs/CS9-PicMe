@@ -45,8 +45,7 @@ const dbTest = async () => {
   // comment out in production
   await db.sync({force: true});
 
-
-  // Create two users 
+  // Create users 
   let Bob = await User.create({
     first_name: 'Bob',
     last_name: 'Smith',
@@ -77,15 +76,55 @@ const dbTest = async () => {
     hashed_id: 3
   })
 
+  const Rich = await User.create({
+    first_name: 'Richard',
+    last_name: 'dude',
+    nick_names: '',
+    email: 'rich',
+    password: "rich",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const Jenny = await User.create({
+    first_name: 'Jenny',
+    last_name: 'Oh',
+    nick_names: '',
+    email: 'jenny',
+    password: "jenny",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const David = await User.create({
+    first_name: 'David',
+    last_name: 'Man',
+    nick_names: '',
+    email: 'david',
+    password: "david",
+    credits: 15,
+    hashed_id: 3
+  })
+
+  const Page = await User.create({
+    first_name: 'Page',
+    last_name: 'Nelson',
+    nick_names: '',
+    email: 'page',
+    password: "page",
+    credits: 15,
+    hashed_id: 3
+  })
+
   // Create two images 
   const myCollectionImage1 = await Image.create({
-    name: 'my wedding',
-    url: 'http://weddingpicimage.com'
+    name: 'this dude',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982267/Selfie-Images/adventure-black-and-white-eye-glasses-1292306.jpg'
   })
 
   const myCollectionImage2 = await Image.create({
-    name: 'my graduation',
-    url: 'http://graduation.com'
+    name: 'person',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982429/Selfie-Images/adult-beard-boy-220453_1.jpg'
   })
 
   // Add two images to Bob's collection
@@ -122,9 +161,9 @@ const dbTest = async () => {
   console.log("\nupdated Bob first name is", Bob.first_name);
 
   // Update Bob's wedding image 
-  const bobWeddingImage = (await Bob.getCollectionImages()).find(img => img.name === 'my wedding');
-  bobWeddingImage.name = "Bob's wedding image";
-  await bobWeddingImage.save();
+  // const bobWeddingImage = (await Bob.getCollectionImages()).find(img => img.name === 'my wedding');
+  // bobWeddingImage.name = "Bob's wedding image";
+  // await bobWeddingImage.save();
 
   BobImages = await Bob.getCollectionImages();
   BobImages.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
@@ -195,6 +234,9 @@ const dbTest = async () => {
     const owner = allUsers.find( user => user.id === pic.uploaded_image_user_id);
     console.log(pic.name, owner.fullName);
   }); 
+
+  await Bob.friendRequest(Page);
+  await Rich.friendRequest(Bob);
 }
 
 

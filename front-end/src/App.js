@@ -14,6 +14,7 @@ import Browse from './components/browse';
 import friendsUploads from "./components/friendsUploads";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
+import Friends from "./components/friends";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Layout>
             <PrivateRoute exact path="/billing" component={Billing}/>
+            <PrivateRoute exact path="/friends" component={Friends}/>
             <PrivateRoute exact path="/upload" component={Upload}/>
             <PrivateRoute exact path="/uploads" component={Uploads}/>
             <PrivateRoute exact path="/settings" component={ProfileSettings}/>

@@ -11,7 +11,7 @@ export default class MyCollectionPage extends Component {
     selectAll: false
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     this.getPhotos();
   }
 
