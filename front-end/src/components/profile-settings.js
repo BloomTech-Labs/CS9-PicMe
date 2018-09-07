@@ -86,7 +86,7 @@ class ProfileSettings extends Component {
     handleClose = () => this.setState({ modalOpen: false })
 
     //Post method will be here, server needs work first
-    // need a comment to update
+    // need a comment to update again
 
 
     render() {
