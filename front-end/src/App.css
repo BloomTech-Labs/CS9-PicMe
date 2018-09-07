@@ -1,8 +1,9 @@
-.App {
-  text-align: center;
+* {
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 900;
 }
 
-.text-center {
-  display: flex;
-  justify-content: center;
+*:hover {
+  outline: none !important;
+  border: none;
 }

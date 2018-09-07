@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import LoginForm from './loginform'
 import RegistrationForm from './registrationform'
-
+import "./css/homepage.css"
 import {
   Button,
   Container,
@@ -27,6 +27,7 @@ const HomepageHeading = ({ mobile, ...props}) => {
   return (
     <Container style={{marginBottom: "20px"}} text>
       <Header
+        className="homepage__header"
         as='h1'
         content='PicMe'
         inverted
@@ -239,7 +240,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='left' style={{position: "relative", left: "40%" }}>
-            <Link to="/aboutUs"><Button primary size='huge'>Check out more</Button></Link>
+            <Link to="/aboutUs"><Button className="more" primary size='huge'>Check out more</Button></Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
