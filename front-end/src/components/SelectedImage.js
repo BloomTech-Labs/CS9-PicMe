@@ -65,7 +65,7 @@ const SelectedImage = ({
       className={!photo.selected ? "not-selected" : ""}
     >
       <Checkmark selected={photo.selected ? true : false} />
-      <span>Owner: {photo.owner}</span>
+      <span>{photo.owner}</span>
       <img
         style={
           photo.selected
