@@ -18,6 +18,9 @@ const friendAction = async (req, res) => {
     case 'accept':
       await currentUser.acceptFriendRequest(friend);
       break;
+    case 'decline':
+      await currentUser.declineFriendRequest(friend);
+      break;
 
     default:
       console.log(`Error, ${action} is an invalid action`);

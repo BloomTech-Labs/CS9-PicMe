@@ -67,6 +67,14 @@ module.exports = (sequelize, datatype) => {
       }
     )};
 
+  User.prototype.declineFriendRequest = async function(requestee) {
+    await Relationship.update({
+        status: 'declined',
+      }, {
+        where: { requestee_id: this.id, requester_id: requestee.id }
+      }
+    )};
+
   User.prototype.isFriendsWith = async function(user) {
     return Boolean(await Relationship.findOne({ where: { 
       [Op.or]: [
