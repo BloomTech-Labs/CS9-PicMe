@@ -26,3 +26,10 @@
   width: 100%;
 }
 
+.billing-description {
+  margin-left: 35%;
+  text-align: center;
+  margin-top: 20px;
+  width: 30%;
+}
+

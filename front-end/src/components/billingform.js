@@ -69,41 +69,49 @@ class BillingForm extends Component {
     const loading = this.state.isProcessing || this.props.loading;
 
     return (
-      <form className="BillingForm" onSubmit={this.handleSubmitClick}>
-        <FormGroup bsSize="large" controlId="credits">
-          <ControlLabel>Credits</ControlLabel>
-          <Checkbox onClick={this.handleCheckBoxClick} id="100" value="100"> 100 Credits - $9.99</Checkbox>
-          <Checkbox onClick={this.handleCheckBoxClick} id="5" value="5"> 5 Credits - $0.99</Checkbox>
-        </FormGroup>
-        <FormGroup bsSize="large" controlId="name">
-          <ControlLabel>Cardholder&apos;s name</ControlLabel>
-          <FormControl
-            type="text"
-            value={this.state.name}
-            onChange={this.handleFieldChange}
-            placeholder="Name on the card"
-          />
-        </FormGroup>
-        <ControlLabel>Credit Card Info</ControlLabel>
-        <CardElement
-          className="card-field"
-          onChange={this.handleCardFieldChange}
-          style={{
-            base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif' }
-          }}
+      <div className="Billing-wrapper">
+        <form className="BillingForm" onSubmit={this.handleSubmitClick}>
+          <FormGroup bsSize="large" controlId="credits">
+            <ControlLabel>Credits</ControlLabel>
+            <Checkbox onClick={this.handleCheckBoxClick} id="100" value="100"> 100 Credits - $9.99</Checkbox>
+            <Checkbox onClick={this.handleCheckBoxClick} id="5" value="5"> 5 Credits - $0.99</Checkbox>
+          </FormGroup>
+          <FormGroup bsSize="large" controlId="name">
+            <ControlLabel>Cardholder&apos;s name</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.name}
+              onChange={this.handleFieldChange}
+              placeholder="Name on the card"
+            />
+          </FormGroup>
+          <ControlLabel>Credit Card Info</ControlLabel>
+          <CardElement
+            className="card-field"
+            onChange={this.handleCardFieldChange}
+            style={{
+              base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif' }
+            }}
 
-          onReady={(el) => this._element = el} //Needed to refrence the element to use in onsubmit clearing
-        />
-        <LoaderButton
-          block
-          bsSize="large"
-          type="submit"
-          text="Purchase"
-          isLoading={loading}
-          loadingText="Purchasing…"
-          disabled={!this.validateForm()}
-        />
-      </form>
+            onReady={(el) => this._element = el} //Needed to refrence the element to use in onsubmit clearing
+          />
+          <LoaderButton
+            block
+            bsSize="large"
+            type="submit"
+            text="Purchase"
+            isLoading={loading}
+            loadingText="Purchasing…"
+            disabled={!this.validateForm()}
+          />
+        </form>
+        <h5 className="billing-description">
+        <b>This is where you can purchase credits</b>.
+        Credits are used to add other users photos to your collection. 
+        Each time you add a photo to your collection, it will remove one credit from your account. 
+        You can purchase bulk amounts of credits here, or earn a single credit for each photo upload you complete and post to your account. 
+      </h5>
+      </div>
     );
   }
 }
