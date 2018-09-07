@@ -132,10 +132,10 @@ export default class Uploads extends Component {
                 <div className="button-container">
                     <p>
                     <button className="toggle-select" onClick={this.toggleSelect}>
-                        Select all images
+                        Select all
                     </button>
                     <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                        Remove selected images
+                        Remove selected
                     </button>
                     </p>
                 </div>
