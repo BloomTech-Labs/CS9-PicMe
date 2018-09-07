@@ -118,13 +118,13 @@ const dbTest = async () => {
 
   // Create two images 
   const myCollectionImage1 = await Image.create({
-    name: 'my wedding',
-    url: 'http://weddingpicimage.com'
+    name: 'this dude',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982267/Selfie-Images/adventure-black-and-white-eye-glasses-1292306.jpg'
   })
 
   const myCollectionImage2 = await Image.create({
-    name: 'my graduation',
-    url: 'http://graduation.com'
+    name: 'person',
+    url: 'https://res.cloudinary.com/picme/image/upload/v1534982429/Selfie-Images/adult-beard-boy-220453_1.jpg'
   })
 
   // Add two images to Bob's collection
@@ -161,9 +161,9 @@ const dbTest = async () => {
   console.log("\nupdated Bob first name is", Bob.first_name);
 
   // Update Bob's wedding image 
-  const bobWeddingImage = (await Bob.getCollectionImages()).find(img => img.name === 'my wedding');
-  bobWeddingImage.name = "Bob's wedding image";
-  await bobWeddingImage.save();
+  // const bobWeddingImage = (await Bob.getCollectionImages()).find(img => img.name === 'my wedding');
+  // bobWeddingImage.name = "Bob's wedding image";
+  // await bobWeddingImage.save();
 
   BobImages = await Bob.getCollectionImages();
   BobImages.forEach(img => console.log(`Image #${img.id} is ${img.name}`)); 
