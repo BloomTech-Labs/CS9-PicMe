@@ -51,7 +51,6 @@ module.exports = (sequelize, datatype) => {
   }
 
   User.prototype.friendRequest = async function(requestee) {
-    console.log('requestee id is', requestee.id);
     await Relationship.create({
       requester_id: this.id,
       requestee_id: requestee.id,
@@ -76,6 +75,18 @@ module.exports = (sequelize, datatype) => {
       ],
       [Op.and]: { status: 'accepted'}
     }}));
+  }
+
+  User.prototype.unFriend = async function(user) {
+    const relationship = await Relationship.findOne({ where: { 
+      [Op.or]: [
+        { [Op.and]: { requestee_id: this.id, requester_id: user.id } },
+        { [Op.and]: { requestee_id: user.id, requester_id: this.id } },
+      ],
+      [Op.and]: { status: 'accepted'}
+    }});
+
+    await relationship.destroy();
   }
 
   User.prototype.usersWithNoRelationship = async function() {

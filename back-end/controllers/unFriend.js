@@ -2,14 +2,15 @@ const Sequelize = require("sequelize");
 const db = require("../db/dbconnection");
 const User = require("../db/models/user")(db, Sequelize);
 
-const requestFriend = async (req, res) => {
+const unFriend = async (req, res) => {
 
   const { email, friend } = req.body;
   console.log('friend is', friend)
 
   const currentUser = await User.findOne({ where: { email: email } });
 
-  await currentUser.friendRequest(friend);
+  await currentUser.unFriend(friend);
+  console.log('!!!!!!!!!11 got here')
 
   let users = {};
   users['noRelationship'] = await currentUser.usersWithNoRelationship();
@@ -21,5 +22,5 @@ const requestFriend = async (req, res) => {
 }
 
 module.exports = {
-  requestFriend
+  unFriend
 };

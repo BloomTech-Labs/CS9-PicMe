@@ -37,7 +37,24 @@ class Friends extends Component {
     this.setState({ users });
   }
   
-  unfriend = async (e, user) => {
+  unfriend = async user => {
+    const payload = {
+      friend: user,
+      email: localStorage.email
+    }
+
+    const headers = {
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.token}`
+      }
+    };
+
+    const users = (await axios.post(`${process.env.REACT_APP_API}/unfriend`, payload, headers)).data;
+    console.log('updated usrs', users)
+    this.setState({ users });
+  }
+
+  acceptFriend = async user => {
     const payload = {
       friend: user,
       email: localStorage.email
@@ -54,22 +71,6 @@ class Friends extends Component {
     this.setState({ users });
   }
 
-  acceptFriend = async (e, user) => {
-    const payload = {
-      friend: user,
-      email: localStorage.email
-    }
-
-    const headers = {
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.token}`
-      }
-    };
-
-    const users = (await axios.post(`${process.env.REACT_APP_API}/request-friend`, payload, headers)).data;
-    console.log('updated usrs', users)
-    this.setState({ users });
-  }
   render() {
     const users = this.state.users;
     return (
