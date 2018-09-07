@@ -44,7 +44,7 @@ const HomepageHeading = ({ mobile, ...props}) => {
         style={{
           fontSize: mobile ? '1.5em' : '1.7em',
           fontWeight: 'normal',
-          marginTop: mobile ? '0.5em' : '1.5em',
+          marginTop: mobile ? '0.5em' : '0em',
           marginBottom: '1.5em',
         }}
       />
@@ -93,7 +93,7 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em', backgroundImage: 'url(https://res.cloudinary.com/picme/image/upload/v1534982576/Site-layout-images/aperture-black-blur-274973.jpg)', backgroundSize: 'cover' }}
+            style={{ minHeight: '100vh', padding: '0em 0em', backgroundImage: 'url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ecb102434df167a280a10460da7b4386)', backgroundSize: 'cover' }}
             vertical
           >
             <Menu
@@ -216,7 +216,7 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
-    <Segment style={{ padding: '8em 0em', textAlign: 'center'}} vertical>
+    {/* <Segment style={{ padding: '8em 0em', textAlign: 'center'}} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8} style={{ marginLeft: '280px'}}>
@@ -265,13 +265,13 @@ const HomepageLayout = () => (
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Segment>
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
+    </Segment> */}
+    <Segment inverted footer vertical style={{ padding: '1em 0em', position: 'absolute', bottom: 0, width: '100%' }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
+              {/* <Header inverted as='h4' content='About' /> */}
               <List link inverted>
                 <Link to="/contact"><List.Item>Contact Us</List.Item></Link>
                 <br/>
