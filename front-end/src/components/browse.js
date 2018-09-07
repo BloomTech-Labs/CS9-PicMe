@@ -1,57 +1,127 @@
-import React, { Component } from 'react'
-import { Input } from 'semantic-ui-react'
-import './css/browse.css';
+import React, {Component} from 'react';
+import Gallery from 'react-photo-gallery';
+import './css/MyCollectionPage.css';
+import SelectedImage from "./SelectedImage";
+import axios from 'axios';
+import { Modal, Button } from 'semantic-ui-react';
 
+export default class MyCollectionPage extends Component {
+  state= {
+    photos: [],
+    selectAll: false
+  };
 
-let windowSize = window.innerWidth
-class Browse extends Component {
-  constructor() {
-    super();
-    this.state = {
-      id: '',
-      width: window.innerWidth
+  async componentDidMount() {
+    this.getPhotos();
+  }
+
+  // Retrieves photos from the backend and updates state
+  getPhotos = () => {
+    const headers = {headers: {"Authorization": `Bearer ${window.localStorage.token}`}};
+    axios.get(`${process.env.REACT_APP_API}/friends-images/${localStorage.email}`, headers)
+    .then(response => {
+      let photos = response.data.images;
+      photos = photos.map( photo => {
+        return {
+          src: photo.url,
+          width: 1,
+          height: 1,
+          id: photo.id,
+          ownerid: photo.uploaded_image_user_id,
+          owner: response.data.allUsers[photo.uploaded_image_user_id - 1].fullName
+        }
+      });
+
+      this.setState({ photos: photos });
+    }).catch(err => console.log(err))
+  }
+
+  selectPhoto = (event, obj) => {
+    let photos = this.state.photos;
+    photos[obj.index].selected = !photos[obj.index].selected;
+    this.setState({ photos: photos });
+  }
+
+  toggleSelect = () => {
+    let photos = this.state.photos.map((photo, index) => {
+      return { ...photo, selected: !this.state.selectAll };
+    });
+    this.setState({ photos: photos, selectAll: !this.state.selectAll });
+  }
+
+  toggleSubmit = (event, obj, index) => {
+    const imgs = this.state.photos.filter(x => x.selected).map(x => x.id);
+    if (imgs.length === 0) {
+      this.handleOpen("No photos selected for removal");
+      return;
     }
-  }
-  
-
-  componentDidMount() {
-    window.addEventListener("resize", this.resize) //Listens to resizes on window and performs wanted action
-  }
-
-  resize = () => {
-    windowSize = window.innerWidth
-    this.setState({ 
-      width: windowSize
+    const imageData = {
+      email: window.localStorage.email,
+      imageIds: imgs
+    }
+    axios.post(`${process.env.REACT_APP_API}/removeFromCollection/`, imageData, {
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.token}`
+      }
+    }).then(response => {
+      this.getPhotos();
+      this.handleOpen("Selected photos have been removed from your collection");
+    }).catch(err => {
+      console.log(err);
+      this.handleOpen("There was an error removing photos from your collection");
     })
   }
 
-  handleInput = e => this.setState({ [e.target.name]: e.target.value });
+  handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
 
-  handleClick = e => {
-    e.preventDefault();
-    if(this.state.id.length < 1) return //Checks to make sure it's not empty
-    this.props.history.push('/friend/uploads/' + this.state.id);
-  }
+  handleClose = () => this.setState({ modalOpen: false })
 
   render() {
-    return (this.state.width >= 520 )  ? (
-      //Changed to form so a user can hit enter to submit
-      <div className="form-container">
-        <form onSubmit={this.handleClick} className="inputContainer">
-          <h2 className="inputLabel">Input your friend's unique code here:</h2>
-          <Input className="browse-input" placeholder={"Enter a unique code..."} action={{ content: 'Browse', onClick: this.handleClick }} label='Unique code:' name="id" value={this.state.id} onChange={this.handleInput} onSubmit={this.handleSubmit}/>
-        </form>
-      </div>
-    ) : (
-      <div className="form-container">
-        <form onSubmit={this.handleClick} className="inputContainer">
-          <h2 className="inputLabel">Input your friend's unique code here:</h2>
-          <Input className="browse-input" placeholder={"Enter a unique code..."} label='Code:' name="id" value={this.state.id} onChange={this.handleInput} onSubmit={this.handleSubmit}/>
-          <button className="browse-button" type="submit" onClick={this.handleClick}>Browse</button>
-        </form>
-      </div>
-    )
+    const modalStyle = {
+      margin: 'auto',
+      marginTop: '50% - 80px',
+      height: '160px'
+    };
+
+    return (
+      <div className="component-wrapper">
+        <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' style={modalStyle}>
+          <Modal.Content>
+            <Modal.Description>
+              <h4>{this.state.modalDescription}</h4>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button primary onClick={this.handleClose}>
+              OK
+            </Button>
+          </Modal.Actions>
+        </Modal>
+        <div className="header-container">
+          <h1 className="header-title">Browse Friends' Photos</h1>
+          <div className="button-container">
+            <p>
+              <button className="toggle-select" onClick={this.toggleSelect}>
+                toggle select all images
+              </button>
+              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
+                Remove selected images
+              </button>
+            </p>
+          </div>
+        </div>
+        { this.state.photos.length > 0 ? 
+            <div className="gallery-container">
+              <Gallery
+                photos={this.state.photos}
+                onClick={this.selectPhoto}
+                ImageComponent={SelectedImage}
+                direction={"column"}
+                margin={40}
+              />
+            </div> : null }
+          </div>
+    );
   }
 }
 
-export default Browse;

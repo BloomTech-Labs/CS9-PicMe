@@ -10,6 +10,7 @@ const {currentuser} = require("../controllers/currentuser")
 const {users} = require("../controllers/users")
 const {friendAction} = require("../controllers/friendAction")
 const {fetchImages} = require("../controllers/fetchImages")
+const {friendsImages} = require("../controllers/friendsImages")
 const {fetchFriendUploads} = require("../controllers/fetchFriendUploads")
 const {addImageToCollection} = require("../controllers/addImageToCollection")
 const {fetchUserId} = require("../controllers/fetchUserId")
@@ -26,6 +27,7 @@ module.exports = server => {
     server.route('/uploads').post(validateToken, uploads);
     server.route('/collection/:email').get(validateToken, collection);
     server.route('/browse').get(validateToken, fetchImages);
+    server.route('/friends-images/:email').get(validateToken, friendsImages);
     server.route('/currentuser/').get(currentuser);
     server.route('/users/:email').get(validateToken, users);
     server.route('/friend-action').post(validateToken, friendAction);
