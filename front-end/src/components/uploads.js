@@ -129,16 +129,6 @@ export default class Uploads extends Component {
             </Modal>
             <div className="header-container">
                     <h1 className="header-title"> Your photo uploads </h1>
-                <div className="button-container">
-                    <p>
-                    <button className="toggle-select" onClick={this.toggleSelect}>
-                        Select all
-                    </button>
-                    <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                        Remove selected
-                    </button>
-                    </p>
-                </div>
             </div>
             <div>
             <button onClick={() => {
@@ -147,7 +137,6 @@ export default class Uploads extends Component {
             }} className="accordion">Share Link</button>
             <div style={this.state.show} className="panel">
                 <p id="link" style={show}></p>
-                <p id="code" style={show}></p>
             </div>
             </div>
                 {this.state.photos.length > 0 ? <Gallery
