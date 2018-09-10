@@ -6,34 +6,30 @@ import axios from 'axios';
 import { Modal, Button } from 'semantic-ui-react';
 
 export default class MyCollectionPage extends Component {
-  state= {
+  state = {
     photos: [],
     selectAll: false
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getPhotos();
   }
 
-  // Retrieves photos from the backend and updates state
-  getPhotos = () => {
+  getPhotos = async () => {
     const headers = {headers: {"Authorization": `Bearer ${window.localStorage.token}`}};
-    axios.get(`${process.env.REACT_APP_API}/friends-images/${localStorage.email}`, headers)
-    .then(response => {
-      let photos = response.data.images;
-      photos = photos.map( photo => {
-        return {
-          src: photo.url,
-          width: 1,
-          height: 1,
-          id: photo.id,
-          ownerid: photo.uploaded_image_user_id,
-          owner: response.data.allUsers[photo.uploaded_image_user_id - 1].fullName
-        }
-      });
+    const data = (await axios.get(`${process.env.REACT_APP_API}/friends-images/${localStorage.email}`, headers)).data;
+    const photos = data.images.map( photo => (
+      {
+        src: photo.url,
+        width: 1,
+        height: 1,
+        id: photo.id,
+        ownerid: photo.uploaded_image_user_id,
+        owner: data.allUsers[photo.uploaded_image_user_id - 1].fullName
+      }
+    ));
 
-      this.setState({ photos: photos });
-    }).catch(err => console.log(err))
+    this.setState({ photos: photos });
   }
 
   selectPhoto = (event, obj) => {
@@ -42,34 +38,36 @@ export default class MyCollectionPage extends Component {
     this.setState({ photos: photos });
   }
 
-  toggleSelect = () => {
-    let photos = this.state.photos.map((photo, index) => {
-      return { ...photo, selected: !this.state.selectAll };
-    });
+  handleSelectAllBtnClick = () => {
+    let photos = this.state.photos.map(photo => ({ ...photo, selected: !this.state.selectAll }));
     this.setState({ photos: photos, selectAll: !this.state.selectAll });
   }
 
-  toggleSubmit = (event, obj, index) => {
+  handleAddPhotosBtnClick = async () => {
     const imgs = this.state.photos.filter(x => x.selected).map(x => x.id);
     if (imgs.length === 0) {
-      this.handleOpen("No photos selected for removal");
+      this.handleOpen("Please select photo(s) to add to your collection.");
       return;
     }
-    const imageData = {
-      email: window.localStorage.email,
+    const payload = {
+      email: localStorage.email,
       imageIds: imgs
     }
-    axios.post(`${process.env.REACT_APP_API}/removeFromCollection/`, imageData, {
+
+    const headers = {
       headers: {
         "Authorization": `Bearer ${window.localStorage.token}`
       }
-    }).then(response => {
-      this.getPhotos();
-      this.handleOpen("Selected photos have been removed from your collection");
-    }).catch(err => {
-      console.log(err);
-      this.handleOpen("There was an error removing photos from your collection");
-    })
+    };
+
+    await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload, headers);
+    // }).then(response => {
+    //   this.getPhotos();
+    //   this.handleOpen("Selected photos have been removed from your collection");
+    // }).catch(err => {
+    //   console.log(err);
+    //   this.handleOpen("There was an error removing photos from your collection");
+    // })
   }
 
   handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
@@ -97,15 +95,16 @@ export default class MyCollectionPage extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
+
         <div className="header-container">
           <h1 className="header-title">Browse Friends' Photos</h1>
           <div className="button-container">
             <p>
-              <button className="toggle-select" onClick={this.toggleSelect}>
+              <button className="toggle-select" onClick={this.handleSelectAllBtnClick}>
                 Select all
               </button>
-              <button className="remove-from-your-collection" onClick={this.toggleSubmit}>
-                Remove selected
+              <button className="remove-from-your-collection" onClick={this.handleAddPhotosBtnClick}>
+                Add Selected Photos to Your Collection 
               </button>
             </p>
           </div>
