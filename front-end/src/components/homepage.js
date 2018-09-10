@@ -27,11 +27,11 @@ const HomepageHeading = ({ mobile, ...props}) => {
     <Container style={{marginBottom: "20px"}} text>
       <Header
         className="homepage__header"
-        as='h1'
-        content='PicMe'
+        as='h6'
+        content='PicMeCollections'
         inverted
         style={{
-          fontSize: mobile ? '6em' : '8em',
+          fontSize: mobile ? '1rem' : '6em',
           fontWeight: 'normal',
           marginBottom: 0,
         }}
@@ -223,7 +223,7 @@ const HomepageLayout = () => (
             Share photos with your friends all over the world!
             </Header>
             <p style={{ fontSize: '1.33em', color: '#919191' }}>
-              PicMe is a social media, image-sharing platform. 
+              PicMeCollections is a social media, image-sharing platform. 
               Upload your images, add photos 
               to your collection, and share your experiences with the world!
             </p>
@@ -279,7 +279,7 @@ const HomepageLayout = () => (
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Thanks for checking out PicMe!
+                Thanks for checking out PicMeCollections!
               </Header>
               <p>
                 Made With Passion By Lambda School Engineers
