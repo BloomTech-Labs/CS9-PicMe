@@ -98,28 +98,28 @@ module.exports = (sequelize, datatype) => {
   }
 
   User.prototype.usersWithNoRelationship = async function() {
-    return await sequelize.query(`SELECT users.* from users LEFT JOIN relationships on (requester_id = users.id OR requestee_id = users.id) WHERE requester_id IS NULL AND requestee_id IS NULL`, { model: User });
+    return await sequelize.query(`SELECT Users.* from Users LEFT JOIN Relationships on (requester_id = Users.id OR requestee_id = Users.id) WHERE requester_id IS NULL AND requestee_id IS NULL`, { model: User });
   }
 
 
   User.prototype.usersRequestingFriendshipWithMe = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on requester_id = users.id WHERE requestee_id = ${this.id} AND status = 'pending'`, { model: User });
+    return await sequelize.query(`SELECT Users.* from Users JOIN Relationships on requester_id = Users.id WHERE requestee_id = ${this.id} AND status = 'pending'`, { model: User });
   }
 
   User.prototype.usersIamRequestingFriendshipWith = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on requestee_id = users.id WHERE requester_id = ${this.id} AND status = 'pending'`, { model: User });
+    return await sequelize.query(`SELECT Users.* from Users JOIN Relationships on requestee_id = Users.id WHERE requester_id = ${this.id} AND status = 'pending'`, { model: User });
   }
 
   User.prototype.friendsList = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on (requester_id = users.id OR requestee_id = users.id) AND users.id != ${this.id} WHERE (requester_id = ${this.id} OR requestee_id = ${this.id}) AND status = 'accepted'  GROUP BY users.id`, { model: User });
+    return await sequelize.query(`SELECT Users.* from Users JOIN Relationships on (requester_id = Users.id OR requestee_id = Users.id) AND Users.id != ${this.id} WHERE (requester_id = ${this.id} OR requestee_id = ${this.id}) AND status = 'accepted'  GROUP BY Users.id`, { model: User });
   }
 
   User.prototype.friendsUploadedImages = async function() {
     const sql = 
-      `SELECT images.* from relationships JOIN users JOIN images
-       ON (requester_id = users.id OR requestee_id = users.id) 
-         AND users.id = images.uploaded_image_user_id
-         AND users.id != ${this.id}
+      `SELECT Images.* from Relationships JOIN Users JOIN Images
+       ON (requester_id = Users.id OR requestee_id = Users.id) 
+         AND Users.id = Images.uploaded_image_user_id
+         AND Users.id != ${this.id}
        WHERE requester_id = ${this.id} OR requestee_id = ${this.id}`;
 
     return await sequelize.query(sql, { model: Image });
