@@ -42,9 +42,6 @@ class TopNavBarLayout extends Component {
       <div>
         <Menu fixed='top' inverted>
           <Container>
-            <Menu.Item header>
-              <Link to='/friends'>Friends</Link>
-            </Menu.Item>
             <Dropdown item openOnFocus simple text='Pictures'>
               <Dropdown.Menu>
                 <Dropdown.Item><Link style={black} to='/upload'>Upload</Link></Dropdown.Item>
