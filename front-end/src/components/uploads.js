@@ -137,6 +137,7 @@ export default class Uploads extends Component {
             }} className="accordion">Share Link</button>
             <div style={this.state.show} className="panel">
                 <p id="link" style={show}></p>
+                <p id="code" style={show}></p>
             </div>
             </div>
                 {this.state.photos.length > 0 ? <Gallery

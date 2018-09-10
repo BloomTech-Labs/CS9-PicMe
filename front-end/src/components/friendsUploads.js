@@ -42,6 +42,17 @@ export default class friendsUploads extends Component {
     }
 
     handleButtonClick = async () => {
+      let credits = document.getElementsByClassName("header")
+      credits = Array.from(credits)
+      credits = credits[1].innerHTML
+      credits = credits.split(":")
+      credits = credits[1];
+      credits = Number(credits)
+      //Very last minute implementation of getting a user's credits
+
+      if(credits < 1) return; //If not enough credits we return
+
+      
       const payload = {
         imageIds: this.state.selectedImageIds,
         email: localStorage.email
