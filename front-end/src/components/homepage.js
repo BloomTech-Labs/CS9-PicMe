@@ -17,7 +17,6 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -93,7 +92,7 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: '100vh', padding: '0em 0em', backgroundImage: 'url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ecb102434df167a280a10460da7b4386)', backgroundSize: 'cover' }}
+            style={{ minHeight: '100vh', padding: '0em 0em', backgroundSize: 'cover', backgroundPosition: "0 -1rem" ,backgroundImage: 'url(https://res.cloudinary.com/picme/image/upload/v1536353984/Site-layout-images/canva-photo-editor.png)' }}
             vertical
           >
             <Menu
@@ -266,7 +265,7 @@ const HomepageLayout = () => (
         </Grid.Row>
       </Grid>
     </Segment> */}
-    <Segment inverted footer vertical style={{ padding: '1em 0em', position: 'absolute', bottom: 0, width: '100%' }}>
+    <Segment inverted footer vertical style={{ padding: '2rem 0em', position: 'absolute', bottom: 0, width: '100%',fontSize: "1.2rem" }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
