@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     action_user_id: DataTypes.INTEGER
   }, {
-    tableName: 'relationships'
+    tableName: 'Relationships'
   });
 
   Relationship.associate = function(models) {

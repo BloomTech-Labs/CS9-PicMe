@@ -27,7 +27,7 @@ module.exports = (sequelize, datatype) => {
       hashed_id: datatype.STRING
     },
     {
-      tableName: 'users',
+      tableName: 'Users',
       indexes: [
         {
           unique: true,
@@ -52,28 +52,40 @@ module.exports = (sequelize, datatype) => {
   }
 
   User.prototype.friendRequest = async function(requestee) {
-    await Relationship.create({
-      requester_id: this.id,
-      requestee_id: requestee.id,
-      status: 'pending',
-      action_user_id: this.id
-    });
+    try {
+      await Relationship.create({
+        requester_id: this.id,
+        requestee_id: requestee.id,
+        status: 'pending',
+        action_user_id: this.id
+      });
+    } catch(err) {
+      console.log(`FriendRequest error!!!!!!!!!!!!: ${err}`);
+    }
   }
 
   User.prototype.acceptFriendRequest = async function(requestee) {
-    await Relationship.update({
-        status: 'accepted',
-      }, {
-        where: { requestee_id: this.id, requester_id: requestee.id }
-      }
-    )};
+    try {
+      await Relationship.update({
+          status: 'accepted',
+        }, {
+          where: { requestee_id: this.id, requester_id: requestee.id }
+        });
+    } catch(err) {
+      console.log(`acceptFriendRequest error!!!!!!!!!!!!: ${err}`);
+    }
+  };
 
   User.prototype.declineFriendRequest = async function(requestee) {
-    const relationship = await Relationship.findOne({ where: { 
-        requestee_id: this.id, requester_id: requestee.id }
-      });
+    try {
+      const relationship = await Relationship.findOne({ where: { 
+          requestee_id: this.id, requester_id: requestee.id }
+        });
 
-    await relationship.destroy();
+      await relationship.destroy();
+    } catch(err) {
+      console.log(`declineFriendRequest error!!!!!!!!!!!!: ${err}`);
+    }
   };
 
   User.prototype.isFriendsWith = async function(user) {
@@ -87,43 +99,59 @@ module.exports = (sequelize, datatype) => {
   }
 
   User.prototype.unFriend = async function(user) {
-    const relationship = await Relationship.findOne({ where: { 
-      [Op.or]: [
-        { [Op.and]: { requestee_id: this.id, requester_id: user.id } },
-        { [Op.and]: { requestee_id: user.id, requester_id: this.id } },
-      ],
-      [Op.and]: { status: 'accepted'}
-    }});
+    try {
+      const relationship = await Relationship.findOne({ where: { 
+        [Op.or]: [
+          { [Op.and]: { requestee_id: this.id, requester_id: user.id } },
+          { [Op.and]: { requestee_id: user.id, requester_id: this.id } },
+        ],
+        [Op.and]: { status: 'accepted'}
+      }});
 
-    await relationship.destroy();
+      await relationship.destroy();
+    } catch (err) {
+      console.log("unfriend error!!!!!!!!!!!", err);
+    }
   }
 
   User.prototype.usersWithNoRelationship = async function() {
-    return await sequelize.query(`SELECT users.* from users LEFT JOIN relationships on (requester_id = users.id OR requestee_id = users.id) WHERE requester_id IS NULL AND requestee_id IS NULL`, { model: User });
+    return await sequelize.query(`SELECT "Users".* from "Users" LEFT JOIN "Relationships" on (requester_id = "Users".id OR requestee_id = "Users".id) WHERE requester_id IS NULL AND requestee_id IS NULL`, { model: User });
   }
 
 
   User.prototype.usersRequestingFriendshipWithMe = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on requester_id = users.id WHERE requestee_id = ${this.id} AND status = 'pending'`, { model: User });
+    try {
+        return await sequelize.query(`SELECT "Users".* from "Users" JOIN "Relationships" on requester_id = "Users".id WHERE requestee_id = ${this.id} AND status = 'pending'`, { model: User });
+    } catch(err) {
+      console.log(`usersRequestingFriendshipWithMe error!!!!!!!!!!!!: ${err}`);
+    }
   }
 
   User.prototype.usersIamRequestingFriendshipWith = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on requestee_id = users.id WHERE requester_id = ${this.id} AND status = 'pending'`, { model: User });
+    try {
+      return await sequelize.query(`SELECT "Users".* from "Users" JOIN "Relationships" on requestee_id = "Users".id WHERE requester_id = ${this.id} AND status = 'pending'`, { model: User });
+    } catch(err) {
+      console.log(`usersIamRequestingFriendshipWith error!!!!!!!!!!!!: ${err}`);
+    }
   }
 
   User.prototype.friendsList = async function() {
-    return await sequelize.query(`SELECT users.* from users JOIN relationships on (requester_id = users.id OR requestee_id = users.id) AND users.id != ${this.id} WHERE (requester_id = ${this.id} OR requestee_id = ${this.id}) AND status = 'accepted'  GROUP BY users.id`, { model: User });
+    return await sequelize.query(`SELECT "Users".* from "Users" JOIN "Relationships" on (requester_id = "Users".id OR requestee_id = "Users".id) AND "Users".id != ${this.id} WHERE (requester_id = ${this.id} OR requestee_id = ${this.id}) AND status = 'accepted'  GROUP BY "Users".id`, { model: User });
   }
 
   User.prototype.friendsUploadedImages = async function() {
-    const sql = 
-      `SELECT images.* from relationships JOIN users JOIN images
-       ON (requester_id = users.id OR requestee_id = users.id) 
-         AND users.id = images.uploaded_image_user_id
-         AND users.id != ${this.id}
-       WHERE requester_id = ${this.id} OR requestee_id = ${this.id}`;
+    try {
+        const sql = 
+          `SELECT "Images".* from ("Relationships" JOIN "Users" ON TRUE) JOIN "Images"
+           ON (requester_id = "Users".id OR requestee_id = "Users".id) 
+             AND "Users".id = "Images".uploaded_image_user_id
+             AND "Users".id != ${this.id}
+           WHERE requester_id = ${this.id} OR requestee_id = ${this.id}`;
 
-    return await sequelize.query(sql, { model: Image });
+        return await sequelize.query(sql, { model: Image });
+    } catch(err) {
+      console.log(`FriendsuploadedImages error!!!!!!!!!!!!: ${err}`);
+    }
   }
 
   return User;
