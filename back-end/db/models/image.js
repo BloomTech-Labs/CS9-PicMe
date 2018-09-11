@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     url: DataTypes.STRING,
     uploaded_image_user_id: DataTypes.INTEGER
-  }, {});
+  }, {
+    tableName: 'Images'
+  });
 
   return Image;
 };

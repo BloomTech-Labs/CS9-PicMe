@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     requestee_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
     action_user_id: DataTypes.INTEGER
-  }, {});
+  }, {
+    tableName: 'Relationships'
+  });
 
   Relationship.associate = function(models) {
     // associations can be defined here
