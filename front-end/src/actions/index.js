@@ -18,6 +18,21 @@ export const buyCredits = payload => {
   }
 };
 
+export const addImageToCollection = payload => {
+  return dispatch => {
+    axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload, {
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.token}`
+      }
+    })
+      .then(response => {
+        // using CHARGE_SUCCESS temporarily right now because it does what we want
+        dispatch({ type: CHARGE_SUCCESS, payload: response.data });
+      })
+      .catch(err => console.log(err));
+  }
+};
+
 export const signIn = (email, password) => {
   return dispatch => {
     return axios.post(`${process.env.REACT_APP_API}/signin`, {

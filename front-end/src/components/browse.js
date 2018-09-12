@@ -4,8 +4,10 @@ import './css/MyCollectionPage.css';
 import SelectedImage from "./SelectedImage";
 import axios from 'axios';
 import { Modal, Button } from 'semantic-ui-react';
+import { addImageToCollection } from '../actions';
+import { connect } from 'react-redux';
 
-export default class MyCollectionPage extends Component {
+class MyCollectionPage extends Component {
   state = {
     photos: [],
     selectAll: false
@@ -60,14 +62,7 @@ export default class MyCollectionPage extends Component {
       }
     };
 
-    await axios.post(`${process.env.REACT_APP_API}/add-images-to-collection`, payload, headers);
-    // }).then(response => {
-    //   this.getPhotos();
-    //   this.handleOpen("Selected photos have been removed from your collection");
-    // }).catch(err => {
-    //   console.log(err);
-    //   this.handleOpen("There was an error removing photos from your collection");
-    // })
+    this.props.addImageToCollection(payload);
   }
 
   handleOpen = desc => this.setState({ modalOpen: true, modalDescription: desc })
@@ -124,3 +119,4 @@ export default class MyCollectionPage extends Component {
   }
 }
 
+export default connect(null, { addImageToCollection })(MyCollectionPage);
