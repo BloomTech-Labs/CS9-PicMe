@@ -9,17 +9,19 @@ import ProfileSettings from "./components/profile-settings";
 import Upload from "./components/upload";
 import Uploads from "./components/uploads";
 import MyCollectionPage from './components/MyCollectionPage';
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import Browse from './components/browse';
 import friendsUploads from "./components/friendsUploads";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 import Friends from "./components/friends";
+import { HashRouter } from 'react-router-dom'
+
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Layout>
@@ -35,7 +37,7 @@ class App extends Component {
             <Route exact path="/contact" component={ContactUs}/>
           </Layout>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
