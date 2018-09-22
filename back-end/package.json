@@ -1,7 +1,7 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "",
+  "description": "PicMeCollection",
   "main": "index.js",
   "engines": {
     "node": "10.8.0"
@@ -10,8 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
+  "repository": {
+    "url": "https://github.com/Lambda-School-Labs/CS9-PicMe"
+  },
   "author": "",
-  "license": "No License",
+  "private": true,
   "dependencies": {
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
